@@ -15,6 +15,7 @@ namespace Deployer;
  */
 
 require 'recipe/contao.php';
+require 'contrib/cachetool.php';
 
 import(__DIR__.'/private/deploy/hosts.yml');
 
@@ -26,5 +27,12 @@ set('shared_files', ['.env.local']);
 
 // PHP-FPM runs as the site user, who also owns the files: nothing to make writable
 set('writable_mode', 'skip');
+
+// PHP-FPM keeps the old release after the "current" symlink moves: public/index.php is the
+// same file in every release (same mtime), so OPcache never recompiles it and its __DIR__
+// still points to the previous release. Clear OPcache and the realpath cache through the
+// pool's socket (option "cachetool" in hosts.yml); no sudo needed.
+after('deploy:symlink', 'cachetool:clear:opcache');
+after('cachetool:clear:opcache', 'cachetool:clear:stat');
 
 after('deploy:failed', 'deploy:unlock');
