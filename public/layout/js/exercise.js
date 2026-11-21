@@ -58,9 +58,9 @@
         steps: [
           'Setite se trenutka sa detetom koji vas je juče ili danas pogodio.',
           'Šta ste vi osećali? Ne dete, nego vi.',
-          'Koliko godina ste se osećali u tom trenutku?'
+          'Da li vam je to osećanje poznato od ranije, iz vremena kad ste i sami bili dete?'
         ],
-        reflection: 'Roditeljstvo nas često vraća u sopstveno detinjstvo. Kada razumemo šta se u nama budi, lakše ostajemo prisutni uz dete.',
+        reflection: 'Roditeljstvo nas često vraća u sopstveno detinjstvo. Kada razumemo šta se u nama budi i zašto, lakše ostajemo prisutni uz dete.',
         linkText: 'Podrška roditeljima', link: '/s-cim-radim/roditeljstvo'
       }
     ],
@@ -110,9 +110,9 @@
         steps: [
           'Think of a moment with your child, yesterday or today, that hit you.',
           'What did you feel? Not your child, you.',
-          'How old did you feel in that moment?'
+          'Do you know this feeling from before, from the time when you were a child yourself?'
         ],
-        reflection: 'Parenthood often takes us back to our own childhood. When we understand what wakes up in us, it is easier to stay present with our child.',
+        reflection: 'Parenthood often takes us back to our own childhood. When we understand what wakes up in us and why, it is easier to stay present with our child.',
         linkText: 'Support for parents', link: '/en/what-i-work-with/parenting'
       }
     ]
