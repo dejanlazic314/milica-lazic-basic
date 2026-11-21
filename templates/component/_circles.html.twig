@@ -1,0 +1,15 @@
+{#
+    Three overlapping circles (thoughts, feelings, body) inside "contact with others".
+    Optional: modifiers = list of classes, e.g. ['circles--light', 'circles--inline'] on
+    the page "Geštalt terapija".
+    data-part links a circle to its label (hover highlight in public/layout/js/header.js).
+#}
+{% trans_default_domain 'site' %}
+<div class="{{ (['circles']|merge(modifiers|default([])))|join(' ') }}" role="img" aria-label="{{ 'circles.aria'|trans }}">
+    <span class="circles__box"></span><span class="circles__caption">{{ 'circles.caption'|trans }}</span>
+    <span class="circles__k circles__k--thoughts" data-part="thoughts"></span><span class="circles__k circles__k--feelings" data-part="feelings"></span><span class="circles__k circles__k--body" data-part="body"></span>
+    <div class="circles__label circles__label--thoughts" data-part="thoughts"><p>{{ 'circles.thoughts'|trans }}</p><p>{{ 'circles.thoughts_note'|trans }}</p></div>
+    <div class="circles__label circles__label--feelings" data-part="feelings"><p>{{ 'circles.feelings'|trans }}</p><p>{{ 'circles.feelings_note'|trans }}</p></div>
+    <div class="circles__label circles__label--body" data-part="body"><p>{{ 'circles.body'|trans }}</p><p>{{ 'circles.body_note'|trans }}</p></div>
+    <div class="circles__center"><span></span><p>{{ 'circles.center_1'|trans }}<br>{{ 'circles.center_2'|trans }}</p></div>
+</div>

@@ -1,0 +1,126 @@
+{#
+    Header variant E: info bar (scrolls away), sticky header with the main menu,
+    submenu for pages with children, and the mobile menu (≤ 1023 px).
+    Markup: private/dizajn/milica-lazic-start-en/html/heder.html
+    Behaviour: public/layout/js/header.js (data-header, data-dd, data-menu-button, data-mm-sub)
+
+    @var array<string, string|null>             site   SiteSettings::forPage()
+    @var list<\MilicaLazic\Navigation\NavItem>  items  NavigationBuilder::build()
+#}
+{% trans_default_domain 'site' %}
+{% set alternates = language_alternates() %}
+
+{# SR/EN switch (src/Language/LanguageSwitcher.php); nothing with a single language #}
+{% macro language_switch(alternates) %}
+    {%- if alternates|length > 1 -%}
+        <span class="lang-switch">
+            {%- for alt in alternates -%}
+                {%- if not loop.first %}<span aria-hidden="true">/</span>{% endif -%}
+                <a href="{{ alt.url }}" hreflang="{{ alt.language }}" lang="{{ alt.language }}"{{ alt.active ? ' aria-current="true"' }}>{{ alt.language|upper }}</a>
+            {%- endfor -%}
+        </span>
+    {%- endif -%}
+{% endmacro %}
+{% set exercise_url = site.home_url ~ '#vezba' %}
+
+<!-- indexer::stop -->
+<div class="info-bar">
+    <div class="info-bar__inner">
+        <span>{{ site.info_bar_text }}</span>
+        <span class="info-bar__right">
+            {% if site.phone_href %}
+                <a href="{{ site.phone_href }}">{{ site.phone }}</a>
+            {% endif %}
+            {# SR/EN only when there is more than one language (design decision C14) #}
+            {{ _self.language_switch(alternates) }}
+        </span>
+    </div>
+</div>
+
+<header class="header" data-header>
+    <div class="header__inner">
+        <a class="logo-link" href="{{ site.home_url }}" aria-label="{{ 'header.home'|trans }}">
+            {% if site.logo %}
+                <img src="{{ site.logo }}" alt="" width="46" height="46">
+            {% endif %}
+            <span><span class="logo-link__name">Milica Lazić</span><span class="logo-link__role">{{ 'common.role'|trans }}</span></span>
+        </a>
+
+        <div class="header__right">
+            <nav aria-label="{{ 'header.nav'|trans }}">
+                <ul class="main-menu">
+                    {% for item in items|filter(item => not item.mobileOnly) %}
+                        {% if item.children %}
+                            <li class="nav-dd{{ item.isTrail ? ' trail' }}" data-dd>
+                                <a class="nav-link" href="{{ item.href }}" aria-haspopup="true" aria-expanded="false"{{ item.isActive ? ' aria-current="page"' }}>{{ item.title }}
+                                    <svg class="nav-chev" aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+                                <div class="nav-dd-panel">
+                                    <div class="submenu">
+                                        <ul class="submenu__list">
+                                            {% for child in item.children %}
+                                                <li><a class="dd-item" href="{{ child.href }}"{{ child.isActive ? ' aria-current="page"' }}><strong>{{ child.title }}</strong>{% if child.subtitle %}<span>{{ child.subtitle }}</span>{% endif %}</a></li>
+                                            {% endfor %}
+                                            <li><a class="dd-item dd-item--all" href="{{ item.href }}">{{ 'header.all_topics'|trans }}
+                                                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                                        </ul>
+                                        <div class="submenu__card">
+                                            <span class="label">{{ 'header.unsure'|trans }}</span>
+                                            <span class="title">{{ 'header.unsure_title'|trans }}</span>
+                                            <p>{{ 'header.unsure_text'|trans }}</p>
+                                            <div class="actions">
+                                                <a class="btn btn-dark btn-small" href="{{ exercise_url }}">{{ 'header.try_exercise'|trans }}</a>
+                                                {% if site.contact_url %}
+                                                    <a class="link-underlined" href="{{ site.contact_url }}">{{ 'common.write_me'|trans }}</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li{{ item.isTrail ? ' class="trail"' }}><a class="nav-link" href="{{ item.href }}"{{ item.isActive ? ' aria-current="page"' }}>{{ item.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            {% if site.contact_url %}
+                <a class="btn btn-apricot" href="{{ site.contact_url }}">{{ 'header.cta_short'|trans }}<span class="longer">&nbsp;{{ 'header.cta_rest'|trans }}</span></a>
+            {% endif %}
+
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobilni-meni" aria-label="{{ 'header.menu_open'|trans }}" data-menu-button>
+                <svg class="icon-menu" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                <svg class="icon-close" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobilni-meni" aria-label="{{ 'header.nav'|trans }}" data-mobile-menu>
+        <ul>
+            {% for item in items %}
+                <li>
+                    {% if item.children %}
+                        <button class="mm-item" type="button" aria-expanded="false" aria-controls="mm-sub-{{ loop.index }}" data-mm-sub>{{ item.title }}
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage-700)"><path d="m6 9 6 6 6-6"/></svg></button>
+                        <div class="mm-sub" id="mm-sub-{{ loop.index }}">
+                            {% for child in item.children %}
+                                <a href="{{ child.href }}"{{ child.isActive ? ' aria-current="page"' }}><strong>{{ child.title }}</strong>{% if child.subtitle %}<span>{{ child.subtitle }}</span>{% endif %}</a>
+                            {% endfor %}
+                            <a class="mm-all" href="{{ item.href }}">{{ 'header.all_topics_arrow'|trans }}</a>
+                            <a class="mm-unsure" href="{{ exercise_url }}"><span class="label">{{ 'header.unsure'|trans }}</span><strong>{{ 'header.try_exercise_long'|trans }}</strong></a>
+                        </div>
+                    {% else %}
+                        <a class="mm-item" href="{{ item.href }}"{{ item.isActive ? ' aria-current="page"' }}>{{ item.title }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if site.contact_url or alternates %}
+            <div class="mobile-menu__bottom">
+                {{ _self.language_switch(alternates) }}
+                {%- if site.contact_url %}<a class="btn btn-apricot" href="{{ site.contact_url }}">{{ 'header.cta'|trans }}</a>{% endif %}
+            </div>
+        {% endif %}
+    </nav>
+</header>
+<!-- indexer::continue -->

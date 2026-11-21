@@ -1,0 +1,23 @@
+{#
+    Post card ("Tekstovi"). Markup: html/strane/pocetna.html (#tekstovi .post-card),
+    html/strane/tekstovi.html (list), html/strane/tekst-*.html ("Možda vas zanima", no chip
+    and no meta) and html/delovi/tekstovi-stanja.html (with image: .post-card--image).
+
+    @var array post  {title, href, teaser, category, minutes, figure}
+    @var string card_class  extra classes, e.g. "card--white"
+    @var bool compact  only heading and teaser (related posts)
+    @var bool read_more  "· Pročitajte →" after the reading time (home page)
+#}
+{% trans_default_domain 'site' %}
+{% use '@Contao/component/_picture.html.twig' %}
+
+{% set compact = compact|default(false) %}
+{# the image of a featured post belongs to the featured box, not to the card #}
+{% set post = post|merge({figure: post.featured|default(false) ? null : post.figure}) %}
+<a class="card {{ card_class|default('') }} post-card{{ post.figure and not compact ? ' post-card--image' }}" href="{{ post.href }}">
+    {%- if post.figure and not compact %}{% with {figure: post.figure, img_attributes: attrs().addClass('post-card__image').set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+    {%- if post.category and not compact %}<span class="chip">{{ post.category }}</span>{% endif -%}
+    <h3>{{ post.title }}</h3>
+    {%- if post.teaser %}<p>{{ post.teaser }}</p>{% endif -%}
+    {%- if not compact %}<span class="post-card__meta">{{ 'post.minutes'|trans({'%minutes%': post.minutes}) }}{% if read_more ?? true %} · <b>{{ 'post.read'|trans }}</b>{% endif %}</span>{% endif -%}
+</a>

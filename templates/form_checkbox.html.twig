@@ -1,0 +1,32 @@
+{#
+    Checkbox, used for the consent. Markup: html/strane/kontakt.html (.field > label.consent).
+    The field label is not shown (the option text is the visible label); Contao still
+    uses it in the e-mail. With several options it becomes the legend.
+#}
+{% set error_id = "ctrl_#{this.id}_error" %}
+{% set has_errors = hasErrors.invoke() %}
+{% set options = getOptions.invoke()|filter(option => option.type == 'option') %}
+{% set group = options|length > 1 %}
+
+<{{ group ? 'fieldset' : 'div' }}{{ attrs()
+    .addClass(['field', this.class|default])
+    .removeClass('mandatory')
+    .addClass('is-invalid', has_errors)
+    .set('data-field', this.name, this.mandatory|default)
+}}>
+    {%- if group and this.label %}<legend>{{ this.label|insert_tag_raw }}</legend>{% endif %}
+    {%- for option in options -%}
+        <label class="consent"><input{{ attrs()
+            .set('type', 'checkbox')
+            .set('name', option.name)
+            .set('value', option.value)
+            .set('checked', option.checked, option.checked)
+            .mergeWith(option.attributes)
+            .set('required', true, not group and this.mandatory|default)
+            .set('aria-describedby', error_id, this.mandatory|default)
+            .set('aria-invalid', 'true', has_errors)
+        }}><span>{{ option.label|sanitize_html('contao')|insert_tag_raw }}</span></label>
+    {%- endfor %}
+    {%- if this.help|default %}<p class="field__help">{{ this.help|insert_tag_raw }}</p>{% endif %}
+    {%- if this.mandatory|default %}<p class="field__error" id="{{ error_id }}">{{ has_errors ? getErrorAsString.invoke() }}</p>{% endif %}
+</{{ group ? 'fieldset' : 'div' }}>

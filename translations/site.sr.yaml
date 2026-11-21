@@ -1,0 +1,117 @@
+# Texts of the templates (domain "site"), Serbian. English: site.en.yaml.
+# Texts entered in the back end are not here.
+common:
+    role: Geštalt psihoterapeut
+    write_me: Pišite mi
+layout:
+    skip: Preskoči na sadržaj
+header:
+    home: Milica Lazić – početna
+    nav: Glavna navigacija
+    language: Jezik
+    all_topics: Sve teme
+    all_topics_arrow: Sve teme →
+    unsure: Niste sigurni?
+    unsure_title: Ne morate imati ime za ono što osećate.
+    unsure_text: Probajte kratku vežbu od jednog minuta ili mi pišite, pa ćemo zajedno videti.
+    try_exercise: Probajte vežbu
+    try_exercise_long: Probajte vežbu od jednog minuta
+    cta: Zakažite razgovor
+    cta_short: Zakažite
+    cta_rest: razgovor
+    menu_open: Otvori meni
+footer:
+    tagline: Individualna psihoterapija uživo u Beogradu i online.
+    nav: Stranice u futeru
+    pages: Stranice
+    contact: Kontakt
+    crisis: Ako ste u krizi
+    crisis_text: 'Psihoterapija nije hitna služba. Pozovite odmah:'
+    crisis_suicide: Nacionalna linija za prevenciju samoubistva, 0–24h
+    crisis_srce: Centar Srce, svaki dan 14–23h
+    crisis_ambulance: Hitna pomoć
+    copyright: Geštalt psihoterapija
+    cookie_settings: Podešavanja kolačića
+cookies:
+    label: Kolačići
+    text: Sajt koristi samo neophodne kolačiće da bi radio. Uz vaš pristanak učitavam i Google mapu na strani Kontakt. Ne pratim vas i ne prikazujem oglase.
+    accept_all: Prihvatam sve
+    necessary_only: Samo neophodni
+    settings: Podešavanja
+    settings_title: Podešavanja kolačića
+    settings_text: Izaberite šta sme da se učita. Izbor možete promeniti bilo kada, preko linka „Podešavanja kolačića“ u dnu strane.
+    necessary: Neophodni
+    necessary_text: Pamte vaš izbor o kolačićima, bez ličnih podataka. Uvek uključeni.
+    necessary_aria: Neophodni kolačići, uvek uključeni
+    maps: Mape
+    maps_text: Google mapa na strani Kontakt. Google tada može da postavi svoje kolačiće.
+    save: Sačuvaj izbor
+    back: Nazad
+    saved: Podešavanja su sačuvana. Menjate ih preko „Podešavanja kolačića“ u dnu strane.
+breadcrumb:
+    label: Putanja
+circles:
+    aria: 'Tri kruga koja se preklapaju: misli, osećanja i telo, okružena krugom kontakta sa drugima; u preseku piše vi, sada i ovde'
+    caption: Kontakt sa drugima
+    thoughts: Misli
+    thoughts_note: šta mi prolazi kroz glavu
+    feelings: Osećanja
+    feelings_note: šta osećam
+    body: Telo
+    body_note: šta primećujem u telu
+    center_1: Vi, sada
+    center_2: i ovde
+contact:
+    phone: Telefon / Viber
+    email: E-mail
+    address: Adresa
+    hours: Radno vreme
+map:
+    off: Mapa je isključena.
+    off_text: Učitava se sa Google servera, koji tada može da postavi kolačiće.
+    show: Prikaži mapu
+    open: Otvori u Google mapama →
+faq:
+    featured: Najčešće pitanje
+    aside_title: Niste našli odgovor?
+    aside_text: Pišite mi. Rado ću odgovoriti, bez obaveze da zakažete.
+    aside_button: Postavite pitanje
+quote:
+    read_more: Pročitajte više
+toc:
+    label: Sadržaj
+topics:
+    other: Druge teme
+    cta_quote: Niste sigurni da li se vaša tema uklapa?
+    cta_text: Ne morate imati ime za ono što osećate. Pišite mi, pa ćemo zajedno videti.
+    cta_link: Pišite mi →
+form:
+    optional: (nije obavezno)
+post:
+    minutes: '%minutes% min čitanja'
+    read: Pročitajte →
+    read_featured: Pročitajte · %minutes% min →
+    featured: Izdvojeno
+    categories: Kategorije tekstova
+    all: Sve
+    shown: Prikazano %count% tekstova
+    shown_of: Prikazano %count% od %total% tekstova
+    load_more: Učitajte još tekstova
+    empty: U ovoj kategoriji još nema tekstova.
+    see_all: Pogledajte sve tekstove
+    author_role: geštalt psihoterapeut
+    published: Objavljeno %date%
+    updated: Ažurirano %date%
+    summary: Ukratko
+    related: Možda vas zanima
+    date_format: j. n. Y.
+    param_category: kategorija
+    param_page: strana
+bio:
+    more: Više o meni →
+legal:
+    contents: Sadržaj
+    valid_from: Važi od %date%
+    updated: 'Poslednja izmena:'
+    contact: 'Pitanja o privatnosti:'
+    cookie_settings: Otvori podešavanja kolačića

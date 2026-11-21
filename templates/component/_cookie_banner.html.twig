@@ -1,0 +1,35 @@
+{#
+    Cookie consent: banner (first view + settings) and confirmation, on every page.
+    Markup: private/dizajn/milica-lazic-start-en/html/delovi/kolacici.html
+    Behaviour: public/layout/js/cookies.js (choice in localStorage, map only after consent).
+    The statistics category is left out until analytics is decided.
+    The data-action and data-category values are read by cookies.js.
+#}
+{% trans_default_domain 'site' %}
+<!-- indexer::stop -->
+<section class="cookies" data-cookies hidden aria-label="{{ 'cookies.label'|trans }}">
+    <div data-cookies-first>
+        <h2>{{ 'cookies.label'|trans }}</h2>
+        <p>{{ 'cookies.text'|trans }}</p>
+        <div class="cookies__actions" style="margin-top:14px">
+            <button class="btn btn-outline" type="button" data-action="all">{{ 'cookies.accept_all'|trans }}</button>
+            <button class="btn btn-outline" type="button" data-action="necessary">{{ 'cookies.necessary_only'|trans }}</button>
+            <button class="cookies__link" type="button" data-action="settings">{{ 'cookies.settings'|trans }}</button>
+        </div>
+    </div>
+    <div data-cookies-settings hidden>
+        <h2>{{ 'cookies.settings_title'|trans }}</h2>
+        <p>{{ 'cookies.settings_text'|trans }}</p>
+        <ul class="cookies__categories" style="margin-top:6px">
+            <li class="cookies__category"><div><strong>{{ 'cookies.necessary'|trans }}</strong><span>{{ 'cookies.necessary_text'|trans }}</span></div><span class="toggle"><input type="checkbox" checked disabled aria-label="{{ 'cookies.necessary_aria'|trans }}"></span></li>
+            <li class="cookies__category"><div><strong>{{ 'cookies.maps'|trans }}</strong><span>{{ 'cookies.maps_text'|trans }}</span></div><span class="toggle"><input type="checkbox" data-category="maps" aria-label="{{ 'cookies.maps'|trans }}"></span></li>
+        </ul>
+        <div class="cookies__actions" style="margin-top:14px">
+            <button class="btn btn-dark" type="button" data-action="save">{{ 'cookies.save'|trans }}</button>
+            <button class="btn btn-outline" type="button" data-action="all">{{ 'cookies.accept_all'|trans }}</button>
+            <button class="cookies__link" type="button" data-action="back">{{ 'cookies.back'|trans }}</button>
+        </div>
+    </div>
+</section>
+<p class="cookies-confirm" data-cookies-confirm role="status" hidden>{{ 'cookies.saved'|trans }}</p>
+<!-- indexer::continue -->

@@ -1,0 +1,94 @@
+{#
+    Generic subpage section. Markup: html/strane/tema-*.html, o-meni.html,
+    online-terapija.html and kontakt.html (one block per layout below).
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+{% import '@Contao/component/_icon.html.twig' as icons %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('section')
+    .addClass(style ? 'section--' ~ style : [])
+    .addClass(spacing[0] ?: [])
+    .setIfExists('style', spacing[1])
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% macro head(eyebrow, title, lead) %}
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif -%}
+    {%- if title %}<h2 class="h2-page">{{ title }}</h2>{% endif -%}
+    {%- if lead %}<p>{{ lead }}</p>{% endif -%}
+{% endmacro %}
+
+{% block inner %}
+    {% set rich %}{{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}{% endset %}
+    <div class="content {{ content_class }}">
+        {% block layout %}
+            {% if layout == 'recognition' %}
+                {{ _self.head(eyebrow, title, lead) }}
+                <div class="grid {{ grid ?: 'grid--3-tablet' }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
+                {% if end %}<p class="recognition__end">{{ end }}</p>{% endif %}
+
+            {% elseif layout == 'approach' %}
+                <div class="approach__head">{{ _self.head(eyebrow, title, lead) }}</div>
+                <ol class="approach__list">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</ol>
+
+            {% elseif layout == 'crisis' %}
+                <p>{{ title }}</p>
+                {{ rich }}
+
+            {% elseif layout == 'my_path' %}
+                <div class="my-path__head">{{ _self.head(eyebrow, title, lead) }}</div>
+                <div class="my-path__text">{{ rich }}</div>
+
+            {% elseif layout == 'preparation' %}
+                <div class="preparation__text">{{ _self.head(eyebrow, title, lead) }}
+                    {%- if rows %}<ul class="icon-list">{% for row in rows %}<li>{{ icons.icon('i-check') }}<span>{{ row[0] }}</span></li>{% endfor %}</ul>{% endif -%}
+                    {{ rich }}</div>
+                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
+
+            {% elseif layout == 'diaspora' %}
+                <div class="diaspora__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}</div>
+                <div class="time-zones">{% for row in rows %}<div><p>{{ row[0] }}</p><p>{{ row[1]|default }}</p></div>{% endfor %}</div>
+
+            {% elseif layout == 'location' %}
+                <div class="location__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}</div>
+                {% if map.embed %}
+                    <div class="map-consent map-consent--large" data-map data-src="{{ map.embed }}">
+                        <div class="map-consent__message">
+                            <p><strong>{{ 'map.off'|trans }}</strong> {{ 'map.off_text'|trans }}</p>
+                            <div class="actions"><button class="btn btn-dark btn-small" type="button" data-map-show>{{ 'map.show'|trans }}</button>
+                                {%- if map.link %}<a class="link-arrow" href="{{ map.link }}" target="_blank" rel="noopener">{{ 'map.open'|trans }}</a>{% endif -%}
+                            </div>
+                        </div></div>
+                {% endif %}
+
+            {% elseif layout == 'two_cards' %}
+                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
+
+            {% elseif layout == 'education' %}
+                <div class="head head--wide">{{ _self.head(eyebrow, title, lead) }}</div>
+                {% if rows %}
+                    <ol class="education">
+                        {%- for row in rows %}<li><p class="education__year">{{ row[0] }}</p><div><p class="education__name">{{ row[1]|default }}</p>{% if row[2]|default %}<p class="education__place">{{ row[2]|inline_markup }}</p>{% endif %}</div></li>{% endfor -%}
+                    </ol>
+                {% endif %}
+                {% if chips %}<div class="chips">{% for chip in chips %}<span class="chip-outline">{{ chip }}</span>{% endfor %}</div>{% endif %}
+
+            {% else %}
+                {% if title or lead %}
+                    <div class="head head--wide">{{ _self.head(eyebrow, title, lead) }}</div>
+                {% elseif eyebrow %}
+                    <p class="eyebrow">{{ eyebrow }}</p>
+                {% endif %}
+                {{ rich }}
+                {% if grid %}
+                    <div class="{{ grid starts with 'grid' ? 'grid ' ~ grid : grid }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
+                {% else %}
+                    {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

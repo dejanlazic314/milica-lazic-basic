@@ -1,0 +1,78 @@
+{#
+    Page "Tekstovi" (mode "list") and a post (mode "post").
+    Markup: html/strane/tekstovi.html and html/strane/tekst-*.html
+    The apricot band at the end is a separate element after the module.
+#}
+{% trans_default_domain 'site' %}
+{% use '@Contao/component/_picture.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as txt %}
+
+{% if mode == 'list' %}
+    <section class="page-intro"><div class="content page-intro__grid"><div class="page-intro__text" style="max-width:none">
+        {% include '@Contao/component/_breadcrumb.html.twig' %}
+        <h1>{{ txt.emphasis(headline.text|default ?: page_title) }}</h1>
+        {%- if intro %}<p class="intro-text" style="max-width:var(--width-intro)">{{ intro }}</p>{% endif -%}
+        {% if categories|length > 1 %}
+            <nav class="filter" aria-label="{{ 'post.categories'|trans }}">
+                <a href="?"{% if not current_category %} aria-current="page"{% endif %}>{{ 'post.all'|trans }}</a>
+                {%- for category in categories %}<a href="?{{ 'post.param_category'|trans }}={{ category.slug }}"{% if category.slug == current_category %} aria-current="page"{% endif %}>{{ category.title }}</a>{% endfor -%}
+            </nav>
+        {% endif %}
+    </div></div></section>
+
+    {% if featured %}
+        <section class="section section--no-top" style="padding-top:56px;padding-bottom:0"><div class="content">
+            <a class="featured" href="{{ featured.href }}"><div class="featured__text"><span class="chip chip--apricot">{{ 'post.featured'|trans }}{{ featured.category ? ' · ' ~ featured.category }}</span><h2>{{ featured.title }}</h2>
+                {%- if featured.teaser %}<p>{{ featured.teaser }}</p>{% endif -%}
+                <span class="featured__link">{{ 'post.read_featured'|trans({'%minutes%': featured.minutes}) }}</span></div>
+                {%- if featured.figure %}{% with {figure: featured.figure, img_attributes: attrs().set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+            </a>
+        </div></section>
+    {% endif %}
+
+    <section class="section" style="padding-top:56px"><div class="content stack post-list">
+        {% if items %}
+            <div class="grid grid--3">
+                {%- for post in items %}{% include '@Contao/component/_post_card.html.twig' with {post, card_class: 'card--white', read_more: false} only %}{% endfor -%}
+            </div>
+            <p class="post-list__status" aria-live="polite">{{ next_page ? 'post.shown_of'|trans({'%count%': items|length, '%total%': total}) : 'post.shown'|trans({'%count%': items|length}) }}</p>
+            {%- if next_page %}<a class="btn btn-outline load-more" href="?{{ current_category ? 'post.param_category'|trans ~ '=' ~ current_category ~ '&' }}{{ 'post.param_page'|trans }}={{ next_page }}">{{ 'post.load_more'|trans }}</a>{% endif -%}
+        {% else %}
+            <p class="post-list__status">{{ 'post.empty'|trans }} <a href="?">{{ 'post.see_all'|trans }}</a>.</p>
+        {% endif %}
+    </div></section>
+
+{% else %}
+    <section class="page-intro page-intro--narrow"><div class="content page-intro__grid"><div class="page-intro__text">
+        {% include '@Contao/component/_breadcrumb.html.twig' %}
+        {%- if post.category %}<span class="chip">{{ post.category }}</span>{% endif -%}
+        <h1>{{ post.title }}</h1>
+        <div class="author">
+            {%- if author.figure %}{% with {figure: author.figure, img_attributes: attrs().set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+            <p>{% if author.href %}<a href="{{ author.href }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}, {{ 'post.author_role'|trans }}<br>{{ 'post.published'|trans({'%date%': post.date|date('post.date_format'|trans)}) }}{% if post.updated %} · {{ 'post.updated'|trans({'%date%': post.updated|date('post.date_format'|trans)}) }}{% endif %} · {{ 'post.minutes'|trans({'%minutes%': post.minutes}) }}</p>
+        </div>
+        {% if post.summary %}<div class="summary"><p class="eyebrow">{{ 'post.summary'|trans }}</p>{{ post.summary|sanitize_html('contao')|encode_email|insert_tag_raw }}</div>{% endif %}
+    </div></div></section>
+
+    <section class="section section--white article-section"><article class="article">
+        {%- for id in post.elements %}{{ content_element(id) }}{% endfor -%}
+        {% if bio.text %}{% include '@Contao/component/_bio.html.twig' with {bio} only %}{% endif %}
+    </article></section>
+
+    {% if related %}
+        <section class="section" style="padding-top:var(--section-small);padding-bottom:var(--section-small)"><div class="content stack">
+            <p class="eyebrow">{{ 'post.related'|trans }}</p>
+            <div class="grid grid--3 post-list">
+                {%- for item in related %}{% include '@Contao/component/_post_card.html.twig' with {post: item, card_class: 'card--white', read_more: false} only %}{% endfor -%}
+            </div>
+        </div></section>
+    {% endif %}
+
+    {% do add_schema_org({
+        '@type': 'BlogPosting',
+        headline: post.title,
+        datePublished: post.date|date('c'),
+        dateModified: (post.updated ?: post.date)|date('c'),
+        author: {'@type': 'Person', name: author.name},
+    }) %}
+{% endif %}

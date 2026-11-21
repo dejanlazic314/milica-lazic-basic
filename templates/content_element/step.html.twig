@@ -1,0 +1,8 @@
+{# Step. Markup: html/strane/tema-*.html (.approach__list) #}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% block wrapper_tag %}li{% endblock %}
+
+{% block inner %}
+    <span class="approach__dot"></span><div><h3>{{ title }}</h3>{% if text %}<p>{{ text }}</p>{% endif %}</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{#
+    FAQ. Markup: html/strane/pocetna.html (#pitanja, variant "home") and
+    html/strane/cesta-pitanja.html (.faq-page, variant "page").
+    Variant "inline": only the questions (topic pages, Geštalt, posts).
+    FAQPage JSON-LD on the FAQ page and with "inline", not on the home page.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+{% import '@Contao/component/_icon.html.twig' as icons %}
+
+{% set attributes = variant == 'inline'
+    ? attrs(attributes|default).addClass('faq')
+    : attrs(attributes|default).addClass(['section', variant == 'home' ? 'section--no-top' : 'section--white'])
+%}
+
+{% block wrapper_tag %}{{ variant == 'inline' ? 'div' : 'section' }}{% endblock %}
+
+{% macro questions(list) %}
+    {% import '@Contao/component/_icon.html.twig' as icons %}
+    {%- for item in list -%}
+        <details><summary class="question">{{ item.question }}<span class="question__icon">{{ icons.icon('i-plus') }}</span></summary><div class="answer">{{ item.answer|sanitize_html('contao')|encode_email|insert_tag_raw }}</div></details>
+    {%- endfor -%}
+{% endmacro %}
+
+{% block inner %}
+    {% if variant == 'inline' %}
+        {{ _self.questions(groups|map(g => g.questions)|reduce((all, q) => all|merge(q), [])) }}
+    {% elseif variant == 'home' %}
+        <div class="content stack stack--wide">
+            <div class="head head--wide">
+                {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif -%}
+                <h2 class="h2-large">{{ title }}</h2>
+            </div>
+            <div class="questions__grid">
+                {% if featured.title %}
+                    <div class="featured-question"><p class="eyebrow eyebrow--warm">{{ 'faq.featured'|trans }}</p><h3>{{ featured.title }}</h3>
+                        {{ featured.text|sanitize_html('contao')|encode_email|insert_tag_raw }}
+                        {%- if featured.link.href and featured.link.text %}<a class="link-underlined" href="{{ featured.link.href|insert_tag }}">{{ featured.link.text }}</a>{% endif -%}
+                    </div>
+                {% endif %}
+                <div class="faq">{{ _self.questions(groups|map(g => g.questions)|reduce((all, q) => all|merge(q), [])) }}</div>
+            </div>
+        </div>
+    {% else %}
+        <div class="content faq-page">
+            <div class="faq-page__list">
+                {%- for group in groups -%}
+                    <div{% if group.anchor %} id="{{ group.anchor }}"{% endif %} class="faq-group"><h2>{{ group.title }}</h2><div class="faq">{{ _self.questions(group.questions) }}</div></div>
+                {%- endfor -%}
+            </div>
+            <aside class="faq-page__aside"><h3>{{ 'faq.aside_title'|trans }}</h3><p>{{ 'faq.aside_text'|trans }}</p>
+                {%- if site.contact_url|default %}<a class="btn btn-darkest" href="{{ site.contact_url }}">{{ 'faq.aside_button'|trans }}</a>{% endif -%}
+            </aside>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block metadata %}
+    {% if variant != 'home' and groups %}
+        {% set entities = [] %}
+        {% for group in groups %}
+            {% for item in group.questions %}
+                {% set entities = entities|merge([{
+                    '@type': 'Question',
+                    name: item.question,
+                    acceptedAnswer: {'@type': 'Answer', text: item.answer|striptags|trim},
+                }]) %}
+            {% endfor %}
+        {% endfor %}
+        {% do add_schema_org({'@type': 'FAQPage', mainEntity: entities}) %}
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    {% add 'accordion_js' to body %}
+        <script src="{{ asset('layout/js/accordion.js') }}" defer></script>
+    {% endadd %}
+{% endblock %}

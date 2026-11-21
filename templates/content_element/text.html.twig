@@ -1,0 +1,13 @@
+{#
+    Text element. Inside a post (tl_news) the text goes straight into <article class="article">
+    without wrappers, because the design CSS styles ".article > p" (html/strane/tekst-*.html).
+#}
+{% extends '@Contao/content_element/text.html.twig' %}
+
+{% block wrapper %}
+    {%- if data.ptable|default == 'tl_news' -%}
+        {{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}
+    {%- else -%}
+        {{ parent() }}
+    {%- endif -%}
+{% endblock %}

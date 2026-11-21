@@ -1,0 +1,23 @@
+{#
+    The form itself. Markup: html/strane/kontakt.html (form.form[data-form]).
+    Class "form" and "novalidate" are set on the form in the back end.
+#}
+<form{{ attrs()
+    .setIfExists('action', action|default)
+    .set('method', method)
+    .set('enctype', enctype)
+    .set('data-form', '')
+    .mergeWith(attributes|default)
+    .mergeWith(novalidate|default)
+}}>
+    {% if 'get' != method %}
+        <input type="hidden" name="FORM_SUBMIT" value="{{ formSubmit }}">
+        <input type="hidden" name="REQUEST_TOKEN" value="{{ contao.request_token }}">
+    {% endif %}
+    {{ hidden|raw }}
+    {% if headline|default %}<{{ hl }}>{{ headline|insert_tag_raw }}</{{ hl }}>{% endif %}
+    {% for error in errors|default([]) %}
+        <p class="form__summary" role="alert">{{ error }}</p>
+    {% endfor %}
+    {{ fields|raw }}
+</form>

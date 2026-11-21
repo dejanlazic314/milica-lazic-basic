@@ -1,0 +1,14 @@
+{#
+    Part of a text with table of contents. Markup: html/strane/gestalt-terapija.html (.article__part)
+    The anchor (e.g. "g0") is the CSS ID of the element.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default).addClass('article__part') %}
+
+{% block inner %}
+    {%- if title %}<h2>{{ title }}</h2>{% endif -%}
+    {%- if circles %}{% include '@Contao/component/_circles.html.twig' with {modifiers: ['circles--light', 'circles--inline']} %}{% endif -%}
+    {{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}
+    {%- for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor -%}
+{% endblock %}

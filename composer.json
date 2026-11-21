@@ -1,0 +1,45 @@
+{
+    "name": "dejanlazic314/milica-lazic-basic",
+    "description": "Website of Milica Lazić, gestalt psychotherapist",
+    "license": "proprietary",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "contao/conflicts": "@dev",
+        "contao/faq-bundle": "^5.7",
+        "contao/manager-bundle": "5.7.*",
+        "contao/news-bundle": "^5.7"
+    },
+    "conflict": {
+        "contao-components/installer": "<1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MilicaLazic\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "contao-community-alliance/composer-plugin": true,
+            "contao-components/installer": true,
+            "contao/manager-plugin": true,
+            "php-http/discovery": false
+        },
+        "platform": {
+            "php": "8.3.0"
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "contao-component-dir": "assets"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php vendor/bin/contao-setup"
+        ],
+        "post-update-cmd": [
+            "@php vendor/bin/contao-setup"
+        ]
+    }
+}

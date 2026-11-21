@@ -1,0 +1,23 @@
+{#
+    Text with table of contents. Markup: html/strane/gestalt-terapija.html (.with-contents)
+    The design marks the first entry as current; there is no scroll spy script.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+
+{% set attributes = attrs(attributes|default).addClass(['section', 'section--white']) %}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    <div class="content with-contents">
+        {% if toc %}
+            <nav class="toc" aria-label="{{ 'toc.label'|trans }}"><p class="eyebrow">{{ 'toc.label'|trans }}</p><ol>
+                {%- for item in toc %}<li><a href="#{{ item.id }}"{% if loop.first %} aria-current="true"{% endif %}>{{ item.title }}</a></li>{% endfor -%}
+            </ol></nav>
+        {% endif %}
+        <article class="article{{ toc ? ' article--with-toc' }}">
+            {%- for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor -%}
+        </article>
+    </div>
+{% endblock %}

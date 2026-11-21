@@ -1,0 +1,46 @@
+{#
+    Contact block. Markup: html/strane/pocetna.html (#kontakt .contact-block)
+    The map iframe is only inserted after consent (public/layout/js/cookies.js, [data-map]).
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+{% import '@Contao/component/_icon.html.twig' as icons %}
+
+{% set attributes = attrs(attributes|default).addClass(['section', 'section--no-top']).addClass(style ? 'section--' ~ style : []) %}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% macro row(icon, label, value, href) %}
+    {% import '@Contao/component/_icon.html.twig' as icons %}
+    <li class="contact-row"><span class="icon-circle">{{ icons.icon(icon) }}</span><div><p class="contact-row__label">{{ label }}</p>
+        {%- if href %}<a class="contact-row__value" href="{{ href }}">{{ value }}</a>{% else %}<span class="contact-row__value">{{ value }}</span>{% endif -%}
+    </div></li>
+{% endmacro %}
+
+{% block inner %}
+    <div class="content contact-block">
+        <div class="contact-block__left">
+            {%- if eyebrow %}<p class="eyebrow eyebrow--warm">{{ eyebrow }}</p>{% endif -%}
+            <h2>{{ title }}</h2>
+            {%- if text %}<p>{{ text }}</p>{% endif %}
+            <ul class="contact-details">
+                {% if site.phone_href|default %}{{ _self.row('i-phone', 'contact.phone'|trans, site.phone, site.phone_href) }}{% endif %}
+                {% if site.email|default %}{{ _self.row('i-email', 'contact.email'|trans, site.email, 'mailto:' ~ site.email) }}{% endif %}
+                {% if site.address|default %}{{ _self.row('i-location', 'contact.address'|trans, site.address, null) }}{% endif %}
+                {% if site.hours|default %}{{ _self.row('i-clock', 'contact.hours'|trans, site.hours, null) }}{% endif %}
+            </ul>
+            {% if map.embed %}
+                <div class="map-consent" data-map data-src="{{ map.embed }}">
+                    <div class="map-consent__message">
+                        <p><strong>{{ 'map.off'|trans }}</strong> {{ 'map.off_text'|trans }}</p>
+                        <div class="actions"><button class="btn btn-dark btn-small" type="button" data-map-show>{{ 'map.show'|trans }}</button>
+                            {%- if map.link %}<a class="link-arrow" href="{{ map.link }}" target="_blank" rel="noopener">{{ 'map.open'|trans }}</a>{% endif -%}
+                        </div>
+                    </div></div>
+            {% endif %}
+        </div>
+        {% for fragment in nested_fragments %}
+            {{ content_element(fragment) }}
+        {% endfor %}
+    </div>
+{% endblock %}

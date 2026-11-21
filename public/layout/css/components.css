@@ -1,0 +1,243 @@
+/* =========================================================
+   Components (resting state). Hover / pressed / focus are in states.css.
+   Tokens only – no hex values.
+   ========================================================= */
+
+/* ---------- Layout ---------- */
+.content{max-width:var(--width);margin:0 auto}
+.section{padding:var(--section) var(--gutter)}
+.section--small{padding-top:var(--section-small);padding-bottom:var(--section-small)}
+.section--no-top{padding-top:0}
+.section--white{background:var(--white)}
+.section--warm{background:var(--bg-warm)}
+.stack{display:flex;flex-direction:column;gap:var(--gap-block)}
+.head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.head--wide{max-width:none}
+
+/* ---------- Typography ---------- */
+.eyebrow{font-size:var(--text-note);letter-spacing:.12em;text-transform:uppercase;color:var(--label);font-weight:600}
+.eyebrow--warm{color:var(--warm-muted)}
+.eyebrow--on-dark{color:var(--apricot-strong)}
+.intro-text{font-size:var(--text-lead);color:var(--text-strong)}
+.desc{font-size:var(--text-desc);color:var(--text-muted)}
+.meta{font-size:var(--text-meta);color:var(--label)}
+.note{font-size:var(--text-note);color:var(--text-faint)}
+.h2-page{font-size:var(--h2-page);line-height:1.1}
+.h2-large{font-size:var(--h2-large)}
+.h3-serif{font-family:var(--font-heading);font-weight:600;font-size:var(--h3);line-height:1.15}
+.h4{font-family:var(--font-body);font-size:var(--h4);font-weight:600;line-height:1.35}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:var(--tap-min);padding:15px 28px;border-radius:var(--radius-button);
+  font:inherit;font-weight:600;font-size:16px;line-height:1.2;text-decoration:none;cursor:pointer;border:1.5px solid transparent;text-align:center}
+.btn-apricot{background:var(--apricot);color:var(--text)}
+.btn-dark{background:var(--sage-700);color:var(--white)}
+.btn-darkest{background:var(--sage-850);color:var(--white)}
+.btn-outline{background:transparent;border-color:var(--sage-700);color:var(--sage-800)}
+.btn-outline-light{background:transparent;border-color:var(--white);color:var(--white);font-weight:500}
+.btn-outline-apricot{background:transparent;border-color:var(--apricot-strong);color:var(--apricot-strong);font-size:var(--text-desc);padding:13px 24px}
+.btn-large{padding:16px 30px}
+.btn-small{padding:10px 18px;font-size:var(--text-meta)}
+.btn[aria-busy="true"]{cursor:progress;opacity:.85}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+@media (max-width:599px){.actions--full .btn{flex:1 1 100%}}
+
+/* ---------- Links ---------- */
+.link-underlined{color:var(--text-heading);font-weight:600;text-decoration:underline;text-decoration-color:var(--apricot-underline);text-underline-offset:4px}
+.link-arrow{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--sage-700);text-decoration:none}
+
+/* ---------- Chips ---------- */
+.chip{align-self:flex-start;display:inline-block;background:var(--sage-150);color:var(--sage-800);border-radius:var(--radius-button);padding:4px 12px;font-size:var(--text-label);font-weight:600;line-height:1.5}
+.chip--apricot{background:var(--apricot);color:var(--text)}
+.chip-outline{display:inline-block;border:1px solid var(--sage-300);border-radius:var(--radius-button);padding:6px 16px;font-size:var(--text-meta);font-weight:600;color:var(--sage-800)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- Cards ---------- */
+.card{display:flex;flex-direction:column;gap:12px;padding:var(--card-pad);border-radius:var(--radius);background:var(--bg);color:var(--text);text-decoration:none}
+.card--white{background:var(--white);border:1px solid var(--line-warm);border-radius:var(--radius-card)}
+.card--dark{background:var(--sage-800);color:var(--on-dark);border-radius:var(--radius-card)}
+.card--dark h3{color:var(--white)}
+.card--dark p{color:var(--on-dark-muted)}
+.card--dark strong{color:var(--white)}
+
+/* ---------- Grids ---------- */
+.grid{display:grid;gap:var(--gap-grid);grid-template-columns:minmax(0,1fr)}
+@media (min-width:600px){
+  .grid--2,.grid--3,.grid--4,.grid--auto{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid--3-tablet{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  /* odd number of cards in 2 columns: the last one spans the full width */
+  .grid--2 > :last-child:nth-child(odd),.grid--4 > :last-child:nth-child(odd),.grid--auto > :last-child:nth-child(odd){grid-column:1 / -1}
+}
+@media (min-width:1024px){
+  .grid--3,.grid--3-tablet{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap-grid)}
+  .grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grid--auto{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .grid--2 > :last-child:nth-child(odd),.grid--4 > :last-child:nth-child(odd),.grid--auto > :last-child:nth-child(odd){grid-column:auto}
+}
+
+/* ---------- Icons ---------- */
+/* <svg class="icon"><use href="/layout/icons/sprite.svg#i-phone"/></svg> (templates/component/_icon.html.twig) */
+.icon{width:24px;height:24px;flex:0 0 auto;stroke:currentColor;fill:none}
+.icon-circle{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--white);display:inline-flex;align-items:center;justify-content:center;color:var(--sage)}
+.icon-circle .icon{width:20px;height:20px}
+.icon-tile{width:52px;height:52px;border-radius:16px;background:var(--sage-150);display:flex;align-items:center;justify-content:center;color:var(--sage-700)}
+.icon-tile .icon{width:26px;height:26px}
+
+/* ---------- FAQ (details/summary) ---------- */
+.faq{max-width:var(--width-intro)}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.question{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4;color:var(--text-heading);list-style:none}
+.question::-webkit-details-marker{display:none}
+.question__icon{flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--sage-300);display:flex;align-items:center;justify-content:center;color:var(--sage-700);transition:transform var(--hover) var(--ease-out)}
+.question__icon .icon{width:14px;height:14px}
+details[open] .question__icon{transform:rotate(45deg)}
+/* Not in the design: js/accordion.js keeps <details> open while it closes; the icon turns back at once */
+details.is-closing .question__icon{transform:none}
+/* padding instead of the design's margin-bottom: the margin collapsed out of <details>, so the
+   opening animation (js/accordion.js) ended with a 22 px jump; looks the same */
+.answer{margin:0;padding-bottom:22px;color:var(--text-muted)}
+
+/* ---------- Summary (box with a list) ---------- */
+.summary{background:var(--white);border:1px solid var(--line-warm);border-radius:var(--radius-card);padding:24px 28px;display:flex;flex-direction:column;gap:8px}
+.summary ul{margin:0;padding-left:20px;color:var(--text-strong);display:flex;flex-direction:column;gap:6px}
+@media (min-width:1024px){.summary{padding:28px 32px;gap:10px}}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb{font-size:var(--text-meta);color:var(--label)}
+.breadcrumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 0}
+.breadcrumb li{display:inline-flex;align-items:center}
+.breadcrumb li + li::before{content:"";width:6px;height:6px;margin:0 10px;border-right:1.5px solid var(--sage-300);border-top:1.5px solid var(--sage-300);transform:rotate(45deg)}
+.breadcrumb a{color:var(--label);text-decoration:underline;text-decoration-color:var(--sage-300);text-underline-offset:3px;padding:6px 0}
+.breadcrumb [aria-current]{color:var(--text-heading);font-weight:600}
+/* Phone: only "← parent" (the full trail stays in the JSON-LD) */
+.breadcrumb__back{display:none}
+@media (max-width:599px){
+  .breadcrumb--short ol{display:none}
+  .breadcrumb--short .breadcrumb__back{display:inline-flex;align-items:center;gap:6px;min-height:var(--tap-min);color:var(--label);font-weight:600;text-decoration:none}
+}
+
+/* ---------- Author bio block ---------- */
+.bio{display:flex;gap:20px;align-items:center;background:var(--sand);border-radius:var(--radius-card);padding:24px 28px}
+.bio img{flex:0 0 72px;width:72px;height:72px;object-fit:cover;object-position:top;border-radius:50%;background:var(--sage-400)}
+.bio p{font-size:var(--text-desc);color:var(--warm-text)}
+.bio a{font-size:var(--text-desc);font-weight:600}
+@media (max-width:599px){.bio{flex-direction:column;align-items:flex-start;padding:24px}}
+/* Not in the design: Contao wraps the photo in <picture>; keep the <img> the flex item */
+.bio picture,.author picture{display:contents}.bio source,.author source{display:none}
+
+/* ---------- Fade in while scrolling (js/header.js adds and removes .reveal) ---------- */
+/* "main" outweighs the transition of .card and .featured in states.css */
+main .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out) var(--reveal-delay,0s),transform .7s var(--ease-out) var(--reveal-delay,0s)}
+main .reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){main .reveal{opacity:1;transform:none}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* =========================================================
+   Form (contact) – all states: empty, focus, filled, error, sending, sent, server error
+   Markup: templates/form_*.html.twig · behaviour: js/form.js
+   ========================================================= */
+.form{background:var(--white);border-radius:var(--radius-card);padding:24px;display:flex;flex-direction:column;gap:18px}
+.form h3{font-family:var(--font-heading);font-weight:600;font-size:var(--h3);line-height:1.15}
+.form__required{font-size:var(--text-meta);color:var(--warm-muted)}
+.field{display:flex;flex-direction:column;gap:6px;border:0;margin:0;padding:0;min-width:0}
+.field label,.field legend{font-size:var(--text-meta);font-weight:600;color:var(--warm-text);padding:0}
+.field legend{margin-bottom:8px}
+.field__optional{font-weight:400;color:var(--warm-muted)}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{
+  width:100%;min-height:48px;border:1.5px solid var(--sand-field);border-radius:var(--radius-small);background:var(--white);
+  padding:14px 16px;font:inherit;font-size:16px;color:var(--text-heading);transition:border-color var(--fast) ease,box-shadow var(--fast) ease}
+.field input::placeholder{color:var(--text-faint)}
+.field input:hover{border-color:var(--warm-muted)}
+.field input:focus{outline:none;border-color:var(--sage-700);box-shadow:0 0 0 3px var(--sage-150)}
+.field__help{font-size:var(--text-meta);color:var(--warm-muted)}
+.field__error{display:none;align-items:flex-start;gap:6px;font-size:var(--text-meta);font-weight:500;color:var(--error)}
+.field__error::before{content:"!";flex:0 0 18px;height:18px;border-radius:50%;background:var(--error);color:var(--white);font-size:12px;font-weight:700;line-height:18px;text-align:center;margin-top:1px}
+.field.is-invalid .field__error{display:flex}
+.field.is-invalid input{border-color:var(--error);background:var(--error-bg)}
+.field.is-invalid input:focus{box-shadow:0 0 0 3px var(--error-bg)}
+
+/* In person / online choice – "pills" */
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:var(--tap-min);padding:10px 18px 10px 14px;border:1.5px solid var(--sand-field);border-radius:var(--radius-button);font-size:var(--text-desc);color:var(--text-heading);cursor:pointer;background:var(--white)}
+.choice input{appearance:none;margin:0;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--sand-field);display:grid;place-content:center;background:var(--white)}
+.choice input::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--white);transform:scale(0);transition:transform var(--fast) ease}
+.choice:has(input:checked){border-color:var(--sage-700);background:var(--sage-50)}
+.choice input:checked{border-color:var(--sage-700);background:var(--sage-700)}
+.choice input:checked::after{transform:scale(1)}
+.choice:has(input:focus-visible){outline:3px solid var(--sage);outline-offset:3px}
+
+/* Consent */
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:var(--text-meta);color:var(--warm-text);cursor:pointer}
+.consent input{appearance:none;flex:0 0 22px;width:22px;height:22px;margin:0;border:1.5px solid var(--sand-field);border-radius:6px;background:var(--white);display:grid;place-content:center;cursor:pointer}
+.consent input::after{content:"";width:10px;height:6px;border-left:2px solid var(--white);border-bottom:2px solid var(--white);transform:rotate(-45deg) scale(0);margin-top:-2px;transition:transform var(--fast) ease}
+.consent input:checked{background:var(--sage-700);border-color:var(--sage-700)}
+.consent input:checked::after{transform:rotate(-45deg) scale(1)}
+.consent input:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.field.is-invalid .consent input{border-color:var(--error);background:var(--error-bg)}
+.consent a{font-weight:600}
+
+/* Error summary (above the button, aria-live) */
+.form__summary{display:none;gap:10px;align-items:flex-start;background:var(--error-bg);border-radius:var(--radius-small);padding:12px 14px;font-size:var(--text-meta);color:var(--error);font-weight:500}
+.form.has-errors .form__summary{display:flex}
+
+/* Sending */
+.form > .btn{align-self:flex-start}
+.form.is-sending .btn[type=submit]::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .8s linear infinite}
+.form.is-sending input,.form.is-sending .choice{opacity:.7;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Sent / server error – replaces the form content */
+.form-result{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.form-result__icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--sage-150);color:var(--sage-700)}
+.form-result__icon .icon{width:28px;height:28px}
+.form-result p{color:var(--warm-text)}
+.form-result__note{font-size:var(--text-meta);color:var(--warm-muted)}
+.form-result--error .form-result__icon{background:var(--error-bg);color:var(--error)}
+@media (min-width:600px){.form{padding:32px}}
+@media (min-width:1024px){.form{padding:40px}}
+
+/* =========================================================
+   Cookies – banner, settings, confirmation; map before consent
+   Markup: templates/component/_cookie_banner.html.twig · behaviour: js/cookies.js
+   ========================================================= */
+.cookies{position:fixed;z-index:90;left:12px;right:12px;bottom:12px;max-width:560px;background:var(--white);border:1px solid var(--line-warm);border-radius:var(--radius-card);box-shadow:var(--shadow-banner);padding:20px;display:flex;flex-direction:column;gap:14px}
+.cookies[hidden]{display:none}
+.cookies h2{font-family:var(--font-heading);font-weight:600;font-size:24px;line-height:1.15}
+.cookies p{font-size:var(--text-desc);color:var(--text-muted)}
+.cookies__actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cookies__actions .btn{flex:1 1 140px;padding:12px 20px;font-size:var(--text-desc)}
+.cookies__link{background:none;border:0;padding:8px 4px;font:inherit;font-size:var(--text-desc);font-weight:600;color:var(--sage-700);text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:var(--tap-min)}
+.cookies__categories{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.cookies__category{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.cookies__category strong{display:block;font-size:var(--text-desc);color:var(--text-heading)}
+.cookies__category span{display:block;font-size:var(--text-meta);color:var(--text-muted)}
+.toggle{position:relative;flex:0 0 48px;width:48px;height:28px;margin-top:2px}
+.toggle input{appearance:none;margin:0;width:48px;height:28px;border-radius:999px;background:var(--text-faint);cursor:pointer;transition:background var(--fast) ease}
+.toggle input::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:var(--white);transition:transform var(--fast) ease;box-shadow:0 1px 3px rgba(38,48,31,.3)}
+.toggle input:checked{background:var(--sage-700)}
+.toggle input:checked::after{transform:translateX(20px)}
+.toggle input:disabled{opacity:.6;cursor:not-allowed}
+.toggle input:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.cookies-confirm{position:fixed;z-index:90;left:50%;bottom:16px;transform:translateX(-50%);width:max-content;max-width:calc(100% - 24px);background:var(--sage-900);color:var(--on-dark);border-radius:var(--radius-button);padding:12px 20px;font-size:var(--text-meta);display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-banner)}
+.cookies-confirm[hidden]{display:none}
+@media (max-width:599px){.cookies-confirm{border-radius:16px}}
+@media (min-width:600px){.cookies{left:24px;right:auto;bottom:24px;padding:24px}.cookies__actions .btn{flex:0 0 auto}}
+
+/* Map before consent */
+.map-consent{position:relative;min-height:180px;border-radius:var(--radius);overflow:hidden;background:var(--sand);display:flex;align-items:flex-end}
+.map-consent__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) blur(1px);opacity:.55}
+.map-consent__message{position:relative;margin:12px;background:var(--white);border-radius:var(--radius-small);padding:16px;display:flex;flex-direction:column;gap:10px;max-width:420px}
+.map-consent__message p{font-size:var(--text-meta);color:var(--text-muted)}
+.map-consent__message .actions{gap:8px 16px}
+.map-consent iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-consent--large{min-height:340px;border-radius:var(--radius-card)}
+.bio__photo,.author__photo{flex:0 0 72px;width:72px;height:72px;border-radius:50%;background:var(--sage-400)}
+.author__photo{flex-basis:48px;width:48px;height:48px}
+.field .choice{padding:10px 18px 10px 14px;font-size:var(--text-desc);font-weight:400;color:var(--text-heading)}
+.field .consent{font-weight:400;color:var(--warm-text)}
+.stack--wide{gap:32px}
+@media (min-width:600px){.stack--wide{gap:40px}}
+@media (min-width:1024px){.stack--wide{gap:48px}}
+.cookies h2:focus{outline:none}
+@media (max-width:599px){.choices{gap:8px}.field .choice{padding:10px 14px 10px 12px}}

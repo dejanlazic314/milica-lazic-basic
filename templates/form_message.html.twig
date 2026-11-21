@@ -1,0 +1,9 @@
+{#
+    Confirmation after sending, text from the form ("Confirmation message").
+    Markup: public/layout/js/form.js (.form-result). Also the body of the answer to
+    form.js (src/EventListener/FormAjaxListener.php).
+#}
+<div class="form-result" role="status" tabindex="-1">
+    <span class="form-result__icon"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+    {{ message|sanitize_html('contao')|encode_email|insert_tag_raw }}
+</div>

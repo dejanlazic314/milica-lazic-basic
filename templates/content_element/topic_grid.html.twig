@@ -1,0 +1,62 @@
+{#
+    Topic cards. Markup: html/strane/pocetna.html (#teme, variant "home") and
+    html/strane/s-cim-radim.html (.topics-overview, variant "overview") and
+    html/strane/tema-*.html (.other-topics, variant "other").
+    Set the anchor ID "teme" in the element's CSS ID field on the home page.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+{% use '@Contao/component/_picture.html.twig' %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('section')
+    .addClass({home: ['section--white', 'topics'], overview: 'topics-overview', other: ['section--white', 'other-topics']}[variant])
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    {% if variant == 'other' %}
+        <div class="content stack">
+            <p class="eyebrow">{{ title ?: 'topics.other'|trans }}</p>
+            <div class="grid grid--4">
+                {%- for topic in topics -%}
+                    <a class="card" href="{{ topic.href }}">
+                        {%- if topic.figure %}{% with {figure: topic.figure, img_attributes: attrs().set('alt', '').set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+                        <span>{{ topic.title }} →</span></a>
+                {%- endfor -%}
+            </div>
+        </div>
+    {% else %}
+    {% if variant == 'home' and ornament %}
+        {% with {figure: ornament, img_attributes: attrs().addClass('topics__ornament').set('alt', '')} %}
+            {{ block('picture_component') }}
+        {% endwith %}
+    {% endif %}
+
+    <div class="content stack{{ variant == 'home' ? ' stack--wide' }}">
+        {% if variant == 'home' and title %}
+            <div class="head"><h2>{{ title }}</h2>{% if text %}<p class="section-intro">{{ text }}</p>{% endif %}</div>
+        {% endif %}
+
+        <div class="grid grid--auto">
+            {%- for topic in topics -%}
+                <a class="card topic-card" href="{{ topic.href }}">
+                    {%- if topic.figure %}{% with {figure: topic.figure, img_attributes: attrs().set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+                    <h3>{{ topic.title }}</h3>{% if topic.text %}<p>{{ topic.text }}</p>{% endif -%}
+                </a>
+            {%- endfor -%}
+            {%- if site.contact_url|default -%}
+                <a class="card topic-card topic-card--cta" href="{{ site.contact_url }}"><p class="topic-card__quote">{{ 'topics.cta_quote'|trans }}</p><p>{{ 'topics.cta_text'|trans }}</p><span>{{ 'topics.cta_link'|trans }}</span></a>
+            {%- endif -%}
+        </div>
+
+        {% if variant == 'overview' and (note or link.href) %}
+            <div class="topics-overview__bottom">
+                {%- if note %}<p class="meta">{{ note }}</p>{% endif -%}
+                {%- if link.href and link.text %}<a class="link-arrow" href="{{ link.href|insert_tag }}">{{ link.text }}</a>{% endif -%}
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}

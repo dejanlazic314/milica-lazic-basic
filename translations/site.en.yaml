@@ -1,0 +1,116 @@
+# Texts of the templates (domain "site"), English. Serbian: site.sr.yaml.
+common:
+    role: Gestalt psychotherapist
+    write_me: Write to me
+layout:
+    skip: Skip to content
+header:
+    home: Milica Lazić – home
+    nav: Main navigation
+    language: Language
+    all_topics: All topics
+    all_topics_arrow: All topics →
+    unsure: Not sure?
+    unsure_title: You don't need a name for what you feel.
+    unsure_text: Try a short one-minute exercise or write to me, and we'll look at it together.
+    try_exercise: Try the exercise
+    try_exercise_long: Try a one-minute exercise
+    cta: Book a conversation
+    cta_short: Book
+    cta_rest: a conversation
+    menu_open: Open menu
+footer:
+    tagline: Individual psychotherapy in person in Belgrade and online.
+    nav: Footer pages
+    pages: Pages
+    contact: Contact
+    crisis: If you are in crisis
+    crisis_text: 'Psychotherapy is not an emergency service. Call right away:'
+    crisis_suicide: National suicide prevention line, 24/7
+    crisis_srce: Centar Srce, daily 2–11 pm
+    crisis_ambulance: Ambulance
+    copyright: Gestalt psychotherapy
+    cookie_settings: Cookie settings
+cookies:
+    label: Cookies
+    text: This site only uses the cookies it needs to work. With your consent, I also load the Google map on the Contact page. I don't track you and I don't show ads.
+    accept_all: Accept all
+    necessary_only: Necessary only
+    settings: Settings
+    settings_title: Cookie settings
+    settings_text: Choose what may be loaded. You can change your choice at any time with the “Cookie settings” link at the bottom of the page.
+    necessary: Necessary
+    necessary_text: They remember your cookie choice, without personal data. Always on.
+    necessary_aria: Necessary cookies, always on
+    maps: Maps
+    maps_text: Google map on the Contact page. Google can then set its own cookies.
+    save: Save choice
+    back: Back
+    saved: Your settings are saved. You can change them with “Cookie settings” at the bottom of the page.
+breadcrumb:
+    label: Breadcrumb
+circles:
+    aria: 'Three overlapping circles: thoughts, feelings and body, inside a circle of contact with others; where they meet it says you, here and now'
+    caption: Contact with others
+    thoughts: Thoughts
+    thoughts_note: what goes through my mind
+    feelings: Feelings
+    feelings_note: what I feel
+    body: Body
+    body_note: what I notice in my body
+    center_1: You, here
+    center_2: and now
+contact:
+    phone: Phone / Viber
+    email: Email
+    address: Address
+    hours: Working hours
+map:
+    off: The map is off.
+    off_text: It loads from Google's servers, which can then set cookies.
+    show: Show map
+    open: Open in Google Maps →
+faq:
+    featured: Most asked question
+    aside_title: Didn't find your answer?
+    aside_text: Write to me. I'm happy to answer, with no obligation to book.
+    aside_button: Ask a question
+quote:
+    read_more: Read more
+toc:
+    label: Contents
+topics:
+    other: Other topics
+    cta_quote: Not sure if your topic fits?
+    cta_text: You don't need a name for what you feel. Write to me, and we'll look at it together.
+    cta_link: Write to me →
+form:
+    optional: (optional)
+post:
+    minutes: '%minutes% min read'
+    read: Read →
+    read_featured: Read · %minutes% min →
+    featured: Featured
+    categories: Article categories
+    all: All
+    shown: Showing %count% articles
+    shown_of: Showing %count% of %total% articles
+    load_more: Load more articles
+    empty: There are no articles in this category yet.
+    see_all: See all articles
+    author_role: Gestalt psychotherapist
+    published: Published %date%
+    updated: Updated %date%
+    summary: In short
+    related: You might also like
+    date_format: F j, Y
+    param_category: category
+    param_page: page
+bio:
+    more: More about me →
+legal:
+    contents: Contents
+    valid_from: Valid from %date%
+    updated: 'Last changed:'
+    contact: 'Privacy questions:'
+    cookie_settings: Open cookie settings

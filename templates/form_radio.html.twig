@@ -1,0 +1,31 @@
+{#
+    Radio buttons as choice chips. Markup: html/strane/kontakt.html (fieldset.field > .choices > .choice).
+    The fieldset is the .field; "required" only on the first option, as in the design.
+#}
+{% set has_errors = hasErrors.invoke() %}
+{% set options = getOptions.invoke()|filter(option => option.type == 'option') %}
+
+<fieldset{{ attrs()
+    .addClass(['field', this.class|default])
+    .removeClass('mandatory')
+    .addClass('is-invalid', has_errors)
+    .set('data-field', this.name, this.mandatory|default)
+}}>
+    {%- if this.label %}<legend>{{ this.label|insert_tag_raw }}</legend>{% endif %}
+    <div class="choices">
+        {%- for option in options -%}
+            <label class="choice"><input{{ attrs()
+                .set('type', 'radio')
+                .set('name', option.name)
+                .set('value', option.value)
+                .mergeWith(option.checked)
+                .mergeWith(option.attributes)
+                .unset('required')
+                .set('required', true, loop.first and this.mandatory|default)
+                .set('aria-invalid', 'true', has_errors)
+            }}> {{ option.label|sanitize_html('contao')|insert_tag_raw }}</label>
+        {%- endfor -%}
+    </div>
+    {%- if this.help|default %}<p class="field__help">{{ this.help|insert_tag_raw }}</p>{% endif %}
+    {%- if this.mandatory|default %}<p class="field__error" id="ctrl_{{ this.id }}_error">{{ has_errors ? getErrorAsString.invoke() }}</p>{% endif %}
+</fieldset>

@@ -1,0 +1,49 @@
+{#
+    Subpage intro. Markup: private/dizajn/milica-lazic-start-en/html/strane/{tema,online-terapija,kontakt,…}.html
+    Variants: default · image (text + illustration) · narrow (legal pages, article) · wide (text without max width,
+    for pages with a filter row below the lead: Tekstovi, Česta pitanja).
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_picture.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as text_helpers %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('page-intro')
+    .addClass('page-intro--' ~ variant, variant in ['image', 'narrow'])
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    <div class="content page-intro__grid">
+        <div class="page-intro__text"{{ variant == 'wide' ? ' style="max-width:none"' }}>
+            {% include '@Contao/component/_breadcrumb.html.twig' %}
+
+            <h1>{{ text_helpers.emphasis(title) }}</h1>
+
+            {% if text %}
+                <p class="intro-text"{{ variant == 'wide' ? ' style="max-width:var(--width-intro)"' }}>{{ text }}</p>
+            {% endif %}
+
+            {% if buttons %}
+                <div class="actions actions--full">
+                    {%- for button in buttons %}<a class="{{ button.class }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endfor -%}
+                </div>
+            {% endif %}
+
+            {% if meta %}
+                <p class="meta">{{ meta|inline_markup }}</p>
+            {% endif %}
+
+            {% for fragment in nested_fragments %}
+                {{ content_element(fragment) }}
+            {% endfor %}
+        </div>
+
+        {% if figure and variant == 'image' %}
+            {% with {figure: figure, img_attributes: attrs().addClass('page-intro__image')} %}
+                {{ block('picture_component') }}
+            {% endwith %}
+        {% endif %}
+    </div>
+{% endblock %}

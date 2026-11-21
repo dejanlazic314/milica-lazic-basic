@@ -1,0 +1,11 @@
+{#
+    Text between fields. Markup: html/strane/kontakt.html (p.form__required, p.field__help).
+    The CSS class of the field goes on the paragraph itself, without a wrapper:
+    class "field__help" + text "<p>…</p>" gives <p class="field__help">…</p>.
+#}
+{% set text %}{{ this.text|default|sanitize_html('contao')|encode_email|insert_tag_raw }}{% endset %}
+{% if this.class|default %}
+    {{ text|replace({'<p>': '<p class="' ~ this.class|e('html_attr') ~ '">'})|raw }}
+{% else %}
+    {{ text }}
+{% endif %}

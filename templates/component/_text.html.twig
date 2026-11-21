@@ -1,0 +1,11 @@
+{#
+    Text helpers.
+
+    emphasis(text, tag): words wrapped in *asterisks* are wrapped in <tag>, the rest
+    is escaped as usual. Editors type "Šta je geštalt *terapija*?" instead of HTML.
+#}
+{% macro emphasis(text, tag = 'em') -%}
+    {%- for part in (text ?? '')|split('*') -%}
+        {%- if loop.index is even %}<{{ tag }}>{{ part }}</{{ tag }}>{% else %}{{ part }}{% endif -%}
+    {%- endfor -%}
+{%- endmacro %}

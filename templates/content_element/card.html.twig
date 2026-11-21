@@ -1,0 +1,16 @@
+{#
+    Card. Markup: html/strane/tema-*.html (.recognition), o-meni.html (.values, .audience),
+    online-terapija.html, kontakt.html (.after-message, .two-cards).
+    Lists in the text get the design's dot list.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% import '@Contao/component/_icon.html.twig' as icons %}
+
+{% set attributes = attrs(attributes|default).addClass(variant != 'plain' ? ['card', 'card--' ~ variant] : []) %}
+
+{% block inner %}
+    {%- if icon and variant == 'dark' %}{{ icons.icon(icon) }}{% elseif icon %}<span class="icon-tile">{{ icons.icon(icon) }}</span>{% endif -%}
+    {%- if title %}<h3>{{ title }}</h3>{% endif -%}
+    {{ text|replace({'<ul>': '<ul class="dot-list">'})|sanitize_html('contao')|encode_email|insert_tag_raw }}
+    {%- if link.href and link.text %}<a class="link-arrow" href="{{ link.href|insert_tag }}">{{ link.text }}</a>{% endif -%}
+{% endblock %}

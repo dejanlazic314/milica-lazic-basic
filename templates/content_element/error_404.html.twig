@@ -1,0 +1,28 @@
+{# Page not found. Markup: html/strane/404.html (.error-404) #}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_picture.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as txt %}
+
+{% set attributes = attrs(attributes|default).addClass('error-404') %}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    <div class="content error-404__grid">
+        <div class="error-404__text">
+            {%- if code %}<p class="error-404__code">{{ code }}</p>{% endif -%}
+            <h1>{{ txt.emphasis(title) }}</h1>
+            {%- if text %}<p class="intro-text">{{ text }}</p>{% endif -%}
+            <div class="actions actions--full">
+                {%- for button in buttons|filter(b => b.href and b.text) %}<a class="{{ button.class }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endfor -%}
+            </div>
+            {% if topics %}
+                <div class="error-404__topics">
+                    {%- if topics_title %}<p class="eyebrow">{{ topics_title }}</p>{% endif -%}
+                    <ul>{% for topic in topics %}<li><a href="{{ topic.href }}">{{ topic.title }}</a></li>{% endfor %}</ul>
+                </div>
+            {% endif %}
+        </div>
+        {%- if image %}{% with {figure: image, img_attributes: attrs().addClass('error-404__image').set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+    </div>
+{% endblock %}

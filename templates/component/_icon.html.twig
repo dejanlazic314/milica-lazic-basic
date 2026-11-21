@@ -1,0 +1,7 @@
+{#
+    icon(id, class): one symbol from public/layout/icons/sprite.svg (24 px grid, stroke 1.5,
+    currentColor). IDs: see ICONS in src/Controller/ContentElement/IconCardController.php.
+#}
+{% macro icon(id, class = 'icon') -%}
+    <svg class="{{ class }}" aria-hidden="true"><use href="{{ asset('layout/icons/sprite.svg') }}#{{ id }}"/></svg>
+{%- endmacro %}

@@ -1,0 +1,71 @@
+contao:
+    localconfig:
+        uploadTypes: 'jpg,jpeg,png,webp,avif,svg,pdf'
+
+    # Image sizes from the design (docs/fotografije.md). Breakpoints: 600 / 1024 px.
+    # Crops follow the "important part" set on each file in the file manager.
+    image:
+        sizes:
+            _defaults:
+                formats:
+                    jpg: [webp, jpg]
+                    jpeg: [webp, jpeg]
+                    png: [webp, png]
+                resize_mode: crop
+                densities: 2x
+                lazy_loading: true
+
+            # Home page hero, full width; phone gets a tall crop because the text sits below
+            hero:
+                width: 390
+                height: 720
+                densities: 2x, 3x
+                lazy_loading: false
+                items:
+                    - media: '(min-width: 1024px)'
+                      width: 1440
+                      height: 680
+                    - media: '(min-width: 600px)'
+                      width: 820
+                      height: 640
+
+            # Background behind the full-width quote
+            quote:
+                width: 390
+                height: 560
+                items:
+                    - media: '(min-width: 1024px)'
+                      width: 1440
+                      height: 640
+                    - media: '(min-width: 600px)'
+                      width: 820
+                      height: 600
+
+            # Portrait (transparent PNG, 4:5) in front of the sage circle
+            portrait:
+                width: 320
+                height: 400
+                items:
+                    - media: '(min-width: 1024px)'
+                      width: 470
+                      height: 588
+                    - media: '(min-width: 600px)'
+                      width: 400
+                      height: 500
+
+            # Round crops of the portrait: bio block and article author. Zoom to the
+            # file's important part (set it around the head in the file manager).
+            portrait_bio:
+                width: 144
+                height: 144
+                zoom: 100
+
+            portrait_author:
+                width: 96
+                height: 96
+                zoom: 100
+
+            # Optional image on a post card (16:10)
+            post_card:
+                width: 380
+                height: 238

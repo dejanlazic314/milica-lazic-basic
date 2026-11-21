@@ -1,0 +1,34 @@
+{#
+    Text field. Markup: html/strane/kontakt.html (.field).
+    Mandatory fields get data-field (checked by form.js) and the error line; optional
+    ones get "(nije obavezno)" after the label. A field with autocomplete "email"
+    gets the e-mail keyboard on phones (the contact field takes phone or e-mail).
+#}
+{% trans_default_domain 'site' %}
+{% set error_id = "ctrl_#{this.id}_error" %}
+{% set has_errors = hasErrors.invoke() %}
+{% set input_attributes = attrs(getAttributes.invoke()) %}
+
+<div{{ attrs()
+    .addClass(['field', this.class|default])
+    .removeClass('mandatory')
+    .addClass('is-invalid', has_errors)
+    .set('data-field', this.name, this.mandatory|default)
+}}>
+    {%- if this.label %}<label for="ctrl_{{ this.id }}">{{ this.label|insert_tag_raw }}
+        {%- if not this.mandatory|default %} <span class="field__optional">{{ 'form.optional'|trans }}</span>{% endif -%}
+    </label>{% endif %}
+    <input{{ attrs()
+        .set('id', "ctrl_#{this.id}")
+        .set('name', this.name)
+        .set('type', this.type)
+        .setIfExists('value', convertDate.invoke(this.value|default))
+        .set('inputmode', 'email', 'email' == input_attributes.autocomplete|default)
+        .mergeWith(input_attributes)
+        .setIfExists('placeholder', input_attributes.placeholder|default|insert_tag)
+        .set('aria-describedby', error_id, this.mandatory|default)
+        .set('aria-invalid', 'true', has_errors)
+    }}>
+    {%- if this.help|default %}<p class="field__help">{{ this.help|insert_tag_raw }}</p>{% endif %}
+    {%- if this.mandatory|default %}<p class="field__error" id="{{ error_id }}">{{ has_errors ? getErrorAsString.invoke() }}</p>{% endif %}
+</div>

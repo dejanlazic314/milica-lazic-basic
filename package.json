@@ -1,0 +1,13 @@
+{
+    "name": "milica-lazic-basic",
+    "private": true,
+    "license": "UNLICENSED",
+    "description": "Dev tools only (visual comparison). The site itself has no build step.",
+    "type": "module",
+    "scripts": {
+        "compare": "node tests/visual/compare.mjs"
+    },
+    "devDependencies": {
+        "playwright": "^1.65.1"
+    }
+}

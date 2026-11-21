@@ -1,0 +1,55 @@
+{% extends '@Contao/page/layout.html.twig' %}
+{% trans_default_domain 'site' %}
+
+{#
+    Page layout for all pages (Contao "modern" layout type).
+    Slots are filled with modules in the backend: Themes → Layouts → Modules.
+    Markup follows private/dizajn/milica-lazic-start/html/strane/*.html.
+#}
+
+{% set stylesheets = ['fonts', 'tokens', 'components', 'header', 'sections', 'states'] %}
+{% set scripts = ['header', 'cookies'] %}
+
+{% block head %}
+    {{ parent() }}
+    {# Fonts used above the fold on every page. Plain URL without ?v=, it must
+       match the url() in fonts.css or the font is downloaded twice. #}
+    {% for font in ['inter', 'cormorant-garamond'] %}
+        <link rel="preload" href="/layout/fonts/{{ font }}.woff2" as="font" type="font/woff2" crossorigin>
+    {% endfor %}
+    {% for name in stylesheets %}
+        <link rel="stylesheet" href="{{ asset('layout/css/' ~ name ~ '.css') }}">
+    {% endfor %}
+    {# Translations of this page (src/Language/LanguageSwitcher.php); Serbian is the default #}
+    {% set translations = language_alternates()|filter(alt => alt.translated) %}
+    {% if translations|length > 1 %}
+        {% for alt in translations %}
+            <link rel="alternate" hreflang="{{ alt.language }}" href="{{ alt.url }}">
+        {% endfor %}
+        <link rel="alternate" hreflang="x-default" href="{{ translations|first.url }}">
+    {% endif %}
+{% endblock %}
+
+{% block body_content %}
+    {# IDs stay Serbian: they are URL anchors (#sadrzaj, #kontakt, #vezba) #}
+    <a class="skip-link" href="#sadrzaj">{{ 'layout.skip'|trans }}</a>
+
+    {% slot header %}
+        {{ slot() }}
+    {% endslot %}
+
+    <main id="sadrzaj">
+        {% slot main %}{{ slot() }}{% endslot %}
+    </main>
+
+    {# Header and footer modules render their own <header>/<footer> markup #}
+    {% slot footer %}
+        {{ slot() }}
+    {% endslot %}
+
+    {% include '@Contao/component/_cookie_banner.html.twig' %}
+
+    {% for name in scripts %}
+        <script src="{{ asset('layout/js/' ~ name ~ '.js') }}" defer></script>
+    {% endfor %}
+{% endblock %}

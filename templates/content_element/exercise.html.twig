@@ -1,0 +1,28 @@
+{#
+    Interactive exercise, filled by public/layout/js/exercise.js.
+    Markup: html/strane/pocetna.html (<section class="exercise-a" data-exercise="a" …>)
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('exercise-' ~ variant)
+    .set('data-exercise', variant)
+    .set('data-images', images_url)
+    .set('data-contact', contact_url|insert_tag)
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}{% endblock %}
+
+{% block style %}
+    {% add 'exercise_css' to head %}
+        <link rel="stylesheet" href="{{ asset('layout/css/exercise.css') }}">
+    {% endadd %}
+{% endblock %}
+
+{% block script %}
+    {% add 'exercise_js' to body %}
+        <script src="{{ asset('layout/js/exercise.js') }}" defer></script>
+    {% endadd %}
+{% endblock %}

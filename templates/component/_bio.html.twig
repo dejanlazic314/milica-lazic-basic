@@ -1,0 +1,11 @@
+{#
+    Author bio box (Geštalt page and posts). Markup: html/strane/gestalt-terapija.html (aside.bio)
+    bio = {text (rich text), link: {href, text}, figure}
+#}
+{% use '@Contao/component/_picture.html.twig' %}
+<aside class="bio">
+    {%- if bio.figure %}{% with {figure: bio.figure, img_attributes: attrs().set('alt', '').set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+    <div>{{ bio.text|sanitize_html('contao')|encode_email|insert_tag_raw }}
+        {%- if bio.link.href and bio.link.text %}<a href="{{ bio.link.href|insert_tag }}">{{ bio.link.text }}</a>{% endif -%}
+    </div>
+</aside>

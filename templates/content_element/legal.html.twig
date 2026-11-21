@@ -1,0 +1,42 @@
+{#
+    Legal page (privacy policy, cookies). Markup: private/dizajn/milica-lazic-start-en/html/strane/politika-privatnosti.html
+    Two sections: narrow intro with the dates, then the text (TOC, data-name and the
+    cookie button come from the filter "legal_text").
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+
+{% block wrapper %}
+    <section class="page-intro page-intro--narrow">
+        <div class="content page-intro__grid">
+            <div class="page-intro__text">
+                {% include '@Contao/component/_breadcrumb.html.twig' %}
+
+                <h1>{{ title }}</h1>
+
+                {% if valid_from or updated %}
+                    <p class="legal__updated">
+                        {%- if valid_from %}<span>{{ 'legal.valid_from'|trans({'%date%': valid_from|date('post.date_format'|trans)}) }}</span>{% endif -%}
+                        {%- if valid_from and updated %}<span aria-hidden="true">·</span>{% endif -%}
+                        {%- if updated %}<span>{{ 'legal.updated'|trans }} <time datetime="{{ updated|date('Y-m-d') }}">{{ updated|date('post.date_format'|trans) }}</time></span>{% endif -%}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section{{ attrs(attributes).addClass(['section', 'section--white', 'article-section']) }}>
+        <div class="legal">
+            {{ text|sanitize_html('contao')|legal_text|encode_email|insert_tag_raw }}
+
+            {% if site.email|default or site.address|default %}
+                <div class="legal__contact">
+                    <strong>{{ 'legal.contact'|trans }}</strong>
+                    {% if site.email|default %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}
+                    {%- if site.email|default and site.address|default %} · {% endif -%}
+                    {%- if site.address|default %}Milica Lazić, {{ site.address }}{% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

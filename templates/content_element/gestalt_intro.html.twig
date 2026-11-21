@@ -1,0 +1,30 @@
+{#
+    Home page #gestalt (dark). Markup: html/strane/pocetna.html (section.gestalt)
+    The diagram is fixed markup (same as on the page "Geštalt terapija").
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as text_helpers %}
+
+{% set attributes = attrs(attributes|default).addClass(['section', 'gestalt']) %}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    <div class="content gestalt__stack">
+        <div class="gestalt__top">
+            <div class="gestalt__text">
+                {% if eyebrow %}<p class="eyebrow eyebrow--on-dark">{{ eyebrow }}</p>{% endif %}
+                <h2 class="h2-large">{{ text_helpers.emphasis(title) }}</h2>
+                {% if lead %}<p class="gestalt__intro">{{ lead }}</p>{% endif %}
+                {# Rich text paragraphs must be direct children (.gestalt__text > p) #}
+                {{ body|sanitize_html('contao')|encode_email|insert_tag_raw }}
+                {% if button.href and button.text %}<a class="btn btn-outline-apricot" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endif %}
+            </div>
+            <div class="gestalt__diagram">{% include '@Contao/component/_circles.html.twig' %}</div>
+        </div>
+
+        {% for fragment in nested_fragments %}
+            {{ content_element(fragment) }}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{#
+    Visible breadcrumb (full on tablet/desktop, "← parent" on phones) plus
+    schema.org BreadcrumbList. Markup: html/strane/tema.html (.breadcrumb--short).
+
+    @var list<array{title: string, href: string|null}> breadcrumb  BreadcrumbBuilder::build()
+#}
+{% trans_default_domain 'site' %}
+{% if breadcrumb|default([])|length > 1 %}
+    {% set parent = breadcrumb[breadcrumb|length - 2] %}
+    <nav class="breadcrumb breadcrumb--short" aria-label="{{ 'breadcrumb.label'|trans }}">
+        <ol>
+            {%- for item in breadcrumb -%}
+                <li>{% if loop.last or not item.href %}<span{{ loop.last ? ' aria-current="page"' }}>{{ item.title }}</span>{% else %}<a href="{{ item.href }}">{{ item.title }}</a>{% endif %}</li>
+            {%- endfor -%}
+        </ol>
+        {%- if parent.href %}<a class="breadcrumb__back" href="{{ parent.href }}"><span aria-hidden="true">←</span> {{ parent.title }}</a>{% endif -%}
+    </nav>
+
+    {% set list_items = [] %}
+    {% for item in breadcrumb %}
+        {% set list_items = list_items|merge([{
+            '@type': 'ListItem',
+            position: loop.index,
+            name: item.title,
+        }|merge(item.href ? {item: absolute_url(item.href)} : {})]) %}
+    {% endfor %}
+    {% do add_schema_org({'@type': 'BreadcrumbList', itemListElement: list_items}) %}
+{% endif %}

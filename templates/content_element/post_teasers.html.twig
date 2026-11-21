@@ -1,0 +1,20 @@
+{#
+    Latest posts. Markup: html/strane/pocetna.html (#tekstovi)
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default).addClass(['section', 'section--no-top']) %}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    <div class="content stack posts">
+        <div class="posts__head">
+            <div class="head">{% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}<h2>{{ title }}</h2></div>
+            {%- if link.href and link.text %}<a class="link-arrow" href="{{ link.href|insert_tag }}">{{ link.text }}</a>{% endif -%}
+        </div>
+        <div class="grid grid--3">
+            {%- for post in posts %}{% include '@Contao/component/_post_card.html.twig' with {post: post, card_class: 'card--white'} only %}{% endfor -%}
+        </div>
+    </div>
+{% endblock %}

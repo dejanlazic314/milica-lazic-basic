@@ -1,0 +1,11 @@
+{#
+    Submit button with the error summary above it (filled in by form.js).
+    Markup: html/strane/kontakt.html (p.form__summary + button.btn). Button classes come
+    from the field ("btn btn-darkest btn-large").
+#}
+<p class="form__summary" role="alert" data-summary></p>
+<button{{ attrs()
+    .set('type', 'submit')
+    .addClass(this.class|default)
+    .mergeWith(getAttributes.invoke())
+}}>{{ this.slabel|insert_tag_raw }}</button>

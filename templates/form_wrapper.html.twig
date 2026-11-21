@@ -1,0 +1,17 @@
+{#
+    Form element. Markup: html/strane/kontakt.html (form.form[data-form]).
+    The <form> is the grid item itself (no wrapper), the headline of the content element
+    is the <h3> inside the form (see form_inline.html.twig). The confirmation after a
+    submit without JavaScript keeps the white form box.
+    Checks, messages and sending: public/layout/js/form.js, src/EventListener/FormAjaxListener.php
+#}
+<!-- indexer::stop -->
+{% if message|default %}
+    <div{{ attrs(cssID|default).addClass('form') }}>{{ include('@Contao/form_message.html.twig') }}</div>
+{% else %}
+    {{ include('@Contao/form_inline.html.twig') }}
+    {% add 'form_js' to body %}
+        <script src="{{ asset('layout/js/form.js') }}" defer></script>
+    {% endadd %}
+{% endif %}
+<!-- indexer::continue -->

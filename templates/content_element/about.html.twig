@@ -1,0 +1,61 @@
+{#
+    "O meni" block. Markup: html/strane/pocetna.html (#o-meni, variant "home") and
+    html/strane/o-meni.html (.about--intro, variant "intro").
+    Without a portrait only the circle (and the dot on the home page) is shown.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_picture.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as text_helpers %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('about')
+    .addClass('about--intro', variant == 'intro')
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    {% if ornament %}
+        {% with {figure: ornament, img_attributes: attrs().addClass('about__ornament').set('alt', '')} %}
+            {{ block('picture_component') }}
+        {% endwith %}
+    {% endif %}
+    <div class="content about__grid">
+        <div class="about__text">
+            {% if variant == 'intro' %}
+                {% include '@Contao/component/_breadcrumb.html.twig' %}
+                <h1>{{ text_helpers.emphasis(title) }}</h1>
+            {% else %}
+                {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+                <h2 class="h2-large">{{ text_helpers.emphasis(title) }}</h2>
+            {% endif %}
+
+            {% if quote %}<p class="about__quote">„{{ quote }}“</p>{% endif %}
+            {% if text %}<p>{{ text }}</p>{% endif %}
+
+            {% if credentials %}
+                <dl class="credentials">
+                    {%- for item in credentials %}<div><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>{% endfor -%}
+                </dl>
+            {% endif %}
+
+            {% if buttons|length > 1 %}
+                <div class="actions actions--full">
+                    {%- for button in buttons %}<a class="{{ button.class }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endfor -%}
+                </div>
+            {% elseif buttons %}
+                <a class="{{ buttons[0].class }}" href="{{ buttons[0].href|insert_tag }}">{{ buttons[0].text }}</a>
+            {% endif %}
+        </div>
+
+        <div class="about__photo">
+            <span class="about__circle"></span>
+            {%- if variant == 'home' %}<span class="about__dot"></span>{% endif %}
+            {% if portrait %}
+                {% with {figure: portrait, img_attributes: attrs().set('loading', 'lazy')} %}
+                    {{ block('picture_component') }}
+                {% endwith %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

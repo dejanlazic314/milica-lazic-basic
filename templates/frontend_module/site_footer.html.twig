@@ -1,0 +1,49 @@
+{#
+    Footer, identical on all pages.
+    Markup: private/dizajn/milica-lazic-start-en/html/strane/*.html (<footer class="footer">)
+    "Podešavanja kolačića" reopens the cookie banner (public/layout/js/cookies.js).
+
+    @var array<string, string|null>             site         SiteSettings::forPage()
+    @var list<\MilicaLazic\Navigation\NavItem>  items        module setting "pages"
+    @var list<\MilicaLazic\Navigation\NavItem>  legal_items  module setting "legalPages"
+#}
+{% trans_default_domain 'site' %}
+<!-- indexer::stop -->
+<footer class="footer"><div class="content footer__stack">
+    <div class="footer__top">
+        <div class="footer__brand"><span class="footer__name">Milica Lazić</span><span class="footer__role">{{ 'common.role'|trans }}</span>
+            <p>{{ 'footer.tagline'|trans }}</p>
+            {% if site.instagram or site.linkedin %}
+                <div class="footer__social">
+                    {%- if site.instagram %}<a class="link-light" href="{{ site.instagram }}" rel="noopener">Instagram</a>{% endif -%}
+                    {%- if site.linkedin %}<a class="link-light" href="{{ site.linkedin }}" rel="noopener">LinkedIn</a>{% endif -%}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if items %}
+            <nav class="footer__column" aria-label="{{ 'footer.nav'|trans }}"><p class="footer__label">{{ 'footer.pages'|trans }}</p>
+                {%- for item in items %}<a class="link-light" href="{{ item.href }}"{{ item.isActive ? ' aria-current="page"' }}>{{ item.title }}</a>{% endfor -%}
+            </nav>
+        {% endif %}
+
+        <div class="footer__column"><p class="footer__label">{{ 'footer.contact'|trans }}</p>
+            {%- if site.phone_href %}<a class="link-light" href="{{ site.phone_href }}">{{ site.phone }}</a>{% endif -%}
+            {%- if site.email %}<a class="link-light" href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif -%}
+            {%- if site.address %}<span>{{ site.address }}</span>{% endif -%}
+        </div>
+
+        {# Fixed crisis numbers (design decision, README section 2 "Vežba") #}
+        <div class="footer__crisis"><p class="footer__label">{{ 'footer.crisis'|trans }}</p><p>{{ 'footer.crisis_text'|trans }}</p>
+            <p><strong>0800 309 309</strong> · {{ 'footer.crisis_suicide'|trans }}</p>
+            <p><strong>0800 300 303</strong> · {{ 'footer.crisis_srce'|trans }}</p>
+            <p><strong>194</strong> · {{ 'footer.crisis_ambulance'|trans }}</p></div>
+    </div>
+
+    <div class="footer__bottom"><p>© {{ year }} Milica Lazić · {{ 'footer.copyright'|trans }}</p>
+        <div>
+            {%- for item in legal_items %}<a href="{{ item.href }}">{{ item.title }}</a>{% endfor -%}
+            <button type="button" data-cookies-open>{{ 'footer.cookie_settings'|trans }}</button>
+        </div></div>
+</div></footer>
+<!-- indexer::continue -->
