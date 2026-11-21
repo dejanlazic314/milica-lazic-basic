@@ -1,6 +1,8 @@
 contao:
     localconfig:
         uploadTypes: 'jpg,jpeg,png,webp,avif,svg,pdf'
+        # Upload limit in bytes (10 MB; Contao default is 2 MB). PHP on the server allows 100 MB.
+        maxFileSize: 10485760
 
     # Image sizes from the design (docs/fotografije.md). Breakpoints: 600 / 1024 px.
     # Crops follow the "important part" set on each file in the file manager.
