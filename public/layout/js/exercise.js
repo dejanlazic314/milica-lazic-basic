@@ -30,13 +30,13 @@
           'Pustite ramena da se spuste za centimetar. Šta se promenilo?',
           'Zapitajte se: kome ili čemu danas kažete „da“, a zapravo želite da kažete „ne“?'
         ],
-        reflection: 'Iscrpljenost često govori o granicama koje su dugo bile pomerane. U terapiji tražimo gde se energija gubi i šta vam je zaista potrebno.',
+        reflection: 'Iscrpljenost često govori o granicama koje su dugo bile pomerane. U terapiji istražujemo gde se energija gubi i šta vam je zaista potrebno.',
         linkText: 'Terapija za burnout', link: '/s-cim-radim/burnout'
       },
       {
         key: 'rel', choice: 'Isti sukob, iznova', image: 'tema-odnosi.svg',
         steps: [
-          'Setite se poslednjeg takvog trenutka. Samo jednog.',
+          'Setite se jedne uznemiravajuće situacije, na primer poslednje.',
           'Šta ste tada osećali u telu, pre nego što ste bilo šta rekli?',
           'Šta ste zapravo želeli da druga osoba čuje?'
         ],
@@ -82,13 +82,13 @@
           'Let your shoulders drop by a centimetre. What has changed?',
           'Ask yourself: to whom or what do you say “yes” today, when you actually want to say “no”?'
         ],
-        reflection: 'Exhaustion often speaks of boundaries that have been pushed for a long time. In therapy we look at where your energy goes and what you really need.',
+        reflection: 'Exhaustion often speaks of boundaries that have been pushed for a long time. In therapy we explore where your energy goes and what you really need.',
         linkText: 'Therapy for burnout', link: '/en/what-i-work-with/burnout'
       },
       {
         key: 'rel', choice: 'The same conflict, again', image: 'tema-odnosi.svg',
         steps: [
-          'Think of the last moment like that. Just one.',
+          'Think of one upsetting situation, for example the most recent one.',
           'What did you feel in your body then, before you said anything?',
           'What did you actually want the other person to hear?'
         ],
