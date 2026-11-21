@@ -41,5 +41,8 @@
         "post-update-cmd": [
             "@php vendor/bin/contao-setup"
         ]
+    },
+    "require-dev": {
+        "deployer/deployer": "^7.5"
     }
 }

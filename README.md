@@ -34,6 +34,17 @@ node tests/visual/compare.mjs <selector> <site-url> <design-url> [name]
 
 Screenshots one section on the site and on a static design page at 375, 768 and 1280 px and reports the pixel difference. Images go to `test-results/visual/`.
 
+## Deployment
+
+[Deployer 7](https://deployer.org) with its Contao recipe (`deploy.php`), run from the DDEV container:
+
+```sh
+ddev auth ssh
+ddev exec vendor/bin/dep deploy production
+```
+
+The host configuration is not part of this repository.
+
 ## Structure
 
 | Path | Content |
