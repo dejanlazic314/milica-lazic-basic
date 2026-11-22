@@ -151,7 +151,7 @@ final class PostsController extends AbstractFrontendModuleController
             'elements' => $elements ? array_map(intval(...), $elements->fetchEach('id')) : [],
         ]);
         $template->set('author', [
-            'name' => (string) $page->rootTitle,
+            'name' => StringUtil::decodeEntities((string) $page->rootPageTitle),
             'href' => $bioPage ? $this->generateContentUrl($bioPage) : null,
             'figure' => $figure('_portrait_author'),
         ]);
