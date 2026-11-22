@@ -12,7 +12,7 @@ use Contao\PageModel;
 use Symfony\Component\Routing\Exception\ExceptionInterface;
 
 /**
- * Topic cards = published subpages of a page ("S čim radim"), with the teaser
+ * Topic cards = published subpages of a page ("Oblasti rada"), with the teaser
  * fields of each page (contao/dca/tl_page.php). Used by the topic grid, the
  * "Druge teme" block on topic pages and the 404 page.
  */

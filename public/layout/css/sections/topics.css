@@ -64,13 +64,13 @@
     }
 }
 
-/* ---------- "S čim radim" (topic overview) ---------- */
+/* ---------- "Oblasti rada" (topic overview) ---------- */
 .topics-overview .topic-card {
     background: var(--white);
     border: 1px solid var(--line-warm);
     border-radius: var(--radius-card);
 }
-/* fix (not in design): the white card rule above hid the dark "Niste sigurni?" card */
+/* fix (not in design): the white card rule above hid the dark contact card */
 .topics-overview .topic-card--cta {
     background: var(--sage-700);
     border-color: var(--sage-700);

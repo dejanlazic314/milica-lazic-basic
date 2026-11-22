@@ -49,7 +49,7 @@ const initStickyHeader = () => {
 };
 
 /* Mobile menu: open and close, a click on a link closes it, scrolling is locked below.
-   "S čim radim" inside it opens as an accordion. */
+   A page with subpages (Oblasti rada) opens as an accordion inside it. */
 const menuButton = header?.querySelector('[data-menu-button]');
 const mobileMenu = header?.querySelector('[data-mobile-menu]');
 const subButtons = header?.querySelectorAll('[data-mm-sub]') ?? [];

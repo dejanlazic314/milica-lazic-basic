@@ -15,9 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Grid of topic cards from the subpages of "S čim radim", plus the contact card
- * ("Ne vidite svoju temu ovde?", its own fields; not shown while empty). Variant "home": heading, lead and corner ornament (#teme). Variant
- * "overview": bottom row with a note and a link (page "S čim radim").
+ * Grid of topic cards from the subpages of a page ("Oblasti rada"), plus the contact
+ * card ("Ne vidite svoju temu ovde?", its own fields; not shown while empty).
+ * Variant "home": heading, lead and corner ornament (#teme). Variant "overview":
+ * bottom row with a note and a link (page "Oblasti rada").
  * "other": "Druge teme" at the end of a topic page (without the current page).
  */
 #[AsContentElement('topic_grid', category: 'milica')]
