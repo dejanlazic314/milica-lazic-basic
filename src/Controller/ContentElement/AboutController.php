@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * "O meni" block (".about"). Variant "home": eyebrow, H2, quote, text,
  * credentials, button, ornament (#o-meni on the home page). Variant "intro": top
  * of the page "O meni" with breadcrumb, H1 and two buttons.
- * Portrait: transparent PNG in front of the sage circle (image size "_portrait").
+ * Portrait: photo in an arch, image size "_portrait" (4:5).
  */
 #[AsContentElement('about', category: 'milica')]
 final class AboutController extends AbstractContentElementController

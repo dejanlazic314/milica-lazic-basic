@@ -1,6 +1,5 @@
 /* Text styles used across sections (eyebrow, intro, description, heading sizes). */
 
-/* ---------- Typography ---------- */
 .eyebrow {
     font-size: var(--text-note);
     letter-spacing: 0.12em;

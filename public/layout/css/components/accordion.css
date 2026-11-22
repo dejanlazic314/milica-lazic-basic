@@ -1,6 +1,5 @@
 /* Questions as <details>/<summary> (content_element/faq_list); animation in js/accordion.js. */
 
-/* ---------- FAQ (details/summary) ---------- */
 .faq {
     max-width: var(--width-intro);
 }

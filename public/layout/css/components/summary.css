@@ -1,6 +1,5 @@
 /* Summary box with a list (content_element/summary). */
 
-/* ---------- Summary (box with a list) ---------- */
 .summary {
     background: var(--white);
     border: 1px solid var(--line-warm);

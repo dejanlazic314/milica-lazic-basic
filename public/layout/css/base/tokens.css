@@ -1,6 +1,6 @@
 /* =========================================================
-   Milica Lazić · design tokens (v2, 20. 11. 2026)
-   Load order: tokens → components → header → sections → states → exercise
+   Milica Lazić · design tokens
+   Load order: the list in templates/page/layout/milica.html.twig
    Rule: no hex values outside this file (exception: SVG files).
    Rule: every text and control colour on its background meets at least WCAG AA
    (4.5:1 text, 3:1 large text and borders of controls). A colour that differs from
@@ -11,7 +11,7 @@
 
 :root {
     /* ---------- Sage (green) – from lightest to darkest ---------- */
-    --sage-50: #f2f4ee; /* hover of menu items, highlighted table column */
+    --sage-50: #f2f4ee; /* hover, focus and selected backgrounds (menu, form choice, contents), exercise A */
     --sage-100: #e9eee3; /* hover of outline buttons, pressed menu item */
     --sage-150: #e3eadb; /* category chip, "Kako da se pripremite" box, "S kim radim" card, icon tile */
     --sage-200: #dce5d4; /* "breath" circle, diagram circle, finished step */
@@ -59,8 +59,8 @@
     --warm-text: #3a3027; /* text and labels on apricot and sand */
     --warm-muted: #6b5848; /* secondary text and uppercase labels on apricot and sand (5.5:1) */
     --on-dark: var(--sage-100); /* text on dark sage */
-    --on-dark-muted: var(--sage-300); /* #C9D4BE */
-    --on-dark-faint: #a9b99c; /* only on --sage-850/900 (bottom of the footer) */
+    --on-dark-muted: var(--sage-300);
+    --on-dark-faint: #a9b99c; /* only on --sage-800/900 (bottom of the footer) */
     --line-on-dark: #4e6346; /* card borders and footer lines */
 
     /* ---------- States (form) ---------- */

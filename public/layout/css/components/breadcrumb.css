@@ -1,6 +1,5 @@
 /* Breadcrumb (templates/component/_breadcrumb.html.twig). */
 
-/* ---------- Breadcrumb ---------- */
 .breadcrumb {
     font-size: var(--text-meta);
     color: var(--label);

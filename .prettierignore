@@ -1,5 +1,5 @@
 # Prettier formats only our own front-end code and dev scripts.
-# PHP follows PSR-12 (php-cs-fixer), Twig is formatted by hand.
+# PHP and Twig are formatted by hand.
 /*
 !/public/
 /public/*

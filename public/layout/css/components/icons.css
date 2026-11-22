@@ -1,7 +1,6 @@
 /* Icons from the sprite (templates/component/_icon.html.twig). */
 
-/* ---------- Icons ---------- */
-/* <svg class="icon"><use href="/layout/icons/sprite.svg#i-phone"/></svg> (templates/component/_icon.html.twig) */
+/* <svg class="icon"><use href="/layout/icons/sprite.svg#i-phone"/></svg> */
 .icon {
     width: 24px;
     height: 24px;

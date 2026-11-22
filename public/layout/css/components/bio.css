@@ -1,6 +1,5 @@
 /* Author bio block (component/_bio) and the round author photo. */
 
-/* ---------- Author bio block ---------- */
 .bio {
     display: flex;
     gap: 20px;

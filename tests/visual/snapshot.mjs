@@ -39,13 +39,13 @@ const dirs = {
 
 const outDir = mode === 'baseline' ? dirs.baseline : dirs.current;
 
-// With ONLY, keep the other shots (e.g. refresh a part of the baseline)
 // Empty the folder (removing the folder itself fails on Windows while it is open somewhere)
 const empty = (folder) => {
     fs.mkdirSync(folder, { recursive: true });
     fs.readdirSync(folder).forEach((file) => fs.rmSync(path.join(folder, file)));
 };
 
+// With ONLY, keep the other shots (e.g. refresh a part of the baseline)
 if (!only) empty(outDir);
 fs.mkdirSync(outDir, { recursive: true });
 

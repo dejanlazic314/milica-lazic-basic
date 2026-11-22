@@ -1,6 +1,5 @@
 /* Cards (content_element/card and cards inside sections). */
 
-/* ---------- Cards ---------- */
 .card {
     display: flex;
     flex-direction: column;

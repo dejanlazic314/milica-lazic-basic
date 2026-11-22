@@ -164,9 +164,7 @@
     }
 }
 
-/* Dropdown menu and scrolling are in header.css and tokens.css */
-
-/* ---- Additions v2: filter, table of contents, form choice, cookies, breadcrumb, 404 ---- */
+/* ---- Filter, table of contents, form choice, cookies, breadcrumb, 404 ---- */
 .filter a,
 .filter button,
 .error-404__topics a,

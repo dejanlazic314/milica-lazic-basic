@@ -1,6 +1,5 @@
 /* Base: page defaults for plain HTML elements (html, body, headings, links, images) and helpers. */
 
-/* ---------- Base ---------- */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 96px;
