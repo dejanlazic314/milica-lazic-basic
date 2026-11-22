@@ -1,0 +1,88 @@
+/* ---------- #teme: topic grid (content_element/topic_grid) ---------- */
+.topics {
+    position: relative;
+    overflow: hidden;
+}
+.topics__ornament {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    width: 260px;
+    opacity: 0.55;
+    pointer-events: none;
+}
+.topics .content {
+    position: relative;
+}
+.section-intro {
+    color: var(--text-muted);
+}
+.topic-card img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+.topic-card h3 {
+    font-size: var(--h4);
+    font-weight: 600;
+}
+.topic-card p {
+    font-size: var(--text-desc);
+    color: var(--text-muted);
+}
+.topic-card--cta {
+    background: var(--sage-700);
+    color: var(--white);
+    justify-content: flex-end;
+    gap: 14px;
+    min-height: 320px;
+}
+.topic-card--cta .topic-card__quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: var(--card-quote);
+    line-height: 1.15;
+    color: var(--white);
+}
+.topic-card--cta p {
+    color: var(--on-dark);
+}
+.topic-card--cta span {
+    font-weight: 600;
+    color: var(--apricot);
+}
+@media (min-width: 600px) {
+    .topics__ornament {
+        width: 360px;
+    }
+}
+@media (min-width: 1024px) {
+    .topics__ornament {
+        width: 440px;
+    }
+}
+
+/* ---------- "S čim radim" (topic overview) ---------- */
+.topics-overview .topic-card {
+    background: var(--white);
+    border: 1px solid var(--line-warm);
+    border-radius: var(--radius-card);
+}
+/* fix (not in design): the white card rule above hid the dark "Niste sigurni?" card */
+.topics-overview .topic-card--cta {
+    background: var(--sage-700);
+    border-color: var(--sage-700);
+}
+.topics-overview__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topic-card {
+    padding: 32px;
+}

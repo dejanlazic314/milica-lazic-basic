@@ -1,0 +1,32 @@
+/* Cards (content_element/card and cards inside sections). */
+
+/* ---------- Cards ---------- */
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: var(--card-pad);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    text-decoration: none;
+}
+.card--white {
+    background: var(--white);
+    border: 1px solid var(--line-warm);
+    border-radius: var(--radius-card);
+}
+.card--dark {
+    background: var(--sage-800);
+    color: var(--on-dark);
+    border-radius: var(--radius-card);
+}
+.card--dark h3 {
+    color: var(--white);
+}
+.card--dark p {
+    color: var(--on-dark-muted);
+}
+.card--dark strong {
+    color: var(--white);
+}

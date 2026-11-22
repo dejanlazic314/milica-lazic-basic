@@ -1,0 +1,181 @@
+/* Articles: the Gestalt page with a table of contents (content_element/toc_article) and a single post. */
+
+/* ---------- Gestalt page: article with a side table of contents (content_element/toc_article) ---------- */
+.with-contents {
+    display: grid;
+    gap: 40px;
+    align-items: start;
+}
+.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 12px 0 0;
+}
+.toc a {
+    display: block;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    color: var(--sage-800);
+    text-decoration: none;
+    font-size: var(--text-desc);
+}
+.toc a[aria-current] {
+    color: var(--text-heading);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--apricot);
+    padding-left: 12px;
+}
+@media (max-width: 1023px) {
+    .toc {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: var(--radius-card);
+        padding: 20px 24px;
+    }
+}
+@media (min-width: 1024px) {
+    .with-contents {
+        grid-template-columns: 260px minmax(0, 760px);
+        gap: 72px;
+    }
+    .toc {
+        position: sticky;
+        top: 110px;
+    }
+}
+
+/* ---------- Article (post, Gestalt page) ---------- */
+.article-section {
+    padding-top: 48px;
+    padding-bottom: var(--section-small);
+}
+.article {
+    max-width: var(--width-text);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.article > p,
+.article__part > p {
+    font-size: var(--text-lead);
+    line-height: 1.75;
+    color: var(--text-strong);
+}
+.article h2 {
+    font-size: var(--h2-article);
+    line-height: 1.15;
+    margin-top: 16px;
+}
+.article blockquote {
+    margin: 8px 0;
+    padding: 8px 0 8px 28px;
+    border-left: 3px solid var(--apricot);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: var(--quote);
+    line-height: 1.3;
+    color: var(--sage-700);
+}
+.article__box {
+    background: var(--sage-150);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.article__box-title {
+    font-weight: 600;
+    color: var(--text-heading);
+}
+.article__box ul,
+.article ul:not([class]) {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-strong);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.article .bio {
+    margin-top: 16px;
+}
+.article--with-toc {
+    margin: 0;
+    max-width: 760px;
+    gap: 40px;
+}
+.article__part {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+}
+.article__part > p {
+    font-size: var(--text-base);
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+.article__part h2 {
+    margin-top: 0;
+}
+.table-wrap {
+    overflow-x: auto;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+.table th,
+.table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: var(--text-desc);
+    color: var(--text-strong);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+.table thead th {
+    font-size: var(--text-meta);
+    color: var(--label);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--sage-300);
+}
+.table thead th.highlight {
+    color: var(--sage-700);
+}
+.table tbody th {
+    font-weight: 600;
+}
+.table td.highlight {
+    background: var(--sage-50);
+}
+@media (min-width: 1024px) {
+    .article-section {
+        padding-top: 56px;
+    }
+}
+
+/* ---------- Article intro (author, date) ---------- */
+.author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.author img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+    background: var(--sage-400);
+}
+.author p {
+    font-size: var(--text-meta);
+    color: var(--label);
+}
+.author a {
+    font-weight: 600;
+}

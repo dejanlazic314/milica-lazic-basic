@@ -1,0 +1,14 @@
+{#
+    Topic of the exercise. On the website the exercise element (exercise.html.twig)
+    reads the fields itself, so this renders only in the backend preview.
+#}
+{% if as_editor_view|default(false) %}
+    <div class="exercise-topic-preview">
+        <strong>{{ choice }}</strong>
+        <ol>
+            {% for step in steps %}<li>{{ step }}</li>{% endfor %}
+        </ol>
+        {% if reflection %}<p>{{ reflection }}</p>{% endif %}
+        {% if link_text %}<p>→ {{ link_text }}</p>{% endif %}
+    </div>
+{% endif %}

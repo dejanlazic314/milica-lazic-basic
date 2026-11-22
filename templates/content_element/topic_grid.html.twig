@@ -46,8 +46,9 @@
                     <h3>{{ topic.title }}</h3>{% if topic.text %}<p>{{ topic.text }}</p>{% endif -%}
                 </a>
             {%- endfor -%}
-            {%- if site.contact_url|default -%}
-                <a class="card topic-card topic-card--cta" href="{{ site.contact_url }}"><p class="topic-card__quote">{{ 'topics.cta_quote'|trans }}</p><p>{{ 'topics.cta_text'|trans }}</p><span>{{ 'topics.cta_link'|trans }}</span></a>
+            {#- Contact card, from the fields of this element -#}
+            {%- if cta.quote and site.contact_url|default -%}
+                <a class="card topic-card topic-card--cta" href="{{ site.contact_url }}"><p class="topic-card__quote">{{ cta.quote }}</p>{% if cta.text %}<p>{{ cta.text }}</p>{% endif %}{% if cta.link_text %}<span>{{ cta.link_text }}</span>{% endif %}</a>
             {%- endif -%}
         </div>
 

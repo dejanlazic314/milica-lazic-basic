@@ -1,0 +1,318 @@
+/* =========================================================
+   Form (contact) – all states: empty, focus, filled, error, sending, sent, server error
+   Markup: templates/form_*.html.twig · behaviour: js/form.js
+   ========================================================= */
+.form {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.form h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--h3);
+    line-height: 1.15;
+}
+.form__required {
+    font-size: var(--text-meta);
+    color: var(--warm-muted);
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+.field label,
+.field legend {
+    font-size: var(--text-meta);
+    font-weight: 600;
+    color: var(--warm-text);
+    padding: 0;
+}
+.field legend {
+    margin-bottom: 8px;
+}
+.field__optional {
+    font-weight: 400;
+    color: var(--warm-muted);
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field textarea {
+    width: 100%;
+    min-height: 48px;
+    border: 1.5px solid var(--sand-field);
+    border-radius: var(--radius-small);
+    background: var(--white);
+    padding: 14px 16px;
+    font: inherit;
+    font-size: 16px;
+    color: var(--text-heading);
+    transition:
+        border-color var(--fast) ease,
+        box-shadow var(--fast) ease;
+}
+.field input::placeholder {
+    color: var(--text-faint);
+}
+.field input:hover {
+    border-color: var(--warm-muted);
+}
+.field input:focus {
+    outline: none;
+    border-color: var(--sage-700);
+    box-shadow: 0 0 0 3px var(--sage-150);
+}
+.field__help {
+    font-size: var(--text-meta);
+    color: var(--warm-muted);
+}
+.field__error {
+    display: none;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: var(--text-meta);
+    font-weight: 500;
+    color: var(--error);
+}
+.field__error::before {
+    content: "!";
+    flex: 0 0 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--error);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    margin-top: 1px;
+}
+.field.is-invalid .field__error {
+    display: flex;
+}
+.field.is-invalid input {
+    border-color: var(--error);
+    background: var(--error-bg);
+}
+.field.is-invalid input:focus {
+    box-shadow: 0 0 0 3px var(--error-bg);
+}
+
+/* In person / online choice – "pills" */
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.choice {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: var(--tap-min);
+    padding: 10px 18px 10px 14px;
+    border: 1.5px solid var(--sand-field);
+    border-radius: var(--radius-button);
+    font-size: var(--text-desc);
+    color: var(--text-heading);
+    cursor: pointer;
+    background: var(--white);
+}
+.choice input {
+    appearance: none;
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--sand-field);
+    display: grid;
+    place-content: center;
+    background: var(--white);
+}
+.choice input::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--white);
+    transform: scale(0);
+    transition: transform var(--fast) ease;
+}
+.choice:has(input:checked) {
+    border-color: var(--sage-700);
+    background: var(--sage-50);
+}
+.choice input:checked {
+    border-color: var(--sage-700);
+    background: var(--sage-700);
+}
+.choice input:checked::after {
+    transform: scale(1);
+}
+.choice:has(input:focus-visible) {
+    outline: 3px solid var(--sage);
+    outline-offset: 3px;
+}
+
+/* Consent */
+.consent {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: var(--text-meta);
+    color: var(--warm-text);
+    cursor: pointer;
+}
+.consent input {
+    appearance: none;
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border: 1.5px solid var(--sand-field);
+    border-radius: 6px;
+    background: var(--white);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+.consent input::after {
+    content: "";
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+    transform: rotate(-45deg) scale(0);
+    margin-top: -2px;
+    transition: transform var(--fast) ease;
+}
+.consent input:checked {
+    background: var(--sage-700);
+    border-color: var(--sage-700);
+}
+.consent input:checked::after {
+    transform: rotate(-45deg) scale(1);
+}
+.consent input:focus-visible {
+    outline: 3px solid var(--sage);
+    outline-offset: 3px;
+}
+.field.is-invalid .consent input {
+    border-color: var(--error);
+    background: var(--error-bg);
+}
+.consent a {
+    font-weight: 600;
+}
+
+/* Error summary (above the button, aria-live) */
+.form__summary {
+    display: none;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--error-bg);
+    border-radius: var(--radius-small);
+    padding: 12px 14px;
+    font-size: var(--text-meta);
+    color: var(--error);
+    font-weight: 500;
+}
+.form.has-errors .form__summary {
+    display: flex;
+}
+
+/* Sending */
+.form > .btn {
+    align-self: flex-start;
+}
+.form.is-sending .btn[type="submit"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    animation: spin 0.8s linear infinite;
+}
+.form.is-sending input,
+.form.is-sending .choice {
+    opacity: 0.7;
+    pointer-events: none;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Sent / server error – replaces the form content */
+.form-result {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+.form-result__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sage-150);
+    color: var(--sage-700);
+}
+.form-result__icon .icon {
+    width: 28px;
+    height: 28px;
+}
+.form-result p {
+    color: var(--warm-text);
+}
+.form-result__note {
+    font-size: var(--text-meta);
+    color: var(--warm-muted);
+}
+.form-result--error .form-result__icon {
+    background: var(--error-bg);
+    color: var(--error);
+}
+@media (min-width: 600px) {
+    .form {
+        padding: 32px;
+    }
+}
+@media (min-width: 1024px) {
+    .form {
+        padding: 40px;
+    }
+}
+
+.field .choice {
+    padding: 10px 18px 10px 14px;
+    font-size: var(--text-desc);
+    font-weight: 400;
+    color: var(--text-heading);
+}
+.field .consent {
+    font-weight: 400;
+    color: var(--warm-text);
+}
+
+@media (max-width: 599px) {
+    .choices {
+        gap: 8px;
+    }
+    .field .choice {
+        padding: 10px 14px 10px 12px;
+    }
+}

@@ -1,0 +1,110 @@
+/* ---------- Online: steps, preparation, diaspora ---------- */
+.online-steps .card {
+    padding: 28px;
+    gap: 12px;
+}
+.online-steps h3 {
+    font-size: var(--h4);
+    font-weight: 600;
+}
+.online-steps p {
+    font-size: var(--text-desc);
+    color: var(--text-muted);
+}
+.preparation {
+    display: grid;
+    gap: 40px;
+}
+.preparation__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.icon-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--text-strong);
+}
+.icon-list li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+}
+.icon-list .icon {
+    width: 22px;
+    height: 22px;
+    color: var(--sage-700);
+}
+.preparation .card--dark {
+    padding: 36px;
+    border-radius: var(--radius-block);
+    gap: 14px;
+}
+.preparation .card--dark .icon {
+    width: 32px;
+    height: 32px;
+    color: var(--apricot-strong);
+}
+.preparation .card--dark h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--h3);
+}
+.preparation .card--dark p {
+    font-size: var(--text-card);
+}
+.diaspora {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+}
+.diaspora__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.diaspora__text > p:nth-of-type(2) {
+    color: var(--text-muted);
+}
+.diaspora__text > p:last-child {
+    font-size: var(--text-card);
+    color: var(--text-muted);
+}
+.time-zones {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+.time-zones div {
+    background: var(--white);
+    border: 1px solid var(--line-warm);
+    border-radius: 18px;
+    padding: 18px 20px;
+}
+.time-zones p:first-child {
+    font-size: var(--text-note);
+    color: var(--label);
+}
+.time-zones p + p {
+    margin-top: 2px;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+@media (min-width: 600px) {
+    .preparation {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+    }
+}
+@media (min-width: 1024px) {
+    .preparation {
+        gap: 48px;
+    }
+    .diaspora {
+        grid-template-columns: minmax(0, 520fr) minmax(0, 380fr);
+        gap: 48px;
+    }
+}

@@ -1,0 +1,58 @@
+/* Questions as <details>/<summary> (content_element/faq_list); animation in js/accordion.js. */
+
+/* ---------- FAQ (details/summary) ---------- */
+.faq {
+    max-width: var(--width-intro);
+}
+.faq details {
+    border-top: 1px solid var(--line);
+}
+.faq details:last-child {
+    border-bottom: 1px solid var(--line);
+}
+.question {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--text-heading);
+    list-style: none;
+}
+.question::-webkit-details-marker {
+    display: none;
+}
+.question__icon {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--sage-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sage-700);
+    transition: transform var(--hover) var(--ease-out);
+}
+.question__icon .icon {
+    width: 14px;
+    height: 14px;
+}
+details[open] .question__icon {
+    transform: rotate(45deg);
+}
+/* Not in the design: js/accordion.js keeps <details> open while it closes; the icon turns back at once */
+details.is-closing .question__icon {
+    transform: none;
+}
+/* padding instead of the design's margin-bottom: the margin collapsed out of <details>, so the
+   opening animation (js/accordion.js) ended with a 22 px jump; looks the same */
+.answer {
+    margin: 0;
+    padding-bottom: 22px;
+    color: var(--text-muted);
+}

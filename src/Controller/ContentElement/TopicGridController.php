@@ -15,8 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Grid of topic cards from the subpages of "S čim radim", plus the "Niste sigurni?"
- * card. Variant "home": heading, lead and corner ornament (#teme). Variant
+ * Grid of topic cards from the subpages of "S čim radim", plus the contact card
+ * ("Ne vidite svoju temu ovde?", its own fields; not shown while empty). Variant "home": heading, lead and corner ornament (#teme). Variant
  * "overview": bottom row with a note and a link (page "S čim radim").
  * "other": "Druge teme" at the end of a topic page (without the current page).
  */
@@ -43,6 +43,11 @@ final class TopicGridController extends AbstractContentElementController
         $template->set('link', ['href' => (string) $model->introPrimaryUrl, 'text' => (string) $model->introPrimaryText]);
         $template->set('topics', $this->topics->getTopics((int) $model->topicsParent, $page ? (int) $page->id : null));
         $template->set('site', $page ? $this->settings->forPage($page) : []);
+        $template->set('cta', [
+            'quote' => (string) $model->ctaQuote,
+            'text' => (string) $model->ctaText,
+            'link_text' => (string) $model->ctaLinkText,
+        ]);
         $template->set('ornament', $model->ornamentImage
             ? $this->studio->createFigureBuilder()->fromUuid($model->ornamentImage)->buildIfResourceExists()
             : null);

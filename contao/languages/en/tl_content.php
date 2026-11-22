@@ -22,9 +22,31 @@ $GLOBALS['TL_LANG']['tl_content']['eyebrow'] = ['Eyebrow', 'Small uppercase line
 $GLOBALS['TL_LANG']['tl_content']['topicsVariant'] = ['Layout', 'Home page: heading, lead and corner ornament. Overview: note and link below the cards.'];
 $GLOBALS['TL_LANG']['tl_content']['topicsVariants'] = ['home' => 'Home page', 'overview' => 'Overview ("S čim radim")'];
 $GLOBALS['TL_LANG']['tl_content']['topicsParent'] = ['Topics page', 'The cards are the published subpages of this page, with their card text and illustration.'];
-$GLOBALS['TL_LANG']['tl_content']['exerciseVariant'] = ['Variant', 'A: choose a topic, then three questions with a breathing circle. B: steps on a list. Both are on the home page while testing.'];
+$GLOBALS['TL_LANG']['tl_content']['exerciseVariant'] = ['Variant', 'A: choose a topic, then its steps one by one with a breathing circle. B: the steps on a list. Both are on the home page while testing. The topics are the "Exercise topic" elements inside.'];
 $GLOBALS['TL_LANG']['tl_content']['exerciseVariants'] = ['a' => 'A (questions, breathing circle)', 'b' => 'B (steps)'];
-$GLOBALS['TL_LANG']['tl_content']['exerciseFolder'] = ['Illustrations folder', 'Folder with tema-anksioznost.svg, tema-odnosi.svg, … (the script uses these file names).'];
+$GLOBALS['TL_LANG']['tl_content']['end_legend'] = 'End of the exercise';
+
+// Labels of shared fields for elements where they mean something else (ElementLabelsListener)
+$GLOBALS['TL_LANG']['tl_content']['labels']['exercise'] = [
+    'introTitle' => ['Heading', 'Wrap words in *asterisks* to set them in italics, e.g. "Šta je kod vas *sada* prisutno?".'],
+    'introText' => ['Text below the heading', 'Variant A: below the heading. Variant B: the line above the steps, e.g. "Probajte sada, polako, jedno po jedno".'],
+    'introPrimaryUrl' => ['Contact link', 'Button at the end. Empty: the contact page of the root page. "#kontakt" goes to the contact block on the same page.'],
+    'introPrimaryText' => ['Contact button text', 'E.g. "Zakažite prvi razgovor".'],
+];
+$GLOBALS['TL_LANG']['tl_content']['labels']['exercise_topic'] = [
+    'introTitle' => ['Choice', 'What the visitor picks, e.g. "Nemir koji ne prestaje".'],
+    'introImage' => ['Illustration', 'Line drawing next to the choice (SVG).'],
+    'listitems' => ['Steps', 'One question or step per line, in order. Usually three.'],
+    'introText' => ['Reflection at the end', 'Shown after the last step.'],
+    'introPrimaryUrl' => ['Topic page', 'Link at the end, e.g. the page "Anksioznost i stres".'],
+    'introPrimaryText' => ['Link text', 'E.g. "Terapija za anksioznost".'],
+];
+$GLOBALS['TL_LANG']['tl_content']['exerciseEndEyebrow'] = ['End: eyebrow', 'Variant A only, e.g. "Upravo ste uradili nešto važno".'];
+$GLOBALS['TL_LANG']['tl_content']['exerciseEndTitle'] = ['End: heading', 'Shown with the reflection of the chosen topic, e.g. "Zastali ste i primetili. To je srž geštalt terapije."'];
+$GLOBALS['TL_LANG']['tl_content']['cta_legend'] = 'Contact card at the end';
+$GLOBALS['TL_LANG']['tl_content']['ctaQuote'] = ['Card heading', 'E.g. "Ne vidite svoju temu ovde?". Leave empty to hide the card. The card links to the contact page of the root page.'];
+$GLOBALS['TL_LANG']['tl_content']['ctaText'] = ['Card text', ''];
+$GLOBALS['TL_LANG']['tl_content']['ctaLinkText'] = ['Card link text', 'E.g. "Pišite mi →".'];
 $GLOBALS['TL_LANG']['tl_content']['cardsVariant'] = ['Layout', 'How the group and its cards look.'];
 $GLOBALS['TL_LANG']['tl_content']['cardsVariants'] = ['how' => '"Kako izgleda saradnja" (dark section)'];
 $GLOBALS['TL_LANG']['tl_content']['cardIcon'] = ['Icon', 'Symbol from the icon set of the design.'];

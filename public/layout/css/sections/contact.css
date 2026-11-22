@@ -1,0 +1,137 @@
+/* Contact: the apricot block with details and form (home and Contact page) and the Contact page sections. */
+
+/* ---------- #kontakt: apricot block with details and form, home and Contact page (content_element/contact_block) ---------- */
+.contact-block {
+    background: var(--apricot-100);
+    border-radius: var(--radius-large);
+    padding: var(--block-pad);
+    display: grid;
+    gap: 32px;
+}
+.contact-block__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contact-block h2 {
+    line-height: 1.08;
+}
+.contact-block__left > p:not([class]) {
+    color: var(--warm-text);
+}
+.contact-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contact-row {
+    padding: 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid var(--sand-line);
+}
+.contact-row__label {
+    font-size: var(--text-label);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-muted);
+    font-weight: 600;
+}
+.contact-row__value {
+    display: block;
+    margin-top: 2px;
+    font-weight: 600;
+    color: var(--text-heading);
+    text-decoration: none;
+}
+a.contact-row__value {
+    text-decoration: underline;
+    text-decoration-color: var(--sand-line);
+    text-underline-offset: 4px;
+}
+@media (min-width: 1024px) {
+    .contact-block {
+        grid-template-columns: minmax(0, 400fr) minmax(0, 420fr);
+        gap: 56px;
+    }
+}
+
+/* ---------- Contact page: after the message, location, two cards ---------- */
+.after-message {
+    display: grid;
+    gap: 24px;
+}
+.after-message > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 2px solid var(--sage-300);
+    padding-top: 18px;
+}
+.after-message > div:first-child {
+    border-top-color: var(--sage-700);
+}
+.after-message h3 {
+    font-size: var(--h4);
+    font-weight: 600;
+}
+.after-message p {
+    font-size: var(--text-desc);
+    color: var(--text-muted);
+}
+.location {
+    display: grid;
+    gap: 32px;
+}
+.location__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.location__text > p:not(.eyebrow) {
+    color: var(--text-muted);
+}
+.location__text ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.two-cards {
+    display: grid;
+    gap: 20px;
+}
+.two-cards .card {
+    gap: 10px;
+}
+.two-cards h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--h3);
+}
+.two-cards p {
+    font-size: var(--text-card);
+}
+.two-cards .card--white p {
+    color: var(--text-muted);
+}
+@media (min-width: 600px) {
+    .after-message {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .two-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1024px) {
+    .after-message {
+        gap: 32px;
+    }
+    .location {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 40px;
+    }
+}

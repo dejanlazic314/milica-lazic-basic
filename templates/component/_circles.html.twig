@@ -2,7 +2,7 @@
     Three overlapping circles (thoughts, feelings, body) inside "contact with others".
     Optional: modifiers = list of classes, e.g. ['circles--light', 'circles--inline'] on
     the page "Geštalt terapija".
-    data-part links a circle to its label (hover highlight in public/layout/js/header.js).
+    data-part links a circle to its label (hover highlight in public/layout/js/circles.js).
 #}
 {% trans_default_domain 'site' %}
 <div class="{{ (['circles']|merge(modifiers|default([])))|join(' ') }}" role="img" aria-label="{{ 'circles.aria'|trans }}">

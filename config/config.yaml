@@ -1,4 +1,9 @@
 contao:
+    # Compact previews of our elements in the back end element list
+    backend:
+        custom_css:
+            - layout/css/backend.css
+
     localconfig:
         uploadTypes: 'jpg,jpeg,png,webp,avif,svg,pdf'
         # Upload limit in bytes (10 MB; Contao default is 2 MB). PHP on the server allows 100 MB.

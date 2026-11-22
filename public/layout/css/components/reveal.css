@@ -1,0 +1,21 @@
+/* Fade in while scrolling (js/reveal.js). */
+
+/* ---------- Fade in while scrolling (js/reveal.js adds and removes .reveal) ---------- */
+/* "main" outweighs the transition of .card and .featured in states.css */
+main .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 0.7s var(--ease-out) var(--reveal-delay, 0s),
+        transform 0.7s var(--ease-out) var(--reveal-delay, 0s);
+}
+main .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    main .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

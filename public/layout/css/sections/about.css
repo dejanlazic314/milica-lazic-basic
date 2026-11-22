@@ -1,0 +1,163 @@
+/* ---------- #o-meni (home) and the About page intro (content_element/about) ---------- */
+.about {
+    position: relative;
+    overflow: hidden;
+    background: var(--sand);
+    color: var(--text);
+    padding: 0 var(--gutter);
+}
+.about__ornament {
+    position: absolute;
+    top: -20px;
+    left: -60px;
+    width: 240px;
+    opacity: 0.35;
+    pointer-events: none;
+}
+.about__grid {
+    position: relative;
+    display: grid;
+    gap: 0;
+}
+.about__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    padding: 64px 0 0;
+}
+.about .eyebrow {
+    font-size: var(--text-note);
+}
+.about h2 em,
+.about h1 em {
+    color: var(--sage-700);
+}
+.about h1 {
+    font-size: var(--h1-page);
+}
+.about__quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: var(--quote-intro);
+    line-height: 1.35;
+    color: var(--sage-700);
+    max-width: 540px;
+}
+.about__text > p:not([class]) {
+    color: var(--text-muted);
+    max-width: 540px;
+}
+.about .btn {
+    align-self: flex-start;
+}
+.credentials {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    border-top: 1px solid var(--sand-line);
+    padding-top: 24px;
+    max-width: 560px;
+}
+.credentials dt {
+    font-size: var(--text-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-muted);
+    font-weight: 600;
+}
+.credentials dd {
+    margin: 4px 0 0;
+    font-size: var(--text-desc);
+    font-weight: 600;
+}
+/* Not in the design: the portrait is a photo with a background (not a cut-out in front of the
+   circle), so it sits in an arch; the sage circle peeks out top right, the apricot dot bottom left.
+   --photo-w is the arch width, the circle and dot are placed from it. */
+.about__photo {
+    --photo-w: 280px;
+    --circle: 170px;
+    --dot: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 64px;
+}
+.about__photo picture {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: min(100%, var(--photo-w));
+}
+.about__photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-radius: 50% 50% var(--radius-card) var(--radius-card) / 40% 40% var(--radius-card)
+        var(--radius-card);
+}
+.about__circle {
+    position: absolute;
+    top: 16px;
+    right: calc(50% - var(--photo-w) / 2 - var(--circle) / 4);
+    width: var(--circle);
+    height: var(--circle);
+    border-radius: 50%;
+    background: var(--sage-400);
+}
+.about__dot {
+    position: absolute;
+    z-index: 2;
+    bottom: 40px;
+    left: calc(50% - var(--photo-w) / 2 - var(--dot) / 2);
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 50%;
+    background: var(--apricot);
+}
+.about--intro .about__text {
+    gap: 22px;
+}
+@media (min-width: 600px) {
+    .about__ornament {
+        width: 320px;
+    }
+    .credentials {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+    .about__text {
+        padding-top: 80px;
+    }
+    .about__photo {
+        --photo-w: 340px;
+        --circle: 210px;
+        --dot: 80px;
+    }
+}
+@media (min-width: 1024px) {
+    .about__ornament {
+        width: 380px;
+    }
+    .about__grid {
+        grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+        gap: 48px;
+        align-items: stretch;
+    }
+    .about__text {
+        padding: 112px 0;
+    }
+    .about--intro .about__text {
+        padding: 96px 0;
+    }
+    .about__photo {
+        --photo-w: 400px;
+        --circle: 260px;
+        --dot: 96px;
+        padding: 64px 0;
+    }
+}

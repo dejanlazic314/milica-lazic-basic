@@ -2,69 +2,247 @@
    Hover only on devices with a mouse (hover:hover), so it does not "stick" on phones after a tap.
    !important is left over from the prototype (inline styles). */
 
-.btn,.card,.option,.nav-link,.link,.link-light,.link-underlined,.link-button,.question{
-  transition:background-color var(--hover) var(--ease-out),color var(--hover) var(--ease-out),border-color var(--hover) var(--ease-out),box-shadow var(--hover) var(--ease-out),transform var(--hover) var(--ease-out),text-decoration-color var(--hover) var(--ease-out)}
+.btn,
+.card,
+.option,
+.nav-link,
+.link,
+.link-light,
+.link-underlined,
+.link-button,
+.question {
+    transition:
+        background-color var(--hover) var(--ease-out),
+        color var(--hover) var(--ease-out),
+        border-color var(--hover) var(--ease-out),
+        box-shadow var(--hover) var(--ease-out),
+        transform var(--hover) var(--ease-out),
+        text-decoration-color var(--hover) var(--ease-out);
+}
 
-@media (hover:hover){
-  /* Apricot button (main CTA) */
-  .btn-apricot:hover{background:var(--apricot-hover)!important;box-shadow:0 8px 18px -10px rgba(201,120,63,.6);transform:translateY(-1px)}
-  /* Dark sage button */
-  .btn-dark:hover{background:var(--sage-750)!important;box-shadow:0 8px 18px -10px rgba(38,48,31,.6);transform:translateY(-1px)}
-  /* Outline button, light background */
-  .btn-outline:hover{background:var(--sage-100)!important;border-color:var(--sage-800)!important}
-  /* Outline button on dark / photo */
-  .btn-outline-light:hover{background:rgba(255,255,255,.14)!important}
-  .btn-outline-apricot:hover{background:rgba(242,180,140,.14)!important;color:var(--apricot-strong-hover)!important}
-  /* Cards (topics, posts) */
-  .card:hover{transform:translateY(-3px);box-shadow:0 16px 32px -20px rgba(38,48,31,.4)}
-  /* Exercise options */
-  .option:hover{border-color:var(--sage)!important;box-shadow:0 10px 22px -16px rgba(38,48,31,.45)}
-  /* Links */
-  .nav-link:hover{color:var(--sage-700)!important;text-decoration:underline!important;text-decoration-color:var(--apricot)!important;text-decoration-thickness:2px;text-underline-offset:7px}
-  .link:hover{color:var(--sage-850)!important;text-decoration-color:var(--sage)}
-  .link-underlined:hover{text-decoration-color:var(--sage)!important}
-  .link-light:hover{color:var(--white)!important;text-decoration:underline!important;text-underline-offset:4px}
-  .link-button:hover{color:var(--white)!important}
-  .question:hover{color:var(--sage-700)!important}
+@media (hover: hover) {
+    /* Apricot button (main CTA) */
+    .btn-apricot:hover {
+        background: var(--apricot-hover) !important;
+        box-shadow: 0 8px 18px -10px rgba(201, 120, 63, 0.6);
+        transform: translateY(-1px);
+    }
+    /* Dark sage button */
+    .btn-dark:hover {
+        background: var(--sage-750) !important;
+        box-shadow: 0 8px 18px -10px rgba(38, 48, 31, 0.6);
+        transform: translateY(-1px);
+    }
+    /* Outline button, light background */
+    .btn-outline:hover {
+        background: var(--sage-100) !important;
+        border-color: var(--sage-800) !important;
+    }
+    /* Outline button on dark / photo */
+    .btn-outline-light:hover {
+        background: rgba(255, 255, 255, 0.14) !important;
+    }
+    .btn-outline-apricot:hover {
+        background: rgba(242, 180, 140, 0.14) !important;
+        color: var(--apricot-strong-hover) !important;
+    }
+    /* Cards (topics, posts) */
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 32px -20px rgba(38, 48, 31, 0.4);
+    }
+    /* Exercise options */
+    .option:hover {
+        border-color: var(--sage) !important;
+        box-shadow: 0 10px 22px -16px rgba(38, 48, 31, 0.45);
+    }
+    /* Links */
+    .nav-link:hover {
+        color: var(--sage-700) !important;
+        text-decoration: underline !important;
+        text-decoration-color: var(--apricot) !important;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 7px;
+    }
+    .link:hover {
+        color: var(--sage-850) !important;
+        text-decoration-color: var(--sage);
+    }
+    .link-underlined:hover {
+        text-decoration-color: var(--sage) !important;
+    }
+    .link-light:hover {
+        color: var(--white) !important;
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+    }
+    .link-button:hover {
+        color: var(--white) !important;
+    }
+    .question:hover {
+        color: var(--sage-700) !important;
+    }
 }
 
 /* Pressed (active) – also on touch */
-.btn:active{transform:translateY(0) scale(.98);box-shadow:none}
-.btn-apricot:active{background:var(--apricot-active)!important}
-.btn-dark:active{background:var(--sage-900)!important}
-.btn-outline:active{background:var(--sage-200)!important}
-.btn-outline-light:active{background:rgba(255,255,255,.24)!important}
-.btn-outline-apricot:active{background:rgba(242,180,140,.24)!important}
-.card:active{transform:translateY(-1px);box-shadow:0 6px 14px -10px rgba(38,48,31,.4)}
-.option:active{transform:scale(.98)}
-.nav-link[aria-current]{text-decoration:underline!important;text-decoration-color:var(--apricot)!important;text-decoration-thickness:2px;text-underline-offset:7px}
+.btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
+}
+.btn-apricot:active {
+    background: var(--apricot-active) !important;
+}
+.btn-dark:active {
+    background: var(--sage-900) !important;
+}
+.btn-outline:active {
+    background: var(--sage-200) !important;
+}
+.btn-outline-light:active {
+    background: rgba(255, 255, 255, 0.24) !important;
+}
+.btn-outline-apricot:active {
+    background: rgba(242, 180, 140, 0.24) !important;
+}
+.card:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px -10px rgba(38, 48, 31, 0.4);
+}
+.option:active {
+    transform: scale(0.98);
+}
+.nav-link[aria-current] {
+    text-decoration: underline !important;
+    text-decoration-color: var(--apricot) !important;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
+}
 
 /* Keyboard focus */
-.btn:focus-visible,.card:focus-visible,.option:focus-visible,.nav-link:focus-visible,.link:focus-visible,.link-underlined:focus-visible,.question:focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:12px}
-.btn:focus-visible,.option:focus-visible{border-radius:999px}
-.card:focus-visible{border-radius:24px}
-.on-dark :focus-visible,.link-light:focus-visible,.btn-outline-light:focus-visible,.btn-outline-apricot:focus-visible,.link-button:focus-visible{outline:3px solid var(--apricot);outline-offset:3px}
+.btn:focus-visible,
+.card:focus-visible,
+.option:focus-visible,
+.nav-link:focus-visible,
+.link:focus-visible,
+.link-underlined:focus-visible,
+.question:focus-visible {
+    outline: 3px solid var(--sage);
+    outline-offset: 3px;
+    border-radius: 12px;
+}
+.btn:focus-visible,
+.option:focus-visible {
+    border-radius: 999px;
+}
+.card:focus-visible {
+    border-radius: 24px;
+}
+.on-dark :focus-visible,
+.link-light:focus-visible,
+.btn-outline-light:focus-visible,
+.btn-outline-apricot:focus-visible,
+.link-button:focus-visible {
+    outline: 3px solid var(--apricot);
+    outline-offset: 3px;
+}
 
-@media (prefers-reduced-motion:reduce){
-  .btn,.card,.option{transition:background-color var(--hover) var(--ease-out),color var(--hover) var(--ease-out),border-color var(--hover) var(--ease-out)}
-  .btn:hover,.btn:active,.card:hover,.card:active,.option:active{transform:none}
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .card,
+    .option {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out);
+    }
+    .btn:hover,
+    .btn:active,
+    .card:hover,
+    .card:active,
+    .option:active {
+        transform: none;
+    }
 }
 
 /* Dropdown menu and scrolling are in header.css and tokens.css */
 
 /* ---- Additions v2: filter, table of contents, form choice, cookies, breadcrumb, 404 ---- */
-.filter a,.filter button,.error-404__topics a,.toc a,.breadcrumb a,.cookies__link,.footer__bottom a,.footer__bottom button,.choice,.map-consent .link-arrow{transition:background-color var(--hover) var(--ease-out),color var(--hover) var(--ease-out),border-color var(--hover) var(--ease-out)}
-@media (hover:hover){
-  .filter a:not([aria-current]):hover,.filter button:not([aria-pressed="true"]):hover,.error-404__topics a:hover{border-color:var(--sage-700);background:var(--sage-50)}
-  .toc a:hover{color:var(--text-heading);background:var(--sage-50)}
-  .breadcrumb a:hover{color:var(--text-heading);text-decoration-color:var(--sage-700)}
-  .choice:hover{border-color:var(--sage-700)}
-  .cookies__link:hover{color:var(--sage-900)}
-  .footer__bottom a:hover,.footer__bottom button:hover{color:var(--white)}
-  .link-arrow:hover{color:var(--sage-900)}
+.filter a,
+.filter button,
+.error-404__topics a,
+.toc a,
+.breadcrumb a,
+.cookies__link,
+.footer__bottom a,
+.footer__bottom button,
+.choice,
+.map-consent .link-arrow {
+    transition:
+        background-color var(--hover) var(--ease-out),
+        color var(--hover) var(--ease-out),
+        border-color var(--hover) var(--ease-out);
 }
-.filter a:active,.error-404__topics a:active{background:var(--sage-100)}
-.filter a:focus-visible,.filter button:focus-visible,.toc a:focus-visible,.breadcrumb a:focus-visible,.error-404__topics a:focus-visible,.cookies__link:focus-visible,.link-arrow:focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:999px}
-.footer a:focus-visible,.footer__bottom button:focus-visible,.quote-photo__link:focus-visible,.featured:focus-visible,.hero .btn:focus-visible,.gestalt a:focus-visible{outline:3px solid var(--apricot);outline-offset:3px}
-@media (hover:hover){.featured:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}}
-.featured{transition:transform var(--hover) var(--ease-out),box-shadow var(--hover) var(--ease-out)}
+@media (hover: hover) {
+    .filter a:not([aria-current]):hover,
+    .filter button:not([aria-pressed="true"]):hover,
+    .error-404__topics a:hover {
+        border-color: var(--sage-700);
+        background: var(--sage-50);
+    }
+    .toc a:hover {
+        color: var(--text-heading);
+        background: var(--sage-50);
+    }
+    .breadcrumb a:hover {
+        color: var(--text-heading);
+        text-decoration-color: var(--sage-700);
+    }
+    .choice:hover {
+        border-color: var(--sage-700);
+    }
+    .cookies__link:hover {
+        color: var(--sage-900);
+    }
+    .footer__bottom a:hover,
+    .footer__bottom button:hover {
+        color: var(--white);
+    }
+    .link-arrow:hover {
+        color: var(--sage-900);
+    }
+}
+.filter a:active,
+.error-404__topics a:active {
+    background: var(--sage-100);
+}
+.filter a:focus-visible,
+.filter button:focus-visible,
+.toc a:focus-visible,
+.breadcrumb a:focus-visible,
+.error-404__topics a:focus-visible,
+.cookies__link:focus-visible,
+.link-arrow:focus-visible {
+    outline: 3px solid var(--sage);
+    outline-offset: 3px;
+    border-radius: 999px;
+}
+.footer a:focus-visible,
+.footer__bottom button:focus-visible,
+.quote-photo__link:focus-visible,
+.featured:focus-visible,
+.hero .btn:focus-visible,
+.gestalt a:focus-visible {
+    outline: 3px solid var(--apricot);
+    outline-offset: 3px;
+}
+@media (hover: hover) {
+    .featured:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+    }
+}
+.featured {
+    transition:
+        transform var(--hover) var(--ease-out),
+        box-shadow var(--hover) var(--ease-out);
+}

@@ -1,0 +1,10 @@
+# Prettier formats only our own front-end code and dev scripts.
+# PHP follows PSR-12 (php-cs-fixer), Twig is formatted by hand.
+/*
+!/public/
+/public/*
+!/public/layout/
+/public/layout/fonts/
+/public/layout/icons/
+!/tests/
+!/.prettierrc.json

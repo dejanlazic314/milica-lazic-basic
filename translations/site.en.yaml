@@ -81,9 +81,6 @@ toc:
     label: Contents
 topics:
     other: Other topics
-    cta_quote: Don't see your topic here?
-    cta_text: These are the areas I meet most often, but they are not the only ones. Together we can see whether I'm the right person for you. If I'm not, I'll gladly recommend someone who is.
-    cta_link: Write to me →
 form:
     optional: (optional)
 post:
@@ -114,3 +111,23 @@ legal:
     updated: 'Last changed:'
     contact: 'Privacy questions:'
     cookie_settings: Open cookie settings
+exercise:
+    # Fixed labels of the exercise; its texts and topics are entered in the back end.
+    # {n} and {total} are filled in by public/layout/js/exercise.js.
+    note: 'This is a short awareness exercise, not a diagnosis and not a substitute for therapy. If things are very hard for you right now, call <a href="tel:0800309309">0800 309 309</a> (24/7, free of charge).'
+    stage_choose: Choose
+    stage_notice: Notice
+    stage_pause: Pause
+    stage: 'step {n} of 3'
+    question: 'question {n} of {total}'
+    hint: Take as long as you need. There is no right answer.
+    breath: in · out
+    breath_start: Start the breathing circle
+    breath_stop: Stop the breathing circle
+    next: Next question
+    finish: Finish
+    other: Choose something else
+    again: Try again
+    done: (done)
+    selected: 'Selected: {choice}'
+    step_done: 'Step {n} of {total} done'

@@ -5,9 +5,15 @@
     "description": "Dev tools only (visual comparison). The site itself has no build step.",
     "type": "module",
     "scripts": {
-        "compare": "node tests/visual/compare.mjs"
+        "compare": "node tests/visual/compare.mjs",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "snapshot": "node tests/visual/snapshot.mjs"
     },
     "devDependencies": {
-        "playwright": "^1.65.1"
+        "pixelmatch": "^7.2.0",
+        "playwright": "^1.65.1",
+        "pngjs": "^7.0.0",
+        "prettier": "3.6.2"
     }
 }

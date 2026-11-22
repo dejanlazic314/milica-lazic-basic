@@ -11,7 +11,7 @@
 {% else %}
     {{ include('@Contao/form_inline.html.twig') }}
     {% add 'form_js' to body %}
-        <script src="{{ asset('layout/js/form.js') }}" defer></script>
+        <script type="module" src="{{ asset('layout/js/form.js') }}"></script>
     {% endadd %}
 {% endif %}
 <!-- indexer::continue -->

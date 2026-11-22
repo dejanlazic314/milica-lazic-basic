@@ -7,8 +7,31 @@
     Markup follows private/dizajn/milica-lazic-start/html/strane/*.html.
 #}
 
-{% set stylesheets = ['fonts', 'tokens', 'components', 'header', 'sections', 'states'] %}
-{% set scripts = ['header', 'cookies'] %}
+{#
+    Stylesheets in public/layout/css/, loaded on every page in this order (later wins).
+    base: tokens and plain HTML · layout: page structure, header, footer ·
+    components: pieces used in many places · sections: one file per content element or page ·
+    states.css: hover, pressed and focus for all of the above.
+    sections/exercise.css is added only where the exercise is (content_element/exercise).
+#}
+{% set stylesheets = [
+    'base/fonts', 'base/tokens', 'base/base',
+    'layout/page',
+    'components/typography', 'components/buttons', 'components/cards', 'components/icons',
+    'components/accordion', 'components/summary', 'components/breadcrumb', 'components/bio',
+    'components/reveal', 'components/form', 'components/cookies', 'components/map-consent',
+    'components/circles', 'components/post-card',
+    'layout/header', 'layout/mobile-menu',
+    'sections/hero', 'sections/topics', 'sections/gestalt', 'sections/about', 'sections/band',
+    'sections/faq', 'sections/posts', 'sections/quote-photo', 'sections/contact',
+    'sections/page-intro', 'sections/topic-page', 'sections/about-page', 'sections/article',
+    'sections/online-page', 'sections/error-404', 'sections/legal',
+    'layout/footer',
+    'states',
+] %}
+{# Scripts in public/layout/js/ (ES modules, run after the page is parsed, like defer).
+   accordion.js, exercise.js and form.js are added only where they are needed. #}
+{% set scripts = ['header', 'reveal', 'circles', 'cookies'] %}
 
 {% block head %}
     {{ parent() }}
@@ -50,6 +73,6 @@
     {% include '@Contao/component/_cookie_banner.html.twig' %}
 
     {% for name in scripts %}
-        <script src="{{ asset('layout/js/' ~ name ~ '.js') }}" defer></script>
+        <script type="module" src="{{ asset('layout/js/' ~ name ~ '.js') }}"></script>
     {% endfor %}
 {% endblock %}

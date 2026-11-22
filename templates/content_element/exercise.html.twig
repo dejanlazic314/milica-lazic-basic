@@ -1,28 +1,67 @@
 {#
-    Interactive exercise, filled by public/layout/js/exercise.js.
-    Markup: html/strane/pocetna.html (<section class="exercise-a" data-exercise="a" …>)
+    Interactive exercise. The section is empty; public/layout/js/exercise.js builds it from
+    three JSON attributes:
+      data-content  texts of this element (heading, ending, contact button)
+      data-topics   the nested "exercise_topic" elements (ExerciseController::getTopics)
+      data-texts    fixed labels from translations/site.*.yaml (exercise.*)
+    Markup the script builds: html/strane/pocetna.html (<section class="exercise-a" …>)
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+
+{% set texts = {
+    note: 'exercise.note'|trans,
+    stages: ['exercise.stage_choose'|trans, 'exercise.stage_notice'|trans, 'exercise.stage_pause'|trans],
+    stage: 'exercise.stage'|trans,
+    question: 'exercise.question'|trans,
+    hint: 'exercise.hint'|trans,
+    breath: 'exercise.breath'|trans,
+    breathStart: 'exercise.breath_start'|trans,
+    breathStop: 'exercise.breath_stop'|trans,
+    next: 'exercise.next'|trans,
+    finish: 'exercise.finish'|trans,
+    other: 'exercise.other'|trans,
+    again: 'exercise.again'|trans,
+    done: 'exercise.done'|trans,
+    selected: 'exercise.selected'|trans,
+    stepDone: 'exercise.step_done'|trans,
+} %}
+
+{% set json = constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES') %}
 
 {% set attributes = attrs(attributes|default)
     .addClass('exercise-' ~ variant)
     .set('data-exercise', variant)
-    .set('data-images', images_url)
-    .set('data-contact', contact_url|insert_tag)
+    .set('data-content', content|json_encode(json))
+    .set('data-topics', topics|json_encode(json))
+    .set('data-texts', texts|json_encode(json))
 %}
 
 {% block wrapper_tag %}section{% endblock %}
 
-{% block inner %}{% endblock %}
+{# Empty on the website (the script fills it); a short summary in the back end #}
+{% block inner %}
+    {% if as_editor_view|default(false) %}
+        <div class="exercise-preview">
+            <p class="eyebrow">{{ content.eyebrow }}</p>
+            <h2>{{ content.title|inline_markup }}</h2>
+            <p>{{ content.text }}</p>
+            <p class="exercise-preview__label">{{ topics|length }} × Exercise topic</p>
+            <ul>
+                {% for topic in topics %}<li>{{ topic.choice }} ({{ topic.steps|length }})</li>{% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% block style %}
     {% add 'exercise_css' to head %}
-        <link rel="stylesheet" href="{{ asset('layout/css/exercise.css') }}">
+        <link rel="stylesheet" href="{{ asset('layout/css/sections/exercise.css') }}">
     {% endadd %}
 {% endblock %}
 
 {% block script %}
     {% add 'exercise_js' to body %}
-        <script src="{{ asset('layout/js/exercise.js') }}" defer></script>
+        <script type="module" src="{{ asset('layout/js/exercise.js') }}"></script>
     {% endadd %}
 {% endblock %}
