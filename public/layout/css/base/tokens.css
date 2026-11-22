@@ -2,6 +2,9 @@
    Milica Lazić · design tokens (v2, 20. 11. 2026)
    Load order: tokens → components → header → sections → states → exercise
    Rule: no hex values outside this file (exception: SVG files).
+   Rule: every text and control colour on its background meets at least WCAG AA
+   (4.5:1 text, 3:1 large text and borders of controls). A colour that differs from
+   another by less than ~1.5 ΔE is the same colour: point to it with var() instead.
    ========================================================= */
 
 /* Fonts: self-hosted (GDPR, fonts.css). Cormorant Garamond 500, 500 italic, 600 · Inter 400, 500, 600 · latin-ext */
@@ -19,7 +22,7 @@
     --sage-700: #4a5d43; /* secondary button, links, info bar, dark card */
     --sage-750: #3b4b35; /* hover of the dark button */
     --sage-800: #33412e; /* dark #gestalt section, crisis box, featured post; chip text */
-    --sage-850: #2f3d2a; /* "Pošaljite" / "Zakažite razgovor" button, reflection in the exercise */
+    --sage-850: var(--sage-800); /* "Pošaljite" / "Zakažite razgovor" button, end of exercise A */
     --sage-900: #26301f; /* headings, footer, hero background while the image loads */
 
     /* ---------- Apricot (warm) ---------- */
@@ -41,7 +44,7 @@
     --white: #ffffff;
     --bg: #f6f7f2; /* base background, topic cards */
     --bg-warm: #faf7f2; /* page intro, exercise B */
-    --cream: #f6f1e8; /* light text on the darkest, circle behind illustrations */
+    --cream: var(--sand); /* light text on the darkest, circle behind illustrations */
     --line: #e1e5da; /* cool lines (header, FAQ, lists) */
     --line-warm: #e6e1d8; /* borders of white cards */
 
@@ -55,7 +58,7 @@
     --text-menu: #3a4236; /* main menu items */
     --warm-text: #3a3027; /* text and labels on apricot and sand */
     --warm-muted: #6b5848; /* secondary text and uppercase labels on apricot and sand (5.5:1) */
-    --on-dark: #e6ece0; /* text on dark sage */
+    --on-dark: var(--sage-100); /* text on dark sage */
     --on-dark-muted: var(--sage-300); /* #C9D4BE */
     --on-dark-faint: #a9b99c; /* only on --sage-850/900 (bottom of the footer) */
     --line-on-dark: #4e6346; /* card borders and footer lines */
@@ -63,7 +66,6 @@
     /* ---------- States (form) ---------- */
     --error: #a3402b; /* error text and border (6.3:1 on white) – an apricot tone, not alarm red */
     --error-bg: #fbede8;
-    --success: var(--sage-700);
 
     /* ---------- Overlay on photos ---------- */
     --overlay-rgb: 20, 28, 17;
