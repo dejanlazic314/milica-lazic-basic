@@ -53,7 +53,7 @@ if (mode === 'check') {
     empty(dirs.diff);
 }
 
-// "/s-cim-radim/odnosi" → "s-cim-radim_odnosi"
+// "/oblasti-rada/odnosi" → "oblasti-rada_odnosi"
 const slug = (pagePath) => pagePath.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'home';
 
 // One shot per page and width, plus the home page with the cookie banner, plus the states
