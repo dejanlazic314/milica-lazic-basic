@@ -25,6 +25,13 @@
 
 {% block head %}
     {{ parent() }}
+    {# Icons from the design (assets/logo). /favicon.ico for browsers that do not read SVG;
+       theme-color is --sage-700, the manifest cannot read CSS custom properties. #}
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="{{ asset('layout/favicon/favicon.svg') }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ asset('layout/favicon/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('layout/favicon/site.webmanifest') }}">
+    <meta name="theme-color" content="#4a5d43">
     {# Translations of this page (src/Language/LanguageSwitcher.php); Serbian is the default #}
     {% set translations = language_alternates()|filter(alt => alt.translated) %}
     {% if translations|length > 1 %}
