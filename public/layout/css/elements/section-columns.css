@@ -1,0 +1,39 @@
+/* Section layout "columns" (content_element/section): text on the left, the map or the last nested
+   element on the right. Loaded by sections with that layout (SectionController::getExtraAssets). */
+
+@layer page {
+    /* Reflow 320 px (WCAG 1.4.10): grid items may shrink */
+    .columns > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    .columns {
+        display: grid;
+        gap: var(--gap-block);
+        align-items: center;
+    }
+    .columns__text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .columns__text > p:not(.eyebrow) {
+        color: var(--text-muted);
+    }
+    /* A list in the text (not an item list) */
+    .columns__text > ul:not([class]) {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    @media (width >= 64em) {
+        .columns {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 48px;
+        }
+    }
+}

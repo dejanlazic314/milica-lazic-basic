@@ -1,0 +1,45 @@
+/* Section layout "split" (content_element/section): heading on the left, text and nested elements on the right.
+   Loaded by sections with that layout (SectionController::getExtraAssets). */
+
+@layer page {
+    /* Reflow 320 px (WCAG 1.4.10): grid items may shrink */
+    .split > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    .split {
+        display: grid;
+        gap: var(--gap-block);
+    }
+    .split__head {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .split__head > p:last-child:not(.eyebrow) {
+        color: var(--text-muted);
+    }
+    .split__body {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        color: var(--text-muted);
+    }
+    .split__body > p:first-child {
+        font-size: var(--text-lead);
+    }
+    /* 12 columns: heading 4, an empty column, the rest 7 */
+    @media (width >= 64em) {
+        .split {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .split__head {
+            grid-column: span 4;
+        }
+        .split__body {
+            grid-column: 6 / span 7;
+        }
+    }
+}

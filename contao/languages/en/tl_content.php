@@ -42,6 +42,9 @@ $GLOBALS['TL_LANG']['tl_content']['listItemTitle'] = ['Title', ''];
 $GLOBALS['TL_LANG']['tl_content']['listItemText'] = ['Text', ''];
 $GLOBALS['TL_LANG']['tl_content']['gridColumns'] = ['Columns', 'Columns on a desktop. Phones show one column, tablets two (three for "3").'];
 $GLOBALS['TL_LANG']['tl_content']['gridColumnsOptions'] = ['2' => '2', '3' => '3', '4' => '4'];
+$GLOBALS['TL_LANG']['tl_content']['labels']['section'] = [
+    'introTitle' => ['Heading', 'The heading of the section (H2).'],
+];
 $GLOBALS['TL_LANG']['tl_content']['labels']['card_grid'] = [
     'introTitle' => ['Heading', 'Optional heading above the cards (H3), e.g. "Kako izgleda saradnja".'],
     'introMeta' => ['Note', 'Optional line below the cards.'],
@@ -93,14 +96,11 @@ $GLOBALS['TL_LANG']['tl_content']['mapEmbedUrl'] = ['Map embed URL', 'Google Map
 $GLOBALS['TL_LANG']['tl_content']['mapLinkUrl'] = ['Map link', 'Link "Otvori u Google mapama" (opens in a new tab, no cookies).'];
 
 $GLOBALS['TL_LANG']['tl_content']['style_legend'] = 'Background and spacing';
-$GLOBALS['TL_LANG']['tl_content']['sectionLayout'] = ['Layout', 'Section layouts from the design. Card grids, lists, boxes and FAQ lists go inside as nested elements.'];
+$GLOBALS['TL_LANG']['tl_content']['sectionLayout'] = ['Layout', 'One column; heading left and the rest right (e.g. "Moj put", the approach); or two columns with the text left and the map or the last nested element right (e.g. a card or the time zones). Card grids, lists, boxes and FAQ lists go inside as nested elements.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionLayouts'] = [
-    'stack' => 'Heading + content (cards in a grid)',
-    'approach' => 'Approach (heading left, list right)',
-    'my_path' => 'Heading left, text right ("Moj put")',
-    'preparation' => 'Text left, the last nested element right',
-    'diaspora' => 'Text left, the last nested element right (narrower)',
-    'location' => 'Location + map',
+    'stack' => 'One column',
+    'split' => 'Heading left, the rest right',
+    'columns' => 'Two columns: text left, the map or the last nested element right',
 ];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyle'] = ['Background', 'Default is the page background (cream).'];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyles'] = ['white' => 'White', 'warm' => 'Warm (apricot)'];

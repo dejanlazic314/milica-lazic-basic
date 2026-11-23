@@ -13,10 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Generic subpage section: background, spacing, a layout from the design and the
- * heading fields. Cards, steps, FAQ lists etc. go inside as nested elements.
+ * Generic section: background, spacing, heading fields and a layout. Card grids, lists,
+ * boxes, FAQ lists etc. go inside as nested elements.
  *
- * Extra section classes (e.g. "values", "audience") and anchors go in the CSS ID field.
+ * Layouts: stack (one column), split (heading left, the rest right), columns (text left,
+ * the map or the last nested element right). Anchors go in the CSS ID field.
  */
 #[AsContentElement('section', category: 'milica', nestedFragments: true)]
 final class SectionController extends AbstractContentElementController
@@ -24,11 +25,8 @@ final class SectionController extends AbstractContentElementController
     /** Layout => wrapper class of div.content */
     public const LAYOUTS = [
         'stack' => 'stack',
-        'approach' => 'approach',
-        'my_path' => 'my-path',
-        'preparation' => 'preparation',
-        'diaspora' => 'diaspora',
-        'location' => 'location',
+        'split' => 'split',
+        'columns' => 'columns',
     ];
 
     public const STYLES = ['white', 'warm'];
@@ -53,7 +51,6 @@ final class SectionController extends AbstractContentElementController
         $template->set('title', (string) $model->introTitle);
         $template->set('lead', (string) $model->introText);
         $template->set('text', (string) $model->text);
-        $template->set('end', (string) $model->introMeta);
         $template->set('map', ['embed' => (string) $model->mapEmbedUrl, 'link' => (string) $model->mapLinkUrl]);
 
         return $template->getResponse();
@@ -61,8 +58,8 @@ final class SectionController extends AbstractContentElementController
 
     /**
      * CSS and JS besides elements/section (src/Twig/AssetsExtension.php): the file of the
-     * layout and of each class in the CSS ID field, e.g. elements/section-approach and
-     * elements/section-values. The layout "location" has a map behind consent.
+     * layout and of each class in the CSS ID field, e.g. elements/section-split and
+     * elements/section-<class>. A section with a map loads the map consent.
      *
      * @return list<string>
      */
@@ -73,7 +70,7 @@ final class SectionController extends AbstractContentElementController
         return [
             'elements/section-'.$layout,
             ...array_map(static fn (string $class): string => 'elements/section-'.$class, $classes),
-            ...('location' === $layout ? ['components/map-consent'] : []),
+            ...($model->mapEmbedUrl ? ['components/map-consent'] : []),
         ];
     }
 }

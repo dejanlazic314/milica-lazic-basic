@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * Generic subpage section (nested card grids, lists, boxes, FAQ lists inside).
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['section'] = '{type_legend},type,sectionLayout;{style_legend},sectionStyle,sectionSpacing;{text_legend},eyebrow,introTitle,introText,text,introMeta;{map_legend:hide},mapEmbedUrl,mapLinkUrl;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['section'] = '{type_legend},type;{layout_legend},sectionLayout;{style_legend},sectionStyle,sectionSpacing;{text_legend},eyebrow,introTitle,introText,text;{map_legend:hide},mapEmbedUrl,mapLinkUrl;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 // A section can hold only nested elements, or only a heading (ElementFieldsListener)
 $GLOBALS['TL_DCA']['tl_content']['optionalFields']['section'] = ['introTitle', 'text'];

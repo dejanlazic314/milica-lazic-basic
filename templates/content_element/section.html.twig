@@ -24,23 +24,21 @@
     {% set rich %}{{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}{% endset %}
     <div class="content {{ content_class }}">
         {% block layout %}
-            {% if layout == 'approach' %}
-                <div class="approach__head">{{ _self.head(eyebrow, title, lead) }}</div>
-                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
-
-            {% elseif layout == 'my_path' %}
-                <div class="my-path__head">{{ _self.head(eyebrow, title, lead) }}</div>
-                <div class="my-path__text">{{ rich }}</div>
-
-            {% elseif layout in ['preparation', 'diaspora'] %}
-                {# Two columns: the text and all nested elements but the last on the left, the last one on the right #}
-                <div class="{{ layout }}__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}
-                    {%- for fragment in nested_fragments|slice(0, -1) %}{{ content_element(fragment) }}{% endfor -%}
+            {% if layout == 'split' %}
+                {# Heading on the left, the text and the nested elements on the right #}
+                <div class="split__head">{{ _self.head(eyebrow, title, lead) }}</div>
+                <div class="split__body">{{ rich }}
+                    {%- for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor -%}
                 </div>
-                {% if nested_fragments %}{{ content_element(nested_fragments|last) }}{% endif %}
 
-            {% elseif layout == 'location' %}
-                <div class="location__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}</div>
+            {% elseif layout == 'columns' %}
+                {# Two columns: heading, text and the nested elements on the left; on the right the map,
+                   or without a map the last nested element #}
+                {% set right = map.embed ? null : nested_fragments|last %}
+                <div class="columns__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}
+                    {%- for fragment in (right ? nested_fragments|slice(0, -1) : nested_fragments) %}{{ content_element(fragment) }}{% endfor -%}
+                </div>
+                {% if right %}{{ content_element(right) }}{% endif %}
                 {% if map.embed %}
                     <div class="map-consent map-consent--large" data-map data-src="{{ map.embed }}">
                         <div class="map-consent__message">
