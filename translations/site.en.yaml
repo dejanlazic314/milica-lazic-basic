@@ -113,7 +113,7 @@ legal:
     cookie_settings: Open cookie settings
 exercise:
     # Fixed labels of the exercise; its texts and topics are entered in the back end.
-    # {n} and {total} are filled in by public/layout/js/elements/exercise.js.
+    # {n}, {total} and {choice} are filled in by templates/content_element/exercise.html.twig.
     note: 'This is a short awareness exercise, not a diagnosis and not a substitute for therapy. If things are very hard for you right now, call <a href="tel:0800309309">0800 309 309</a> (24/7, free of charge).'
     stage_choose: Choose
     stage_notice: Notice

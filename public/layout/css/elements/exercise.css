@@ -73,6 +73,16 @@
         .breath {
             animation: none;
         }
+        .exercise-a__dot {
+            transition: none;
+        }
+    }
+    /* The buttons need the script; without it the section would only have buttons that do nothing */
+    @media (scripting: none) {
+        .exercise-a,
+        .exercise-b {
+            display: none;
+        }
     }
     /* ---------- A ---------- */
     .exercise-a {
@@ -93,7 +103,7 @@
         font-size: var(--text-meta);
         color: var(--label);
     }
-    .exercise-a__steps span:last-child {
+    .exercise-a__stage {
         margin-left: 10px;
     }
     .exercise-a__dot {
@@ -172,6 +182,11 @@
         font-family: var(--font-heading);
         font-size: 1.375rem;
         color: var(--text-heading);
+    }
+    .exercise-a__questions {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
     .exercise-a__text {
         flex: 1 1 0;

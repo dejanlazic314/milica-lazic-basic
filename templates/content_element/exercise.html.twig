@@ -1,45 +1,20 @@
 {#
-    Interactive exercise. The section is empty; public/layout/js/elements/exercise.js builds it from
-    three JSON attributes:
-      data-content  texts of this element (heading, ending, contact button)
-      data-topics   the nested "exercise_topic" elements (ExerciseController::getTopics)
-      data-texts    fixed labels from translations/site.*.yaml (exercise.*)
-    Markup the script builds: html/strane/pocetna.html (<section class="exercise-a" …>)
+    Interactive exercise, variants A and B. The markup has every part with all its texts: the
+    choice, the steps of each topic and its ending. public/layout/js/elements/exercise.js only
+    shows the current part (hidden), sets the state classes, moves the focus and announces changes.
+    Design: html/strane/pocetna.html (<section class="exercise-a" …>, <section class="exercise-b" …>).
+    Without JavaScript the section is not shown (exercise.css, scripting: none).
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
 {% trans_default_domain 'site' %}
 
-{% set texts = {
-    note: 'exercise.note'|trans,
-    stages: ['exercise.stage_choose'|trans, 'exercise.stage_notice'|trans, 'exercise.stage_pause'|trans],
-    stage: 'exercise.stage'|trans,
-    question: 'exercise.question'|trans,
-    hint: 'exercise.hint'|trans,
-    breath: 'exercise.breath'|trans,
-    breathStart: 'exercise.breath_start'|trans,
-    breathStop: 'exercise.breath_stop'|trans,
-    next: 'exercise.next'|trans,
-    finish: 'exercise.finish'|trans,
-    other: 'exercise.other'|trans,
-    again: 'exercise.again'|trans,
-    done: 'exercise.done'|trans,
-    selected: 'exercise.selected'|trans,
-    stepDone: 'exercise.step_done'|trans,
-} %}
-
-{% set json = constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES') %}
-
 {% set attributes = attrs(attributes|default)
     .addClass('exercise-' ~ variant)
     .set('data-exercise', variant)
-    .set('data-content', content|json_encode(json))
-    .set('data-topics', topics|json_encode(json))
-    .set('data-texts', texts|json_encode(json))
 %}
 
 {% block wrapper_tag %}section{% endblock %}
 
-{# Empty on the website (the script fills it); a short summary in the back end #}
 {% block inner %}
     {% if as_editor_view|default(false) %}
         <div class="exercise-preview">
@@ -51,6 +26,125 @@
                 {% for topic in topics %}<li>{{ topic.choice }} ({{ topic.steps|length }})</li>{% endfor %}
             </ul>
         </div>
+    {% else %}
+        {# A topic without steps cannot be shown #}
+        {% set topics = topics|filter(topic => topic.steps) %}
+        {% if topics %}{{ block('exercise_' ~ variant) }}{% endif %}
     {% endif %}
 {% endblock %}
 
+{# The note has a link to the crisis line; it is a translation (code), not text from the back end #}
+{% block exercise_note %}
+    <p class="exercise__note">{{ 'exercise.note'|trans|raw }}</p>
+{% endblock %}
+
+{# A: choose a topic → its questions with the breathing circle → its ending #}
+{% block exercise_a %}
+    {% set stages = ['exercise.stage_choose'|trans, 'exercise.stage_notice'|trans, 'exercise.stage_pause'|trans] %}
+    <div class="exercise-a__inner">
+        <div class="exercise__intro">
+            <p class="eyebrow">{{ content.eyebrow }}</p>
+            <h2>{{ content.title|inline_markup }}</h2>
+            <p>{{ content.text }}</p>
+        </div>
+
+        <div class="exercise-a__steps" aria-hidden="true">
+            {%- for stage in stages %}<span class="exercise-a__dot{{ loop.first ? ' is-current' }}" data-dot></span>{% endfor -%}
+            {%- for stage in stages %}<span class="exercise-a__stage" data-stage-label{{ loop.first ? '' : ' hidden' }}>{{ stage }} · {{ 'exercise.stage'|trans({'{n}': loop.index}) }}</span>{% endfor -%}
+        </div>
+
+        <div class="exercise-a__choice fade-up" data-stage="choose">
+            {%- for topic in topics -%}
+                <button class="option exercise-a__option" type="button" data-select="{{ loop.index0 }}">
+                    {%- if topic.image %}<img src="{{ topic.image }}" alt="" loading="lazy">{% endif -%}
+                    <span>{{ topic.choice }}</span>
+                </button>
+            {%- endfor -%}
+        </div>
+
+        {% for topic in topics %}
+            {% set total = topic.steps|length %}
+            <div class="exercise-a__question fade-up" data-stage="notice" hidden>
+                <div class="exercise-a__breath" aria-hidden="true" data-breath>
+                    <span class="breath"></span><span class="breath breath--inner"></span><em>{{ 'exercise.breath'|trans }}</em>
+                </div>
+                <div class="exercise-a__text">
+                    {%- for step in topic.steps %}
+                        <p class="exercise-a__meta" data-question="{{ loop.index0 }}"{{ loop.first ? '' : ' hidden' }}>{{ topic.choice }} · {{ 'exercise.question'|trans({'{n}': loop.index, '{total}': total}) }}</p>
+                    {%- endfor %}
+                    <ol class="exercise-a__questions">
+                        {%- for step in topic.steps %}<li class="exercise-a__q fade-up" tabindex="-1" data-focus data-question="{{ loop.index0 }}"{{ loop.first ? '' : ' hidden' }}>{{ step }}</li>{% endfor -%}
+                    </ol>
+                    <p class="exercise-a__hint">{{ 'exercise.hint'|trans }}</p>
+                    <button class="exercise-a__pause" type="button" aria-pressed="false" data-pause><span data-label="stop">{{ 'exercise.breath_stop'|trans }}</span><span data-label="start" hidden>{{ 'exercise.breath_start'|trans }}</span></button>
+                    <div class="exercise__actions">
+                        <button class="btn btn-dark" type="button" data-next><span data-label="next"{{ total > 1 ? '' : ' hidden' }}>{{ 'exercise.next'|trans }}</span><span data-label="finish"{{ total > 1 ? ' hidden' }}>{{ 'exercise.finish'|trans }}</span></button>
+                        <button class="btn btn-outline" type="button" data-restart>{{ 'exercise.other'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for topic in topics %}
+            <div class="exercise-a__end fade-up" data-stage="pause" hidden>
+                <div class="exercise-a__end-text">
+                    <p class="eyebrow">{{ content.endEyebrow }}</p>
+                    <h3 tabindex="-1" data-focus>{{ content.endTitle }}</h3>
+                    <p>{{ topic.reflection }}</p>
+                    <div class="exercise__actions">
+                        <a class="btn btn-apricot" href="{{ content.contactUrl }}">{{ content.contactText }}</a>
+                        <a class="btn btn-outline-light" href="{{ topic.link }}">{{ topic.linkText }} →</a>
+                        <button class="link-button" type="button" data-restart>{{ 'exercise.again'|trans }}</button>
+                    </div>
+                </div>
+                {%- if topic.image %}<img class="exercise-a__image" src="{{ topic.image }}" alt="" loading="lazy">{% endif -%}
+            </div>
+        {% endfor %}
+
+        {{ block('exercise_note') }}
+        <p class="sr-only" aria-live="polite" data-announce></p>
+    </div>
+{% endblock %}
+
+{# B: topics on the left, the steps of the chosen topic on the right, ticked off one by one #}
+{% block exercise_b %}
+    <div class="exercise-b__inner">
+        <div class="exercise-b__left">
+            <p class="eyebrow">{{ content.eyebrow }}</p>
+            <h2>{{ content.title|inline_markup }}</h2>
+            <div class="exercise-b__topics">
+                {%- for topic in topics -%}
+                    <button class="option exercise-b__topic{{ loop.first ? ' is-selected' }}" type="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" data-topic="{{ loop.index0 }}" data-message="{{ 'exercise.selected'|trans({'{choice}': topic.choice}) }}">
+                        {%- if topic.image %}<img src="{{ topic.image }}" alt="" loading="lazy">{% endif -%}
+                        <span>{{ topic.choice }}</span>
+                    </button>
+                {%- endfor -%}
+            </div>
+            {{ block('exercise_note') }}
+        </div>
+
+        {% for topic in topics %}
+            {% set total = topic.steps|length %}
+            <div class="exercise-b__right" data-panel{{ loop.first ? '' : ' hidden' }}>
+                {%- if topic.image %}<img class="exercise-b__background" src="{{ topic.image }}" alt=""{% if not loop.first %} loading="lazy"{% endif %}>{% endif -%}
+                <p class="exercise-b__instructions">{{ content.text }}</p>
+                <ol class="exercise-b__list">
+                    {%- for step in topic.steps -%}
+                        <li>
+                            <button class="option exercise-b__step {{ loop.first ? 'is-next' : 'is-later' }}" type="button" data-step="{{ loop.index0 }}"{% if not loop.first %} aria-disabled="true"{% endif %} data-message="{{ 'exercise.step_done'|trans({'{n}': loop.index, '{total}': total}) }}"><span class="exercise-b__label" aria-hidden="true"><span data-done hidden>✓</span></span><span class="exercise-b__text">{{ step }}</span><span class="sr-only" data-done hidden> {{ 'exercise.done'|trans }}</span></button>
+                        </li>
+                    {%- endfor -%}
+                </ol>
+                <div class="exercise-b__end fade-up" tabindex="-1" data-end hidden>
+                    <p><strong>{{ content.endTitle }}</strong> {{ topic.reflection }}</p>
+                    <div class="exercise__actions">
+                        <a class="link-arrow" href="{{ content.contactUrl }}">{{ content.contactText }} →</a>
+                        <a class="link-arrow" href="{{ topic.link }}">{{ topic.linkText }} →</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <p class="sr-only" aria-live="polite" data-announce></p>
+    </div>
+{% endblock %}

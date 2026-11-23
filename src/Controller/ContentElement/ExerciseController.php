@@ -17,8 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Interactive "small experiment" (variant A or B). The texts come from this element and
- * its nested "exercise_topic" elements; the template passes them to
- * public/layout/js/elements/exercise.js as JSON, and the script builds the steps.
+ * its nested "exercise_topic" elements; the template renders every step, and
+ * public/layout/js/elements/exercise.js shows them one by one.
  * Its CSS and JS (elements/exercise.css, elements/exercise.js) come with the element.
  * Set the anchor ID "vezba" on the element the menu links to ("/#vezba").
  */
@@ -82,7 +82,7 @@ final class ExerciseController extends AbstractContentElementController
         return $topics;
     }
 
-    // The script escapes the text itself, so it gets plain text (no HTML entities)
+    // Plain text (Contao stores entities); the template escapes it once
     private function text(mixed $value): string
     {
         return trim(StringUtil::decodeEntities((string) $value));

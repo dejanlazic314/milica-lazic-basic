@@ -7,7 +7,8 @@ const clickThrough = (selector, steps) => async (page) => {
     await exercise.scrollIntoViewIfNeeded();
 
     for (const step of steps) {
-        await exercise.locator(step).first().click();
+        // Every topic has its own steps in the markup; only the shown ones can be clicked
+        await exercise.locator(`${step}:visible`).first().click();
         await page.waitForTimeout(150);
     }
 
