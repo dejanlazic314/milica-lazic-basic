@@ -13,7 +13,7 @@ $GLOBALS['TL_LANG']['tl_content']['heroLayout'] = ['Layout', 'Background photo: 
 $GLOBALS['TL_LANG']['tl_content']['heroLayouts'] = ['background' => 'Background photo', 'split' => 'Text and illustration', 'plain' => 'Text only'];
 $GLOBALS['TL_LANG']['tl_content']['heroWidth'] = ['Text width', 'Narrow: legal pages and posts. Wide: a filter row below the lead.'];
 $GLOBALS['TL_LANG']['tl_content']['heroWidths'] = ['default' => 'Default', 'narrow' => 'Narrow', 'wide' => 'Wide (with filter)'];
-$GLOBALS['TL_LANG']['tl_content']['introTitle'] = ['Heading (H1)', 'Wrap words in *asterisks* to set them in italics, e.g. "Šta je geštalt *terapija*?".'];
+$GLOBALS['TL_LANG']['tl_content']['introTitle'] = ['Heading', 'Wrap words in *asterisks* to set them in italics, e.g. "Šta je geštalt *terapija*?".'];
 $GLOBALS['TL_LANG']['tl_content']['introText'] = ['Lead', 'One or two sentences below the heading.'];
 $GLOBALS['TL_LANG']['tl_content']['introMeta'] = ['Meta line', 'Small text below the buttons, e.g. "Uživo u Beogradu i online · Autorka: [Milica Lazić](/o-meni)". [Text](link) becomes a link, *words* italic.'];
 $GLOBALS['TL_LANG']['tl_content']['introPrimaryUrl'] = ['Main button link', 'Apricot button. Anchors like "#kontakt" work too.'];
@@ -55,6 +55,7 @@ $GLOBALS['TL_LANG']['tl_content']['labels']['card'] = [
     'introPrimaryText' => ['Link text', ''],
 ];
 $GLOBALS['TL_LANG']['tl_content']['labels']['hero'] = [
+    'introTitle' => ['Heading (H1)', 'The heading of the page, one per page. Wrap words in *asterisks* to set them in italics, e.g. "Šta je geštalt *terapija*?".'],
     'introImage' => ['Image', 'Background photo: the photo behind the text. Text and illustration: the drawing on the right (SVG). Alt text comes from the file manager.'],
 ];
 $GLOBALS['TL_LANG']['tl_content']['labels']['exercise'] = [
