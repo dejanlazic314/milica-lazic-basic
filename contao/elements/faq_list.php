@@ -7,6 +7,9 @@ declare(strict_types=1);
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['faq_list'] = '{type_legend},type,faqVariant;{config_legend},faqCategories;{text_legend},eyebrow,introTitle;{featured_legend},featuredTitle,text,introPrimaryUrl,introPrimaryText;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
+// The home page list has no heading and no text of its own (ElementFieldsListener)
+$GLOBALS['TL_DCA']['tl_content']['optionalFields']['faq_list'] = ['introTitle', 'text'];
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['faqVariant'] = [
     'inputType' => 'select',
     'options' => MilicaLazic\Controller\ContentElement\FaqListController::VARIANTS,

@@ -7,6 +7,9 @@ declare(strict_types=1);
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['section'] = '{type_legend},type,sectionLayout;{style_legend},sectionStyle,sectionSpacing,sectionGrid;{text_legend},eyebrow,introTitle,introText,text,introMeta;{list_legend:hide},sectionRows,sectionChips;{map_legend:hide},mapEmbedUrl,mapLinkUrl;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
+// A section can hold only nested elements, or only a heading (ElementFieldsListener)
+$GLOBALS['TL_DCA']['tl_content']['optionalFields']['section'] = ['introTitle', 'text'];
+
 $GLOBALS['TL_DCA']['tl_content']['palettes']['card'] = '{type_legend},type,cardVariant,cardIcon;{text_legend},introTitle,text;{link_legend},introPrimaryUrl,introPrimaryText;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['step'] = '{type_legend},type;{text_legend},introTitle,introText;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';

@@ -8,6 +8,9 @@ declare(strict_types=1);
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['topic_grid'] = '{type_legend},type,topicsVariant;{config_legend},topicsParent;{text_legend},introTitle,introText,introMeta;{link_legend},introPrimaryUrl,introPrimaryText;{cta_legend},ctaQuote,ctaText,ctaLinkText;{image_legend},ornamentImage;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
+// The overview variant has no heading (ElementFieldsListener)
+$GLOBALS['TL_DCA']['tl_content']['optionalFields']['topic_grid'] = ['introTitle'];
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['topicsVariant'] = [
     'inputType' => 'select',
     'options' => MilicaLazic\Controller\ContentElement\TopicGridController::VARIANTS,

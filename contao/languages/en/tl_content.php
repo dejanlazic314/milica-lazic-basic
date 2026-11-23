@@ -33,7 +33,7 @@ $GLOBALS['TL_LANG']['tl_content']['boxStyle'] = ['Style', 'White: a white box wi
 $GLOBALS['TL_LANG']['tl_content']['boxStyles'] = ['white' => 'White', 'dark' => 'Dark'];
 $GLOBALS['TL_LANG']['tl_content']['boxTitle'] = ['Title', 'Optional first line in bold, e.g. "Ako imate misli o samopovređivanju…".'];
 
-// Labels of shared fields for elements where they mean something else (ElementLabelsListener)
+// Labels of shared fields for elements where they mean something else (ElementFieldsListener)
 $GLOBALS['TL_LANG']['tl_content']['labels']['hero'] = [
     'introImage' => ['Image', 'Background photo: the photo behind the text. Text and illustration: the drawing on the right (SVG). Alt text comes from the file manager.'],
 ];
