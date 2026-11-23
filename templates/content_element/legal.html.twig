@@ -7,23 +7,20 @@
 {% trans_default_domain 'site' %}
 
 {% block wrapper %}
-    <section class="page-intro page-intro--narrow">
-        <div class="content page-intro__grid">
-            <div class="page-intro__text">
-                {% include '@Contao/component/_breadcrumb.html.twig' %}
-
-                <h1>{{ title }}</h1>
-
-                {% if valid_from or updated %}
-                    <p class="legal__updated">
-                        {%- if valid_from %}<span>{{ 'legal.valid_from'|trans({'%date%': valid_from|date('post.date_format'|trans)}) }}</span>{% endif -%}
-                        {%- if valid_from and updated %}<span aria-hidden="true">·</span>{% endif -%}
-                        {%- if updated %}<span>{{ 'legal.updated'|trans }} <time datetime="{{ updated|date('Y-m-d') }}">{{ updated|date('post.date_format'|trans) }}</time></span>{% endif -%}
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-    </section>
+    {# Only the H1 and the dates: "text" here is the legal text itself, not a lead #}
+    {% embed '@Contao/component/_hero.html.twig' with {layout: 'plain', width: 'narrow', attributes: [], eyebrow: '', text: '', buttons: [], meta: ''} %}
+        {# The domain of this file does not reach blocks inside an embed #}
+        {% trans_default_domain 'site' %}
+        {% block hero_extra %}
+            {% if valid_from or updated %}
+                <p class="legal__updated">
+                    {%- if valid_from %}<span>{{ 'legal.valid_from'|trans({'%date%': valid_from|date('post.date_format'|trans)}) }}</span>{% endif -%}
+                    {%- if valid_from and updated %}<span aria-hidden="true">·</span>{% endif -%}
+                    {%- if updated %}<span>{{ 'legal.updated'|trans }} <time datetime="{{ updated|date('Y-m-d') }}">{{ updated|date('post.date_format'|trans) }}</time></span>{% endif -%}
+                </p>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
 
     <section{{ attrs(attributes).addClass(['section', 'section--white', 'article-section']) }}>
         <div class="legal">
@@ -43,6 +40,6 @@
 
 {% block style %}
     {{ parent() }}
-    {%- do add_assets('elements/page_intro') %}
+    {%- do add_assets('elements/hero') %}
     {%- do add_assets('components/article') %}
 {% endblock %}

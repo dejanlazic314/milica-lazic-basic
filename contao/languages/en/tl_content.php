@@ -8,8 +8,11 @@ $GLOBALS['TL_LANG']['tl_content']['quoteText'] = ['Text', 'Short paragraph below
 $GLOBALS['TL_LANG']['tl_content']['quoteLink'] = ['Link', 'Optional link below the text.'];
 $GLOBALS['TL_LANG']['tl_content']['quoteImage'] = ['Background photo', 'Optional. Without a photo the section is dark sage.'];
 
-$GLOBALS['TL_LANG']['tl_content']['introVariant'] = ['Layout', 'With illustration: text left, image right. Narrow: legal pages and articles. Wide: lead row with a filter below.'];
-$GLOBALS['TL_LANG']['tl_content']['introVariants'] = ['default' => 'Text', 'image' => 'Text with illustration', 'narrow' => 'Narrow', 'wide' => 'Wide (with filter)'];
+$GLOBALS['TL_LANG']['tl_content']['layout_legend'] = 'Layout';
+$GLOBALS['TL_LANG']['tl_content']['heroLayout'] = ['Layout', 'Background photo: the photo fills the block and the text sits on it (home page). Text and illustration: text left, drawing right. Text only: no image. The form reloads and shows the fields of the layout.'];
+$GLOBALS['TL_LANG']['tl_content']['heroLayouts'] = ['background' => 'Background photo', 'split' => 'Text and illustration', 'plain' => 'Text only'];
+$GLOBALS['TL_LANG']['tl_content']['heroWidth'] = ['Text width', 'Narrow: legal pages and posts. Wide: a filter row below the lead.'];
+$GLOBALS['TL_LANG']['tl_content']['heroWidths'] = ['default' => 'Default', 'narrow' => 'Narrow', 'wide' => 'Wide (with filter)'];
 $GLOBALS['TL_LANG']['tl_content']['introTitle'] = ['Heading (H1)', 'Wrap words in *asterisks* to set them in italics, e.g. "Šta je geštalt *terapija*?".'];
 $GLOBALS['TL_LANG']['tl_content']['introText'] = ['Lead', 'One or two sentences below the heading.'];
 $GLOBALS['TL_LANG']['tl_content']['introMeta'] = ['Meta line', 'Small text below the buttons, e.g. "Uživo u Beogradu i online · Autorka: [Milica Lazić](/o-meni)". [Text](link) becomes a link, *words* italic.'];
@@ -17,7 +20,7 @@ $GLOBALS['TL_LANG']['tl_content']['introPrimaryUrl'] = ['Main button link', 'Apr
 $GLOBALS['TL_LANG']['tl_content']['introPrimaryText'] = ['Main button text', ''];
 $GLOBALS['TL_LANG']['tl_content']['introSecondaryUrl'] = ['Second button link', 'Outline button.'];
 $GLOBALS['TL_LANG']['tl_content']['introSecondaryText'] = ['Second button text', ''];
-$GLOBALS['TL_LANG']['tl_content']['introImage'] = ['Illustration', 'Shown with the layout "Text with illustration". Alt text comes from the file manager.'];
+$GLOBALS['TL_LANG']['tl_content']['introImage'] = ['Image', 'Alt text comes from the file manager.'];
 $GLOBALS['TL_LANG']['tl_content']['eyebrow'] = ['Eyebrow', 'Small uppercase line above the heading, e.g. "Beograd · uživo i online".'];
 $GLOBALS['TL_LANG']['tl_content']['topicsVariant'] = ['Layout', 'Home page: heading, lead and corner ornament. Overview: note and link below the cards.'];
 $GLOBALS['TL_LANG']['tl_content']['topicsVariants'] = ['home' => 'Home page', 'overview' => 'Overview ("Oblasti rada")'];
@@ -27,6 +30,9 @@ $GLOBALS['TL_LANG']['tl_content']['exerciseVariants'] = ['a' => 'A (questions, b
 $GLOBALS['TL_LANG']['tl_content']['end_legend'] = 'End of the exercise';
 
 // Labels of shared fields for elements where they mean something else (ElementLabelsListener)
+$GLOBALS['TL_LANG']['tl_content']['labels']['hero'] = [
+    'introImage' => ['Image', 'Background photo: the photo behind the text. Text and illustration: the drawing on the right (SVG). Alt text comes from the file manager.'],
+];
 $GLOBALS['TL_LANG']['tl_content']['labels']['exercise'] = [
     'introTitle' => ['Heading', 'Wrap words in *asterisks* to set them in italics, e.g. "Šta je kod vas *sada* prisutno?".'],
     'introText' => ['Text below the heading', 'Variant A: below the heading. Variant B: the line above the steps, e.g. "Probajte sada, polako, jedno po jedno".'],

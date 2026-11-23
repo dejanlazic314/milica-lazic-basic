@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Box "Ukratko" with a short list, inside a page intro.
+ * Box "Ukratko" with a short list, inside a hero.
  */
 #[AsContentElement('summary', category: 'milica')]
 final class SummaryController extends AbstractContentElementController

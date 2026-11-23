@@ -101,8 +101,7 @@
 }
 
 /* The hero photo is wide; keep it a strip so the heading below stays in view */
-.cte_preview .hero__photo img,
-.cte_preview .hero img {
+.cte_preview .hero--background img {
     max-height: 56px;
 }
 

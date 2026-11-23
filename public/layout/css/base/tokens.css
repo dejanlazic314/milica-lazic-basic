@@ -49,7 +49,7 @@
         /* ---------- Neutrals ---------- */
         --white: #ffffff;
         --bg: #f6f7f2; /* base background, topic cards */
-        --bg-warm: #faf7f2; /* page intro, exercise B */
+        --bg-warm: #faf7f2; /* hero on subpages, exercise B */
         --cream: var(--sand); /* light text on the darkest, circle behind illustrations */
         --line: #e1e5da; /* cool lines (header, FAQ, lists) */
         --line-warm: #e6e1d8; /* borders of white cards */
@@ -92,7 +92,7 @@
         /* Headings: phone → desktop */
         /* home hero */
         --h1: clamp(2.625rem, 2.625rem + 30 * var(--fluid), 4.5rem);
-        /* subpage intro */
+        /* hero on subpages */
         --h1-page: clamp(2.375rem, 2.375rem + 26 * var(--fluid), 4rem);
         /* #gestalt, #o-meni, #pitanja */
         --h2-large: clamp(2.25rem, 2.25rem + 24 * var(--fluid), 3.75rem);
@@ -132,12 +132,12 @@
         /* ---------- Spacing (fluid like the headings, phone → desktop) ---------- */
         --width: 1200px;
         --width-text: 720px; /* article */
-        --width-intro: 860px; /* page intro, FAQ list */
+        --width-intro: 860px; /* hero text on subpages, FAQ list */
         /* side padding */
         --gutter: clamp(20px, 20px + 12 * var(--fluid), 32px);
         /* vertical section padding */
         --section: clamp(64px, 64px + 32 * var(--fluid), 96px);
-        /* page intro, shorter sections */
+        /* hero on subpages, shorter sections */
         --section-small: clamp(48px, 48px + 24 * var(--fluid), 72px);
         --gap-block: 32px; /* heading ↔ content in a section (subpages); home .stack--wide has its own */
         /* gap between cards in a grid */

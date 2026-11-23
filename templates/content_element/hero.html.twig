@@ -1,33 +1,14 @@
 {#
-    Home page hero. Markup: private/dizajn/milica-lazic-start-en/html/strane/pocetna.html (.hero)
-    Photo: image size "_hero" (eager, fetchpriority high), alt text from the file manager.
+    Element "hero": the top block of a page. Markup: component/_hero.html.twig.
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
-{% use '@Contao/component/_picture.html.twig' %}
-{% import '@Contao/component/_text.html.twig' as text_helpers %}
 
-{% set attributes = attrs(attributes|default)
-    .addClass('hero')
-    .addClass('hero--no-photo', not figure)
-%}
-
-{% block wrapper_tag %}section{% endblock %}
-
-{% block inner %}
-    {% if figure %}
-        {% with {figure: figure, img_attributes: attrs().addClass('hero__photo').set('fetchpriority', 'high')} %}
-            {{ block('picture_component') }}
-        {% endwith %}
-    {% endif %}
-    <div class="hero__inner"><div class="hero__content">
-        {% if eyebrow %}<p class="hero__eyebrow">{{ eyebrow }}</p>{% endif %}
-        <h1>{{ text_helpers.emphasis(title) }}</h1>
-        {% if text %}<p class="hero__intro">{{ text }}</p>{% endif %}
-        {% if buttons %}
-            <div class="actions actions--full">
-                {%- for button in buttons %}<a class="{{ button.class }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endfor -%}
-            </div>
-        {% endif %}
-        {% if status %}<p class="hero__status">{{ status }}</p>{% endif %}
-    </div></div>
+{% block wrapper %}
+    {% embed '@Contao/component/_hero.html.twig' %}
+        {% block hero_extra %}
+            {% for fragment in nested_fragments %}
+                {{ content_element(fragment) }}
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

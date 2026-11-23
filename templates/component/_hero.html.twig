@@ -1,0 +1,66 @@
+{#
+    The top block of a page with its H1: the element "hero", the posts module and legal pages.
+    CSS: public/layout/css/elements/hero.css (the caller adds it).
+
+    Layouts: background (photo behind the text) · split (text, image on the right) · plain (text only).
+    Widths, for split and plain: default · narrow (legal page, post) · wide (a filter row below the lead).
+
+    Blocks for callers that embed it: hero_before_title (the eyebrow; a post puts its chip
+    there), hero_extra (below the meta line: nested elements, filter, author, dates).
+
+    @var string layout, width, eyebrow, title, text, meta
+    @var list<array{href: string, text: string, class: string}> buttons
+    @var Figure|null figure
+    @var list breadcrumb  BreadcrumbBuilder::build()
+#}
+{% use '@Contao/component/_picture.html.twig' %}
+{% import '@Contao/component/_text.html.twig' as text_helpers %}
+
+{% set background = layout == 'background' %}
+{% set width = width|default('default') %}
+{% set hero_attributes = attrs(attributes|default)
+    .addClass(['hero', 'hero--' ~ layout])
+    .addClass('hero--' ~ width, not background and width != 'default')
+    .addClass('hero--no-photo', background and not figure|default)
+%}
+
+<section{{ hero_attributes }}>
+    {%- if background and figure|default %}
+        {% with {figure, img_attributes: attrs().addClass('hero__media').set('fetchpriority', 'high')} %}
+            {{ block('picture_component') }}
+        {% endwith %}
+    {% endif -%}
+    <div class="hero__inner">
+        <div class="hero__body">
+            {% include '@Contao/component/_breadcrumb.html.twig' %}
+
+            {% block hero_before_title %}
+                {% if eyebrow|default %}<p class="hero__eyebrow">{{ eyebrow }}</p>{% endif %}
+            {% endblock %}
+
+            <h1>{{ text_helpers.emphasis(title) }}</h1>
+
+            {% if text|default %}
+                <p class="hero__lead">{{ text }}</p>
+            {% endif %}
+
+            {% if buttons|default %}
+                <div class="actions actions--full">
+                    {%- for button in buttons %}<a class="{{ button.class }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>{% endfor -%}
+                </div>
+            {% endif %}
+
+            {% if meta|default %}
+                <p class="hero__meta">{{ meta|inline_markup }}</p>
+            {% endif %}
+
+            {% block hero_extra %}{% endblock %}
+        </div>
+
+        {%- if layout == 'split' and figure|default %}
+            {% with {figure, img_attributes: attrs().addClass('hero__media')} %}
+                {{ block('picture_component') }}
+            {% endwith %}
+        {% endif -%}
+    </div>
+</section>

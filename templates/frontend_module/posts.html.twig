@@ -8,21 +8,22 @@
 {% import '@Contao/component/_text.html.twig' as txt %}
 {% do add_assets('modules/posts') %}
 {% do add_assets('components/article') %}
-{% do add_assets('elements/page_intro') %}
+{% do add_assets('elements/hero') %}
 {% do add_assets('elements/summary') %}
 
 {% if mode == 'list' %}
-    <section class="page-intro"><div class="content page-intro__grid"><div class="page-intro__text" style="max-width:none">
-        {% include '@Contao/component/_breadcrumb.html.twig' %}
-        <h1>{{ txt.emphasis(headline.text|default ?: page_title) }}</h1>
-        {%- if intro %}<p class="intro-text" style="max-width:var(--width-intro)">{{ intro }}</p>{% endif -%}
-        {% if categories|length > 1 %}
-            <nav class="filter" aria-label="{{ 'post.categories'|trans }}">
-                <a href="?"{% if not current_category %} aria-current="page"{% endif %}>{{ 'post.all'|trans }}</a>
-                {%- for category in categories %}<a href="?{{ 'post.param_category'|trans }}={{ category.slug }}"{% if category.slug == current_category %} aria-current="page"{% endif %}>{{ category.title }}</a>{% endfor -%}
-            </nav>
-        {% endif %}
-    </div></div></section>
+    {% embed '@Contao/component/_hero.html.twig' with {layout: 'plain', width: 'wide', attributes: [], eyebrow: '', title: headline.text|default ?: page_title, text: intro, buttons: [], meta: ''} %}
+        {# The domain of this file does not reach blocks inside an embed #}
+        {% trans_default_domain 'site' %}
+        {% block hero_extra %}
+            {% if categories|length > 1 %}
+                <nav class="filter" aria-label="{{ 'post.categories'|trans }}">
+                    <a href="?"{% if not current_category %} aria-current="page"{% endif %}>{{ 'post.all'|trans }}</a>
+                    {%- for category in categories %}<a href="?{{ 'post.param_category'|trans }}={{ category.slug }}"{% if category.slug == current_category %} aria-current="page"{% endif %}>{{ category.title }}</a>{% endfor -%}
+                </nav>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
 
     {% if featured %}
         <section class="section section--no-top" style="padding-top:56px;padding-bottom:0"><div class="content">
@@ -47,16 +48,20 @@
     </div></section>
 
 {% else %}
-    <section class="page-intro page-intro--narrow"><div class="content page-intro__grid"><div class="page-intro__text">
-        {% include '@Contao/component/_breadcrumb.html.twig' %}
-        {%- if post.category %}<span class="chip">{{ post.category }}</span>{% endif -%}
-        <h1>{{ post.title }}</h1>
-        <div class="author">
-            {%- if author.figure %}{% with {figure: author.figure, img_attributes: attrs().set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
-            <p>{% if author.href %}<a href="{{ author.href }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}, {{ 'post.author_role'|trans }}<br>{{ 'post.published'|trans({'%date%': post.date|date('post.date_format'|trans)}) }}{% if post.updated %} · {{ 'post.updated'|trans({'%date%': post.updated|date('post.date_format'|trans)}) }}{% endif %} · {{ 'post.minutes'|trans({'%minutes%': post.minutes}) }}</p>
-        </div>
-        {% if post.summary %}<div class="summary"><p class="eyebrow">{{ 'post.summary'|trans }}</p>{{ post.summary|sanitize_html('contao')|encode_email|insert_tag_raw }}</div>{% endif %}
-    </div></div></section>
+    {% embed '@Contao/component/_hero.html.twig' with {layout: 'plain', width: 'narrow', attributes: [], title: post.title, text: '', buttons: [], meta: ''} %}
+        {# The domain of this file does not reach blocks inside an embed #}
+        {% trans_default_domain 'site' %}
+        {% block hero_before_title %}
+            {%- if post.category %}<span class="chip">{{ post.category }}</span>{% endif -%}
+        {% endblock %}
+        {% block hero_extra %}
+                <div class="author">
+                    {%- if author.figure %}{% with {figure: author.figure, img_attributes: attrs().set('alt', '')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+                    <p>{% if author.href %}<a href="{{ author.href }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}, {{ 'post.author_role'|trans }}<br>{{ 'post.published'|trans({'%date%': post.date|date('post.date_format'|trans)}) }}{% if post.updated %} · {{ 'post.updated'|trans({'%date%': post.updated|date('post.date_format'|trans)}) }}{% endif %} · {{ 'post.minutes'|trans({'%minutes%': post.minutes}) }}</p>
+                </div>
+                {% if post.summary %}<div class="summary"><p class="eyebrow">{{ 'post.summary'|trans }}</p>{{ post.summary|sanitize_html('contao')|encode_email|insert_tag_raw }}</div>{% endif %}
+        {% endblock %}
+    {% endembed %}
 
     <section class="section section--white article-section"><article class="article">
         {%- for id in post.elements %}{{ content_element(id) }}{% endfor -%}
