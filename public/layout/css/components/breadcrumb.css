@@ -42,7 +42,7 @@
     .breadcrumb__back {
         display: none;
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .breadcrumb--short ol {
             display: none;
         }

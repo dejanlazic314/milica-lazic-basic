@@ -74,7 +74,7 @@
         padding: 20px 24px;
         color: var(--warm-text);
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .legal table thead {
             display: none;
         }

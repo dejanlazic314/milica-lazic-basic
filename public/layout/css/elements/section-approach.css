@@ -46,7 +46,7 @@
         font-size: var(--text-card);
         color: var(--text-muted);
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .approach {
             grid-template-columns: minmax(0, 360fr) minmax(0, 560fr);
             gap: 64px;

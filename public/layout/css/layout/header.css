@@ -270,7 +270,7 @@
         gap: 16px;
         flex-wrap: wrap;
     }
-    @media (max-width: 1023px) {
+    @media (width < 64em) {
         .info-bar__inner {
             justify-content: center;
             padding: 7px var(--gutter);
@@ -337,7 +337,7 @@
     .lang-switch a {
         text-decoration: none;
     }
-    @media (max-width: 399px) {
+    @media (width < 25em) {
         .logo-link__role {
             display: none;
         }
@@ -349,7 +349,7 @@
             font-size: 1.25rem;
         }
     }
-    @media (max-width: 359px) {
+    @media (width < 22.5em) {
         .header__right > .btn-apricot {
             display: none;
         }
@@ -360,7 +360,7 @@
     .main-menu > li > a {
         white-space: nowrap;
     }
-    @media (min-width: 1024px) and (max-width: 1199px) {
+    @media (64em <= width < 75em) {
         .header__inner {
             gap: 16px;
         }

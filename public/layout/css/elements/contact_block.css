@@ -56,7 +56,7 @@
         text-decoration-color: var(--sand-line);
         text-underline-offset: 4px;
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .contact-block {
             grid-template-columns: minmax(0, 400fr) minmax(0, 420fr);
             gap: 56px;

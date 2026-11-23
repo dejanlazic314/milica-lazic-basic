@@ -26,7 +26,7 @@
         font-size: var(--text-desc);
         font-weight: 600;
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .bio {
             flex-direction: column;
             align-items: flex-start;

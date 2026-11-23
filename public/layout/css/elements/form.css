@@ -282,12 +282,12 @@
         background: var(--error-bg);
         color: var(--error);
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .form {
             padding: 32px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .form {
             padding: 40px;
         }
@@ -302,7 +302,7 @@
         font-weight: 400;
         color: var(--warm-text);
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .choices {
             gap: 8px;
         }

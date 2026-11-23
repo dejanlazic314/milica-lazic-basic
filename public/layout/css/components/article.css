@@ -109,7 +109,7 @@
     .table td.highlight {
         background: var(--sage-50);
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .article-section {
             padding-top: 56px;
         }

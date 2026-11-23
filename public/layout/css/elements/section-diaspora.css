@@ -43,7 +43,7 @@
         font-weight: 600;
         color: var(--text-heading);
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .diaspora {
             grid-template-columns: minmax(0, 520fr) minmax(0, 380fr);
             gap: 48px;

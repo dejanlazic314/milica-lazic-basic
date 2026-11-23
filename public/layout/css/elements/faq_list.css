@@ -90,12 +90,12 @@
     .featured-question .link-underlined {
         align-self: flex-start;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .featured-question {
             padding: 40px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .questions__grid {
             grid-template-columns: minmax(0, 420fr) minmax(0, 520fr);
             gap: 48px;
@@ -148,7 +148,7 @@
         font-size: var(--text-desc);
         padding: 13px 24px;
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .faq-page {
             grid-template-columns: minmax(0, 820px) 320px;
             gap: 72px;

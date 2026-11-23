@@ -29,7 +29,7 @@
         font-size: var(--text-desc);
         color: var(--label);
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .education li {
             grid-template-columns: repeat(12, minmax(0, 1fr));
             column-gap: 24px;

@@ -138,17 +138,17 @@
     .circles--light .circles__center span {
         background: var(--apricot-underline);
     }
-    @media (max-width: 399px) {
+    @media (width < 25em) {
         .circles {
             --scale: 0.52;
         }
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .circles {
             --scale: 0.8;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .circles {
             --scale: 1;
         }

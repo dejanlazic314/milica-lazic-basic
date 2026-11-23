@@ -30,7 +30,7 @@
     .mobile-menu {
         display: none;
     }
-    @media (max-width: 1023px) {
+    @media (width < 64em) {
         .menu-button {
             display: flex;
         }

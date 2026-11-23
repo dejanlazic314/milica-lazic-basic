@@ -15,7 +15,7 @@
     .other-topics span {
         font-weight: 600;
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .other-topics .grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
@@ -81,12 +81,12 @@
         font-weight: 600;
         color: var(--apricot);
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .topics__ornament {
             width: 360px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .topics__ornament {
             width: 440px;
         }

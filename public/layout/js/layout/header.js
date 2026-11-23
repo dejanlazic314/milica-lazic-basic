@@ -85,8 +85,9 @@ const initMobileMenu = () => {
         }
     });
 
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024) {
+    // The same breakpoint as the CSS (em, so it follows the font setting)
+    window.matchMedia('(width >= 64em)').addEventListener('change', (event) => {
+        if (event.matches) {
             setMobileMenu(false);
         }
     });

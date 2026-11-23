@@ -18,6 +18,9 @@
         font-family: var(--font-body);
         font-size: var(--text-base);
         line-height: 1.65;
+        /* A word longer than its line ("Relationships" in a narrow card, a long H1 word) breaks
+           instead of widening the page: happens on a narrow phone with a large font setting */
+        overflow-wrap: break-word;
         -webkit-font-smoothing: antialiased;
     }
     h1,

@@ -44,7 +44,7 @@
         font-size: var(--text-desc);
         color: var(--on-dark-muted);
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .how__card {
             padding: 30px 28px;
         }

@@ -44,7 +44,7 @@
     .page-intro--narrow .page-intro__text {
         max-width: none;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .page-intro {
             padding-top: 56px;
         }
@@ -52,7 +52,7 @@
             max-width: 380px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .page-intro {
             padding: 72px var(--gutter) 64px;
         }

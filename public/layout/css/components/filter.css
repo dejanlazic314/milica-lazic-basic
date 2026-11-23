@@ -38,7 +38,7 @@
         font-weight: 500;
         opacity: 0.7;
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .filter {
             flex-wrap: nowrap;
             overflow-x: auto;

@@ -145,12 +145,12 @@
     .cookies-confirm[hidden] {
         display: none;
     }
-    @media (max-width: 599px) {
+    @media (width < 37.5em) {
         .cookies-confirm {
             border-radius: 16px;
         }
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .cookies {
             left: 24px;
             right: auto;

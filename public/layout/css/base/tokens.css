@@ -7,6 +7,10 @@
    another by less than ~1.5 ΔE is the same colour: point to it with var() instead.
    Rule: font sizes in rem, so they follow the visitor's font-size setting (px ignores it).
    1rem = 16px at the default font setting. Spacing stays in px.
+   Rule: breakpoints in em (media queries cannot use tokens): 22.5em = 360px, 25em = 400px,
+   37.5em = 600px, 64em = 1024px, 75em = 1200px at the default font. With a larger font
+   setting the layout switches earlier, so the desktop menu and two-column grids never get
+   text they have no room for.
    ========================================================= */
 
 @layer base {

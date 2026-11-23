@@ -129,7 +129,7 @@
     .about--intro .about__text {
         gap: 22px;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .about__ornament {
             width: 320px;
         }
@@ -146,7 +146,7 @@
             --dot: 80px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .about__ornament {
             width: 380px;
         }

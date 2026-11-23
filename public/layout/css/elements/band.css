@@ -40,7 +40,7 @@
         position: relative;
         font-weight: 500;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .online-band {
             padding: 44px 40px;
         }
@@ -50,7 +50,7 @@
             opacity: 0.3;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .online-band {
             padding: 56px;
         }
@@ -84,7 +84,7 @@
     .cta-band p {
         color: var(--warm-text);
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .cta-band {
             padding: 56px;
         }

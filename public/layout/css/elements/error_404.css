@@ -59,7 +59,7 @@
         font-weight: 600;
         text-decoration: none;
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .error-404 {
             padding: 120px var(--gutter);
         }

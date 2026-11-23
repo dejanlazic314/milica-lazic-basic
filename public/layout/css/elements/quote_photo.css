@@ -95,7 +95,7 @@
     .quote-photo--no-photo::before {
         display: none;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .quote-photo {
             min-height: 600px;
         }
@@ -103,7 +103,7 @@
             padding: 80px var(--gutter);
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .quote-photo {
             align-items: center;
             min-height: 640px;

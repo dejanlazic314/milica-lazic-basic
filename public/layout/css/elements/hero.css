@@ -79,7 +79,7 @@
     .hero--no-photo::before {
         display: none;
     }
-    @media (min-width: 600px) {
+    @media (width >= 37.5em) {
         .hero {
             min-height: 640px;
         }
@@ -87,7 +87,7 @@
             padding: 180px var(--gutter) 64px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .hero {
             align-items: center;
             min-height: 680px;

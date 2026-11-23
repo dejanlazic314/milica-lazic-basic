@@ -31,7 +31,7 @@
         box-shadow: inset 3px 0 0 var(--apricot);
         padding-left: 12px;
     }
-    @media (max-width: 1023px) {
+    @media (width < 64em) {
         .toc {
             background: var(--white);
             border: 1px solid var(--line-warm);
@@ -39,7 +39,7 @@
             padding: 20px 24px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 64em) {
         .with-contents {
             grid-template-columns: 260px minmax(0, 760px);
             gap: 72px;
