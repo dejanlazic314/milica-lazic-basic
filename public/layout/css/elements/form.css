@@ -53,7 +53,8 @@
         background: var(--white);
         padding: 14px 16px;
         font: inherit;
-        font-size: 16px;
+        /* At least 16px: iOS Safari zooms into smaller fields on focus */
+        font-size: 1rem;
         color: var(--text-heading);
         transition:
             border-color var(--fast) ease,
@@ -84,14 +85,15 @@
     }
     .field__error::before {
         content: "!";
-        flex: 0 0 18px;
-        height: 18px;
+        /* In rem, so the circle grows with the "!" when the visitor sets a larger font */
+        flex: 0 0 1.125rem;
+        height: 1.125rem;
         border-radius: 50%;
         background: var(--error);
         color: var(--white);
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 700;
-        line-height: 18px;
+        line-height: 1.125rem;
         text-align: center;
         margin-top: 1px;
     }

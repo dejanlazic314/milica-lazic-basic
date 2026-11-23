@@ -8,7 +8,7 @@
     .info-bar {
         background: var(--sage-700);
         color: var(--on-dark);
-        font-size: 13px;
+        font-size: var(--text-note);
     }
     .info-bar__inner {
         max-width: var(--width);
@@ -91,14 +91,14 @@
     .logo-link__name {
         display: block;
         font-family: var(--font-heading);
-        font-size: 26px;
+        font-size: 1.625rem;
         font-weight: 600;
         line-height: 1.1;
     }
     .logo-link__role {
         display: block;
         white-space: nowrap;
-        font-size: 12px;
+        font-size: 0.75rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--label);
@@ -116,7 +116,7 @@
         display: flex;
         align-items: center;
         gap: 32px;
-        font-size: 15px;
+        font-size: 0.9375rem;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -212,10 +212,10 @@
     }
     .dd-item strong {
         font-weight: 600;
-        font-size: 15px;
+        font-size: 0.9375rem;
     }
     .dd-item span {
-        font-size: 13px;
+        font-size: 0.8125rem;
         color: var(--text-faint);
     }
     .dd-item:hover,
@@ -232,7 +232,7 @@
         gap: 8px;
         padding: 12px 14px;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: var(--sage-700);
     }
     .submenu__card {
@@ -245,7 +245,7 @@
         gap: 14px;
     }
     .submenu__card .label {
-        font-size: 12px;
+        font-size: var(--text-label);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--warm-muted);
@@ -253,14 +253,14 @@
     }
     .submenu__card .title {
         font-family: var(--font-heading);
-        font-size: 23px;
+        font-size: 1.4375rem;
         font-weight: 600;
         line-height: 1.15;
         color: var(--text-heading);
     }
     .submenu__card p {
         margin: 0;
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 1.5;
         color: var(--text-muted);
     }
@@ -274,7 +274,7 @@
         .info-bar__inner {
             justify-content: center;
             padding: 7px var(--gutter);
-            font-size: 12px;
+            font-size: 0.75rem;
         }
         .info-bar__right {
             display: none;
@@ -298,10 +298,10 @@
             height: 32px;
         }
         .logo-link__name {
-            font-size: 22px;
+            font-size: 1.375rem;
         }
         .logo-link__role {
-            font-size: 10px;
+            font-size: 0.625rem;
         }
         .main-menu {
             display: none;
@@ -311,7 +311,7 @@
         }
         .header__right .btn-apricot {
             padding: 10px 16px;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         /* "Zakažite razgovor" → "Zakažite" */
         .header__right .btn-apricot .longer {
@@ -346,7 +346,7 @@
             height: 32px;
         }
         .logo-link__name {
-            font-size: 20px;
+            font-size: 1.25rem;
         }
     }
     @media (max-width: 359px) {
@@ -369,7 +369,7 @@
         }
         .main-menu {
             gap: 20px;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         .header__right .btn-apricot .longer {
             display: none;

@@ -59,7 +59,7 @@
     }
     .circles__label p:first-child {
         font-family: var(--font-heading);
-        font-size: 26px;
+        font-size: 1.625rem;
         font-weight: 600;
         line-height: 1.1;
         color: var(--white);
@@ -102,7 +102,7 @@
         text-align: center;
         font-family: var(--font-heading);
         font-style: italic;
-        font-size: 22px;
+        font-size: 1.375rem;
         line-height: 1.05;
         color: var(--white);
     }

@@ -27,7 +27,7 @@
     }
     .footer__name {
         font-family: var(--font-heading);
-        font-size: 30px;
+        font-size: 1.875rem;
         font-weight: 600;
         line-height: 1;
         color: var(--white);

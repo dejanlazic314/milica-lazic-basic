@@ -66,7 +66,7 @@
             border-bottom: 1px solid var(--line-warm);
             background: transparent;
             font: inherit;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 500;
             color: var(--text-heading);
             text-decoration: none;
@@ -103,11 +103,11 @@
             text-decoration: none;
         }
         .mm-sub a strong {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
         }
         .mm-sub a span {
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: var(--text-faint);
         }
         .mm-sub .mm-all {
@@ -115,7 +115,7 @@
             align-items: center;
             justify-content: space-between;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: var(--sage-700);
         }
         .mm-sub .mm-unsure {
@@ -123,7 +123,7 @@
             background: var(--apricot-50);
         }
         .mm-unsure .label {
-            font-size: 12px;
+            font-size: var(--text-label);
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--warm-muted);
@@ -138,7 +138,7 @@
         }
         .mobile-menu__bottom .lang-switch {
             color: var(--label);
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         .mobile-menu__bottom .lang-switch [aria-current] {
             color: var(--text-heading);

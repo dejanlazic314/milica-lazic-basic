@@ -5,6 +5,8 @@
    Rule: every text and control colour on its background meets at least WCAG AA
    (4.5:1 text, 3:1 large text and borders of controls). A colour that differs from
    another by less than ~1.5 ΔE is the same colour: point to it with var() instead.
+   Rule: font sizes in rem, so they follow the visitor's font-size setting (px ignores it).
+   1rem = 16px at the default font setting. Spacing stays in px.
    ========================================================= */
 
 @layer base {
@@ -75,30 +77,30 @@
         --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
         /* Headings – phone (base, mobile-first); tablet and desktop are below in @media */
-        --h1: 42px; /* home hero */
-        --h1-page: 38px; /* subpage intro */
-        --h2-large: 36px; /* #gestalt, #o-meni, #pitanja */
-        --h2: 32px; /* home sections (#teme, #tekstovi, #kontakt) */
-        --h2-page: 30px; /* subpage sections, CTA band */
-        --h2-article: 26px; /* article headings, FAQ groups, "Kako izgleda saradnja" */
-        --h3-featured: 28px; /* "Kako izgleda prva seansa?", online band heading */
-        --h3: 24px; /* serif card heading (About, FAQ aside, form) */
-        --h3-small: 22px; /* post card heading */
-        --h4: 19px; /* Inter 600: topic card, step and "how" headings */
-        --quote-large: 32px; /* quote over a photo */
-        --quote: 24px; /* blockquote in articles */
-        --quote-intro: 22px; /* italic intro (About) */
-        --card-quote: 24px; /* "Niste sigurni…" in the dark card */
-        --quote-mark: 96px;
+        --h1: 2.625rem; /* home hero */
+        --h1-page: 2.375rem; /* subpage intro */
+        --h2-large: 2.25rem; /* #gestalt, #o-meni, #pitanja */
+        --h2: 2rem; /* home sections (#teme, #tekstovi, #kontakt) */
+        --h2-page: 1.875rem; /* subpage sections, CTA band */
+        --h2-article: 1.625rem; /* article headings, FAQ groups, "Kako izgleda saradnja" */
+        --h3-featured: 1.75rem; /* "Kako izgleda prva seansa?", online band heading */
+        --h3: 1.5rem; /* serif card heading (About, FAQ aside, form) */
+        --h3-small: 1.375rem; /* post card heading */
+        --h4: 1.1875rem; /* Inter 600: topic card, step and "how" headings */
+        --quote-large: 2rem; /* quote over a photo */
+        --quote: 1.5rem; /* blockquote in articles */
+        --quote-intro: 1.375rem; /* italic intro (About) */
+        --card-quote: 1.5rem; /* "Niste sigurni…" in the dark card */
+        --quote-mark: 6rem;
 
         /* Text – the same at all widths */
-        --text-lead: 19px; /* lead under the H1, article (lh 1.75) */
-        --text-base: 17px; /* lh 1.65 */
-        --text-card: 16px; /* card description on subpages */
-        --text-desc: 15px; /* card description on the home page, footer, filters, radio */
-        --text-meta: 14px; /* breadcrumb, meta, form labels, form note, footer bottom */
-        --text-note: 13px; /* eyebrow (uppercase), notes, info bar */
-        --text-label: 12px; /* chip, small uppercase label (contact, credentials) */
+        --text-lead: 1.1875rem; /* lead under the H1, article (lh 1.75) */
+        --text-base: 1.0625rem; /* lh 1.65 */
+        --text-card: 1rem; /* card description on subpages */
+        --text-desc: 0.9375rem; /* card description on the home page, footer, filters, radio */
+        --text-meta: 0.875rem; /* breadcrumb, meta, form labels, form note, footer bottom */
+        --text-note: 0.8125rem; /* eyebrow (uppercase), notes, info bar */
+        --text-label: 0.75rem; /* chip, small uppercase label (contact, credentials) */
 
         /* ---------- Spacing ---------- */
         --width: 1200px;
@@ -134,21 +136,21 @@
     }
     @media (min-width: 600px) {
         :root {
-            --h1: 56px;
-            --h1-page: 50px;
-            --h2-large: 46px;
-            --h2: 40px;
-            --h2-page: 36px;
-            --h2-article: 32px;
-            --h3-featured: 34px;
-            --h3: 28px;
-            --h3-small: 24px;
-            --h4: 20px;
-            --quote-large: 44px;
-            --quote: 28px;
-            --quote-intro: 24px;
-            --card-quote: 28px;
-            --quote-mark: 120px;
+            --h1: 3.5rem;
+            --h1-page: 3.125rem;
+            --h2-large: 2.875rem;
+            --h2: 2.5rem;
+            --h2-page: 2.25rem;
+            --h2-article: 2rem;
+            --h3-featured: 2.125rem;
+            --h3: 1.75rem;
+            --h3-small: 1.5rem;
+            --h4: 1.25rem;
+            --quote-large: 2.75rem;
+            --quote: 1.75rem;
+            --quote-intro: 1.5rem;
+            --card-quote: 1.75rem;
+            --quote-mark: 7.5rem;
             --gutter: 32px;
             --section: 80px;
             --section-small: 56px;
@@ -158,21 +160,21 @@
     }
     @media (min-width: 1024px) {
         :root {
-            --h1: 72px;
-            --h1-page: 64px;
-            --h2-large: 60px;
-            --h2: 50px;
-            --h2-page: 44px;
-            --h2-article: 36px;
-            --h3-featured: 40px;
-            --h3: 30px;
-            --h3-small: 26px;
-            --h4: 20px;
-            --quote-large: 54px;
-            --quote: 30px;
-            --quote-intro: 28px;
-            --card-quote: 32px;
-            --quote-mark: 140px;
+            --h1: 4.5rem;
+            --h1-page: 4rem;
+            --h2-large: 3.75rem;
+            --h2: 3.125rem;
+            --h2-page: 2.75rem;
+            --h2-article: 2.25rem;
+            --h3-featured: 2.5rem;
+            --h3: 1.875rem;
+            --h3-small: 1.625rem;
+            --h4: 1.25rem;
+            --quote-large: 3.375rem;
+            --quote: 1.875rem;
+            --quote-intro: 1.75rem;
+            --card-quote: 2rem;
+            --quote-mark: 8.75rem;
             --section: 96px;
             --section-small: 72px;
             --gap-grid: 24px;
