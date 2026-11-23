@@ -10,14 +10,6 @@
     .recognition > .eyebrow {
         margin-bottom: calc(var(--gap-block) * -1 + 12px);
     }
-    .recognition .card {
-        gap: 10px;
-    }
-    .recognition h3 {
-        font-size: var(--h3-small);
-        line-height: 1.15;
-    }
-    .recognition .card p,
     .recognition__end {
         font-size: var(--text-card);
         color: var(--text-muted);

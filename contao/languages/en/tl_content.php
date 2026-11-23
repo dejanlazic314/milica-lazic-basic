@@ -34,6 +34,11 @@ $GLOBALS['TL_LANG']['tl_content']['boxStyles'] = ['white' => 'White', 'dark' => 
 $GLOBALS['TL_LANG']['tl_content']['boxTitle'] = ['Title', 'Optional first line in bold, e.g. "Ako imate misli o samopovređivanju…".'];
 
 // Labels of shared fields for elements where they mean something else (ElementFieldsListener)
+$GLOBALS['TL_LANG']['tl_content']['labels']['card'] = [
+    'introTitle' => ['Heading', 'The heading of the card (H3).'],
+    'introPrimaryUrl' => ['Link', 'Optional arrow link below the text.'],
+    'introPrimaryText' => ['Link text', ''],
+];
 $GLOBALS['TL_LANG']['tl_content']['labels']['hero'] = [
     'introImage' => ['Image', 'Background photo: the photo behind the text. Text and illustration: the drawing on the right (SVG). Alt text comes from the file manager.'],
 ];
@@ -99,8 +104,10 @@ $GLOBALS['TL_LANG']['tl_content']['sectionGrid'] = ['Grid', 'How the nested card
 $GLOBALS['TL_LANG']['tl_content']['sectionGrids'] = ['grid--2' => '2 columns', 'grid--3' => '3 columns', 'grid--3-tablet' => '3 columns (stacked on tablet)', 'grid--4' => '4 columns', 'after-message' => 'Steps "Šta se dešava kada mi pišete"'];
 $GLOBALS['TL_LANG']['tl_content']['sectionRows'] = ['Rows', 'One per line, columns separated by "|". Education: "year | name | place". Time zones: "city | difference". Preparation: one checklist item per line.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionChips'] = ['Chips', 'One per line (education: memberships and languages).'];
-$GLOBALS['TL_LANG']['tl_content']['cardVariant'] = ['Look', 'Plain: no background (inside "Šta se dešava kada mi pišete").'];
-$GLOBALS['TL_LANG']['tl_content']['cardVariants'] = ['white' => 'White', 'dark' => 'Dark sage', 'green' => 'Light green', 'sand' => 'Sand', 'plain' => 'Plain'];
+$GLOBALS['TL_LANG']['tl_content']['cardVariant'] = ['Look', 'Outline: a light frame for a dark section ("Kako izgleda saradnja"). Plain: no background (inside "Šta se dešava kada mi pišete").'];
+$GLOBALS['TL_LANG']['tl_content']['cardVariants'] = ['white' => 'White', 'dark' => 'Dark sage', 'green' => 'Light green', 'sand' => 'Sand', 'outline' => 'Outline (on dark)', 'plain' => 'Plain'];
+$GLOBALS['TL_LANG']['tl_content']['cardSize'] = ['Size', 'Small: smaller heading ("Možda prepoznajete"). Large: more room, for a single card next to a text. Compact: sans heading and smaller text, for cards with an icon.'];
+$GLOBALS['TL_LANG']['tl_content']['cardSizes'] = ['default' => 'Default', 'small' => 'Small', 'large' => 'Large', 'compact' => 'Compact'];
 $GLOBALS['TL_LANG']['tl_content']['showCircles'] = ['Show the circles diagram', 'Thoughts, feelings, body (light version) below the heading.'];
 $GLOBALS['TL_LANG']['tl_content']['bandSpacer'] = ['Space above', 'Adds a small gap when the band follows a white section.'];
 

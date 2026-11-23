@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Heading plus a grid of cards; the cards are nested "icon_card" elements.
+ * Heading plus a grid of cards; the cards are nested "card" elements.
  * Variant "how": "Kako izgleda saradnja" inside the dark #gestalt section.
  */
 #[AsContentElement('card_group', category: 'milica', nestedFragments: true)]

@@ -5,17 +5,6 @@
         display: grid;
         gap: 20px;
     }
-    .two-cards .card {
-        gap: 10px;
-    }
-    .two-cards h3 {
-    }
-    .two-cards p {
-        font-size: var(--text-card);
-    }
-    .two-cards .card--white p {
-        color: var(--text-muted);
-    }
     @media (width >= 37.5em) {
         .two-cards {
             grid-template-columns: repeat(2, minmax(0, 1fr));

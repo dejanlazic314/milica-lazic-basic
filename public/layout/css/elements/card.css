@@ -1,6 +1,90 @@
-/* Content element "card" (content_element/card). Loaded with the element (content_element/_base). */
+/* Content element "card" (content_element/card). Loaded with the element (content_element/_base).
+   The base card and the white and dark colours are in components/cards.css (also used by the
+   post and topic cards); this file has what only the element has: its text, sizes and colours. */
 
 @layer elements {
+    .card__text {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .card__text p {
+        font-size: var(--text-card);
+        color: var(--text-muted);
+    }
+
+    /* ---------- Colours (white and dark: components/cards.css) ---------- */
+    .card--dark .card__text p {
+        color: var(--on-dark-muted);
+    }
+    .card--dark .icon {
+        width: 32px;
+        height: 32px;
+        color: var(--apricot-strong);
+    }
+    .card--green {
+        background: var(--sage-150);
+        border-radius: var(--radius-card);
+    }
+    .card--sand {
+        background: var(--sand);
+        border-radius: var(--radius-card);
+    }
+    /* Outline: on a dark section, a lighter frame instead of a fill */
+    .card--outline {
+        background: color-mix(in srgb, var(--white) 5%, transparent);
+        border: 1px solid var(--line-on-dark);
+    }
+    .card--outline .card__title {
+        color: var(--white);
+    }
+    .card--outline .card__text p {
+        color: var(--on-dark-muted);
+    }
+    .card--outline .icon-tile {
+        width: 56px;
+        height: 56px;
+        background: color-mix(in srgb, var(--apricot-strong) 12%, transparent);
+        color: var(--apricot-strong);
+    }
+    .card--outline .icon-tile .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* ---------- Sizes ---------- */
+    .card--small .card__title {
+        font-size: var(--h3-small);
+        line-height: 1.15;
+    }
+    /* Large: a single card next to a text ("Privatnost i sigurnost") */
+    .card--large {
+        padding: 36px;
+        border-radius: var(--radius-block);
+        gap: 14px;
+    }
+    /* Compact: cards with an icon; sans heading, smaller text */
+    .card--compact {
+        padding: 28px;
+    }
+    .card--compact .card__title {
+        font-family: var(--font-body);
+        font-size: var(--h4);
+    }
+    .card--compact .card__text p {
+        font-size: var(--text-desc);
+    }
+    /* After compact: the outline frame keeps its own padding */
+    .card--outline {
+        padding: 28px 24px;
+    }
+    @media (width >= 64em) {
+        .card--outline {
+            padding: 30px 28px;
+        }
+    }
+
+    /* ---------- Lists in the text ---------- */
     .dot-list {
         list-style: none;
         margin: 0;

@@ -1,16 +1,27 @@
 {#
     Card. Markup: html/strane/tema-*.html (.recognition), o-meni.html (.values, .audience),
-    online-terapija.html, kontakt.html (.after-message, .two-cards).
-    Lists in the text get the design's dot list.
+    online-terapija.html, kontakt.html (.after-message, .two-cards), pocetna.html (.how__card).
+    Lists in the text get the design's dot list. "plain" is a bare block inside a list
+    ("Šta se dešava kada mi pišete") and keeps the markup of that list.
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
 {% import '@Contao/component/_icon.html.twig' as icons %}
 
-{% set attributes = attrs(attributes|default).addClass(variant != 'plain' ? ['card', 'card--' ~ variant] : []) %}
+{% set plain = variant == 'plain' %}
+{% set attributes = attrs(attributes|default)
+    .addClass(plain ? [] : ['card', 'card--' ~ variant])
+    .addClass('card--' ~ size, not plain and size != 'default')
+%}
 
 {% block inner %}
+    {% set rich %}{{ text|replace({'<ul>': '<ul class="dot-list">'})|sanitize_html('contao')|encode_email|insert_tag_raw }}{% endset %}
     {%- if icon and variant == 'dark' %}{{ icons.icon(icon) }}{% elseif icon %}<span class="icon-tile">{{ icons.icon(icon) }}</span>{% endif -%}
-    {%- if title %}<h3>{{ title }}</h3>{% endif -%}
-    {{ text|replace({'<ul>': '<ul class="dot-list">'})|sanitize_html('contao')|encode_email|insert_tag_raw }}
+    {%- if plain -%}
+        {%- if title %}<h3>{{ title }}</h3>{% endif -%}
+        {{ rich }}
+    {%- else -%}
+        {%- if title %}<h3 class="card__title">{{ title }}</h3>{% endif -%}
+        <div class="card__text">{{ rich }}</div>
+    {%- endif -%}
     {%- if link.href and link.text %}<a class="link-arrow" href="{{ link.href|insert_tag }}">{{ link.text }}</a>{% endif -%}
 {% endblock %}
