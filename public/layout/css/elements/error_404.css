@@ -23,10 +23,6 @@
         line-height: 1;
         color: var(--sage);
     }
-    .error-404 h1 {
-        font-size: var(--h1-page);
-        line-height: 1.04;
-    }
     .error-404__image {
         width: 100%;
         max-width: 300px;
