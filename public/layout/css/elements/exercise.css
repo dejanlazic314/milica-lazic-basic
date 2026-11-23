@@ -301,7 +301,10 @@
         flex-direction: column;
         gap: 22px;
         position: relative;
-        overflow: hidden;
+        /* Clip, not hidden: a scroll container (hidden) has no automatic minimum height, so in the
+           column layout below 64em the panel shrank to its padding and hid the steps; and a
+           focused step could scroll it */
+        overflow: clip;
     }
     .exercise-b__background {
         position: absolute;
