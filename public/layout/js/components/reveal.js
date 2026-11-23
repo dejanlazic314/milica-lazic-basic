@@ -17,7 +17,7 @@ const TARGETS = [
     '.featured',
     '.bio',
     '.about__photo',
-    '.quote-photo__content',
+    '.quote__content',
     '.form',
 ].join(',');
 

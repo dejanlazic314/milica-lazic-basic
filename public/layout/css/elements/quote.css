@@ -1,7 +1,7 @@
-/* Content element "quote_photo" (content_element/quote_photo). Loaded with the element (content_element/_base). */
+/* Content element "quote" (content_element/quote). Loaded with the element (content_element/_base). */
 
 @layer elements {
-    .quote-photo {
+    .quote {
         position: relative;
         overflow: hidden;
         isolation: isolate;
@@ -11,7 +11,7 @@
         margin-bottom: var(--section);
         background: var(--sage-900);
     }
-    .quote-photo__image {
+    .quote__media {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -20,7 +20,7 @@
         object-position: 50% 60%;
         z-index: -2;
     }
-    .quote-photo::before {
+    .quote::before {
         content: "";
         position: absolute;
         inset: 0;
@@ -32,30 +32,30 @@
             rgba(var(--overlay-rgb), 0.2) 100%
         );
     }
-    .quote-photo__inner {
+    .quote__inner {
         width: 100%;
         max-width: var(--width);
         margin: 0 auto;
         padding: 64px var(--gutter);
     }
-    .quote-photo__content {
+    .quote__content {
         margin: 0;
         max-width: 640px;
         display: flex;
         flex-direction: column;
         gap: 24px;
     }
-    .quote-photo__mark {
+    .quote__mark {
         font-family: var(--font-heading);
         font-size: var(--quote-mark);
         line-height: 0.6;
         height: 56px;
         color: var(--apricot);
     }
-    .quote-photo blockquote {
+    .quote blockquote {
         margin: 0;
     }
-    .quote-photo blockquote p {
+    .quote blockquote p {
         font-family: var(--font-heading);
         font-style: italic;
         font-weight: 500;
@@ -63,10 +63,10 @@
         line-height: 1.1;
         color: var(--white);
     }
-    .quote-photo blockquote span {
+    .quote blockquote span {
         border-bottom: 3px solid var(--apricot);
     }
-    .quote-photo figcaption {
+    .quote figcaption {
         display: flex;
         align-items: center;
         gap: 16px;
@@ -76,39 +76,39 @@
         color: var(--cream);
         font-weight: 600;
     }
-    .quote-photo figcaption span {
+    .quote figcaption span {
         flex: 0 0 48px;
         height: 1.5px;
         background: var(--apricot);
     }
-    .quote-photo__text {
+    .quote__text {
         color: var(--on-dark);
         max-width: 520px;
     }
-    .quote-photo__link {
+    .quote__link {
         color: var(--apricot);
         font-weight: 600;
     }
-    .quote-photo--no-photo {
+    .quote--no-photo {
         background: var(--sage-800);
     }
-    .quote-photo--no-photo::before {
+    .quote--no-photo::before {
         display: none;
     }
     @media (width >= 37.5em) {
-        .quote-photo {
+        .quote {
             min-height: 600px;
         }
-        .quote-photo__inner {
+        .quote__inner {
             padding: 80px var(--gutter);
         }
     }
     @media (width >= 64em) {
-        .quote-photo {
+        .quote {
             align-items: center;
             min-height: 640px;
         }
-        .quote-photo::before {
+        .quote::before {
             background: linear-gradient(
                 90deg,
                 rgba(var(--overlay-rgb), 0.86) 0%,
@@ -116,13 +116,13 @@
                 rgba(var(--overlay-rgb), 0.1) 100%
             );
         }
-        .quote-photo__inner {
+        .quote__inner {
             padding: 96px var(--gutter);
         }
     }
 }
 @layer states {
-    .quote-photo__link:focus-visible {
+    .quote__link:focus-visible {
         outline: 3px solid var(--apricot);
         outline-offset: 3px;
     }

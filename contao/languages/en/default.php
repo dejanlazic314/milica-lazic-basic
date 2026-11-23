@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 $GLOBALS['TL_LANG']['CTE']['milica'] = 'Milica Lazić';
-$GLOBALS['TL_LANG']['CTE']['quote_photo'] = ['Quote with photo', 'Full-width quote over an optional background photo.'];
+$GLOBALS['TL_LANG']['CTE']['quote'] = ['Quote', 'Full-width quote over an optional background photo.'];
 $GLOBALS['TL_LANG']['CTE']['hero'] = ['Hero', 'Top of a page with its H1 (one per page): breadcrumb, heading, lead, buttons, meta line and an image behind or next to the text. Extra blocks (filter, "Ukratko") go inside.'];
 $GLOBALS['TL_LANG']['CTE']['topic_grid'] = ['Topic grid', 'Cards from the subpages of "Oblasti rada" plus a contact card at the end.'];
 $GLOBALS['TL_LANG']['CTE']['exercise'] = ['Exercise', 'Interactive one-minute exercise (A or B). Put one "Exercise topic" element inside per topic.'];

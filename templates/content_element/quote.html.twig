@@ -4,8 +4,8 @@
 {% import '@Contao/component/_text.html.twig' as text_helpers %}
 
 {% set attributes = attrs(attributes|default)
-    .addClass('quote-photo')
-    .addClass('quote-photo--no-photo', not figure)
+    .addClass('quote')
+    .addClass('quote--no-photo', not figure)
 %}
 
 {% block wrapper_tag %}section{% endblock %}
@@ -16,14 +16,14 @@
            <picture> carries the tablet/desktop crops and WebP (image size "_quote"). #}
         {% with {
             figure: figure,
-            img_attributes: attrs().addClass('quote-photo__image').set('alt', '').set('loading', 'lazy'),
+            img_attributes: attrs().addClass('quote__media').set('alt', '').set('loading', 'lazy'),
         } %}
             {{ block('picture_component') }}
         {% endwith %}
     {% endif %}
-    <div class="quote-photo__inner">
-        <figure class="quote-photo__content">
-            <span class="quote-photo__mark" aria-hidden="true">“</span>
+    <div class="quote__inner">
+        <figure class="quote__content">
+            <span class="quote__mark" aria-hidden="true">“</span>
             <blockquote>
                 {#- Words wrapped in *asterisks* get the apricot underline -#}
                 <p>{{ text_helpers.emphasis(quote, 'span') }}</p>
@@ -32,10 +32,10 @@
                 <figcaption><span></span>{{ source }}</figcaption>
             {% endif %}
             {% if text %}
-                <p class="quote-photo__text">{{ text }}</p>
+                <p class="quote__text">{{ text }}</p>
             {% endif %}
             {% if link_url %}
-                <a class="quote-photo__link" href="{{ link_url|insert_tag }}">{{ link_text ?: 'quote.read_more'|trans }} →</a>
+                <a class="quote__link" href="{{ link_url|insert_tag }}">{{ link_text ?: 'quote.read_more'|trans }} →</a>
             {% endif %}
         </figure>
     </div>

@@ -14,11 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Full-width quote over an optional background photo (".quote-photo").
+ * Full-width quote over an optional background photo (".quote").
  * Without a photo the template falls back to the dark sage variant.
  */
-#[AsContentElement('quote_photo', category: 'milica')]
-final class QuotePhotoController extends AbstractContentElementController
+#[AsContentElement('quote', category: 'milica')]
+final class QuoteController extends AbstractContentElementController
 {
     public function __construct(private readonly Studio $studio)
     {
