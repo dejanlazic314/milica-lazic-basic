@@ -33,6 +33,9 @@ npm install && npx playwright install chromium
 
 node tests/visual/snapshot.mjs baseline   # before a change: shots of all pages and states
 node tests/visual/snapshot.mjs check      # after it: pixel difference per shot
+node tests/visual/computed.mjs baseline   # computed styles of every element, also hovered and focused
+node tests/visual/computed.mjs check
+node tests/visual/assets.mjs              # every page loads the CSS its markup needs
 node tests/visual/behaviour.mjs           # scripts with animations on, JS errors
 node tests/visual/compare.mjs <selector> <site-url> <design-url> [name]   # one section vs. the design
 ```
