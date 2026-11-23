@@ -83,8 +83,8 @@ $GLOBALS['TL_LANG']['tl_content']['aboutVariant'] = ['Layout', 'Home page: eyebr
 $GLOBALS['TL_LANG']['tl_content']['aboutVariants'] = ['home' => 'Home page (#o-meni)', 'intro' => 'Top of the page "O meni"'];
 $GLOBALS['TL_LANG']['tl_content']['credentials'] = ['Credentials', 'One per line as "Label: value", e.g. "Edukacija: Geštalt institut".'];
 $GLOBALS['TL_LANG']['tl_content']['ornamentImage'] = ['Ornament', 'Decorative line drawing in the corner (SVG, no alt text).'];
-$GLOBALS['TL_LANG']['tl_content']['bandVariant'] = ['Layout', 'Online: white band with the branch ornament. CTA: apricot band at the end of a page; without a link the button goes to the contact page.'];
-$GLOBALS['TL_LANG']['tl_content']['bandVariants'] = ['online' => 'Online (white, ornament)', 'cta' => 'Call to action (apricot)'];
+$GLOBALS['TL_LANG']['tl_content']['bandVariant'] = ['Look', 'White: white band with the branch drawing. Apricot: apricot band at the end of a page; without a link the button goes to the contact page.'];
+$GLOBALS['TL_LANG']['tl_content']['bandVariants'] = ['white' => 'White, with the branch drawing', 'apricot' => 'Apricot (call to action)'];
 $GLOBALS['TL_LANG']['tl_content']['faqVariant'] = ['Layout', 'Home page: featured question and the questions marked "Show on home page". FAQ page: all questions, one group per category, with FAQ structured data.'];
 $GLOBALS['TL_LANG']['tl_content']['faqVariants'] = ['home' => 'Home page (#pitanja)', 'page' => 'FAQ page'];
 $GLOBALS['TL_LANG']['tl_content']['faqCategories'] = ['FAQ categories', 'Categories in this order.'];

@@ -1,13 +1,13 @@
 {#
-    Band. Markup: html/strane/pocetna.html (#online, .online-band) and the end of
-    subpages, e.g. html/strane/tema.html (.cta-band).
+    Band: white with a branch drawing (html/strane/pocetna.html, #online, .online-band) or
+    apricot at the end of subpages (e.g. html/strane/tema.html, .cta-band).
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
 {% use '@Contao/component/_picture.html.twig' %}
 
 {% set attributes = attrs(attributes|default)
     .addClass('section')
-    .addClass('section--no-top', variant == 'cta')
+    .addClass('section--no-top', variant == 'apricot')
 %}
 
 {% block wrapper_tag %}section{% endblock %}
@@ -18,18 +18,18 @@
 {% endblock %}
 
 {% block inner %}
-    <div class="content {{ variant == 'online' ? 'online-band' : 'cta-band' }}">
-        {% if variant == 'online' and ornament %}
-            {% with {figure: ornament, img_attributes: attrs().addClass('online-band__ornament').set('alt', '').set('loading', 'lazy')} %}
+    <div class="content band band--{{ variant }}">
+        {% if variant == 'white' and ornament %}
+            {% with {figure: ornament, img_attributes: attrs().addClass('band__ornament').set('alt', '').set('loading', 'lazy')} %}
                 {{ block('picture_component') }}
             {% endwith %}
         {% endif %}
-        <div class="{{ variant == 'online' ? 'online-band__text' : 'cta-band__text' }}">
-            <h2{{ variant == 'cta' ? ' class="h2-page"' }}>{{ title }}</h2>
+        <div class="band__text">
+            <h2{{ variant == 'apricot' ? ' class="h2-page"' }}>{{ title }}</h2>
             {% if text %}<p>{{ text }}</p>{% endif %}
         </div>
         {% if button.href and button.text %}
-            <a class="{{ variant == 'online' ? 'btn btn-outline' : 'btn btn-darkest btn-large' }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>
+            <a class="{{ variant == 'white' ? 'btn btn-outline' : 'btn btn-darkest btn-large' }}" href="{{ button.href|insert_tag }}">{{ button.text }}</a>
         {% endif %}
     </div>
 {% endblock %}

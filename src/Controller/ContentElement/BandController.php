@@ -15,14 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Rounded band with heading, text and one button.
- * Variant "online": white band with the apricot branch (#online on the home page).
- * Variant "cta": apricot "Prvi korak može biti jedan razgovor" at the end of subpages;
+ * Variant "white": white band with the apricot branch (#online on the home page).
+ * Variant "apricot": apricot "Prvi korak može biti jedan razgovor" at the end of subpages;
  * without a link the button goes to the contact page of the root page.
  */
 #[AsContentElement('band', category: 'milica')]
 final class BandController extends AbstractContentElementController
 {
-    public const VARIANTS = ['online', 'cta'];
+    public const VARIANTS = ['white', 'apricot'];
 
     public function __construct(
         private readonly Studio $studio,
@@ -39,7 +39,7 @@ final class BandController extends AbstractContentElementController
             $href = (string) ($this->settings->forPage($page)['contact_url'] ?? '');
         }
 
-        $template->set('variant', \in_array($model->bandVariant, self::VARIANTS, true) ? $model->bandVariant : 'cta');
+        $template->set('variant', \in_array($model->bandVariant, self::VARIANTS, true) ? $model->bandVariant : 'apricot');
         $template->set('spacer', (bool) $model->bandSpacer);
         $template->set('title', (string) $model->introTitle);
         $template->set('text', (string) $model->introText);
