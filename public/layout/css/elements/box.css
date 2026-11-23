@@ -1,0 +1,51 @@
+/* Content element "box" (content_element/box): a highlighted block of text. Also loaded by the
+   posts module (the summary of a post). */
+
+@layer elements {
+    .box {
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--radius-card);
+    }
+
+    /* White: "Ukratko" with a short list */
+    .box--white {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        padding: 24px 28px;
+        gap: 8px;
+    }
+    .box--white ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--text-strong);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    @media (width >= 64em) {
+        .box--white {
+            padding: 28px 32px;
+            gap: 10px;
+        }
+    }
+
+    /* Dark: crisis numbers, the title in white and the text below it muted */
+    .box--dark {
+        background: var(--sage-800);
+        padding: var(--card-pad);
+        gap: 6px;
+    }
+    .box--dark p {
+        font-size: var(--text-desc);
+        color: var(--on-dark-muted);
+    }
+    .box--dark .box__title {
+        font-size: inherit;
+        font-weight: 600;
+        color: var(--white);
+    }
+    .box--dark strong {
+        color: var(--white);
+    }
+}

@@ -26,7 +26,6 @@ final class SectionController extends AbstractContentElementController
         'stack' => 'stack',
         'recognition' => 'recognition',
         'approach' => 'approach',
-        'crisis' => 'crisis-box',
         'my_path' => 'my-path',
         'preparation' => 'preparation',
         'diaspora' => 'diaspora',

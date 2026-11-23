@@ -29,6 +29,10 @@ $GLOBALS['TL_LANG']['tl_content']['exerciseVariant'] = ['Variant', 'A: choose a 
 $GLOBALS['TL_LANG']['tl_content']['exerciseVariants'] = ['a' => 'A (questions, breathing circle)', 'b' => 'B (steps)'];
 $GLOBALS['TL_LANG']['tl_content']['end_legend'] = 'End of the exercise';
 
+$GLOBALS['TL_LANG']['tl_content']['boxStyle'] = ['Style', 'White: a white box with a border, e.g. "Ukratko". Dark: dark sage, e.g. the crisis numbers on a topic page.'];
+$GLOBALS['TL_LANG']['tl_content']['boxStyles'] = ['white' => 'White', 'dark' => 'Dark'];
+$GLOBALS['TL_LANG']['tl_content']['boxTitle'] = ['Title', 'Optional first line in bold, e.g. "Ako imate misli o samopovređivanju…".'];
+
 // Labels of shared fields for elements where they mean something else (ElementLabelsListener)
 $GLOBALS['TL_LANG']['tl_content']['labels']['hero'] = [
     'introImage' => ['Image', 'Background photo: the photo behind the text. Text and illustration: the drawing on the right (SVG). Alt text comes from the file manager.'],
@@ -80,7 +84,6 @@ $GLOBALS['TL_LANG']['tl_content']['sectionLayouts'] = [
     'stack' => 'Heading + content (cards in a grid)',
     'recognition' => '"Možda prepoznajete" (cards + closing line)',
     'approach' => 'Approach (numbered steps)',
-    'crisis' => 'Crisis box',
     'my_path' => 'Heading left, text right ("Moj put")',
     'preparation' => 'Text left, dark card right',
     'diaspora' => 'Text + time zones',

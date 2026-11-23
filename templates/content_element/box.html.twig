@@ -1,0 +1,13 @@
+{#
+    Box: white with a border ("Ukratko") or dark (crisis numbers).
+    Markup: html/strane/gestalt-terapija.html (.summary), tema-*.html (.crisis-box).
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default).addClass(['box', 'box--' ~ style]) %}
+
+{% block inner %}
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif -%}
+    {%- if title %}<p class="box__title">{{ title }}</p>{% endif -%}
+    {{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}
+{% endblock %}

@@ -34,10 +34,6 @@
                 <div class="approach__head">{{ _self.head(eyebrow, title, lead) }}</div>
                 <ol class="approach__list">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</ol>
 
-            {% elseif layout == 'crisis' %}
-                <p>{{ title }}</p>
-                {{ rich }}
-
             {% elseif layout == 'my_path' %}
                 <div class="my-path__head">{{ _self.head(eyebrow, title, lead) }}</div>
                 <div class="my-path__text">{{ rich }}</div>
