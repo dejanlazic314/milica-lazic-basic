@@ -21,7 +21,10 @@ final class InlineMarkupExtension extends AbstractExtension
 
     public function convert(string|null $text): string
     {
-        $html = htmlspecialchars((string) $text, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
+        // Contao stores input with ( ) # < > encoded as entities (&#40;…), which would hide the link
+        // syntax; decode first, then escape everything once
+        $text = html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $html = htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
         $html = preg_replace('/\[([^\]]+)\]\(([^)\s]+)\)/u', '<a href="$2">$1</a>', $html);
 
         return preg_replace('/\*([^*]+)\*/u', '<em>$1</em>', $html);
