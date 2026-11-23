@@ -166,7 +166,8 @@ if (mode === 'baseline') {
     process.exit(0);
 }
 
-// Compare; forced-state keys contain DevTools node ids, so they are matched by order
+// Compare; forced-state keys contain DevTools node ids and the attributes, so they are compared
+// as a sorted list of tag and style: a class that is only renamed is not a difference
 const before = JSON.parse(fs.readFileSync(path.join(dir, 'baseline.json'), 'utf8'));
 let differences = 0;
 for (const [key, entries] of Object.entries(result)) {
@@ -179,7 +180,7 @@ for (const [key, entries] of Object.entries(result)) {
     const states = (o) =>
         Object.entries(o)
             .filter(([k]) => k.startsWith('state:'))
-            .map(([k, v]) => k.replace(/#\d+:/, ':') + '=' + v)
+            .map(([k, v]) => k.replace(/#\d+:.*$/, '') + '=' + v)
             .sort();
     const changed = plain(entries)
         .filter(([k, v]) => old[k] !== v)
