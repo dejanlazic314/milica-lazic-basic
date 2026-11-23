@@ -53,8 +53,8 @@
         margin-bottom: 8px;
     }
     .topic-card h3 {
+        font-family: var(--font-body);
         font-size: var(--h4);
-        font-weight: 600;
     }
     .topic-card p {
         font-size: var(--text-desc);

@@ -19,7 +19,7 @@
             {% if topics %}
                 <div class="error-404__topics">
                     {%- if topics_title %}<p class="eyebrow">{{ topics_title }}</p>{% endif -%}
-                    <ul>{% for topic in topics %}<li><a href="{{ topic.href }}">{{ topic.title }}</a></li>{% endfor %}</ul>
+                    <ul class="filter filter--wrap">{% for topic in topics %}<li><a href="{{ topic.href }}">{{ topic.title }}</a></li>{% endfor %}</ul>
                 </div>
             {% endif %}
         </div>

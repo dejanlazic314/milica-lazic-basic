@@ -9,9 +9,6 @@
         gap: 10px;
     }
     .two-cards h3 {
-        font-family: var(--font-heading);
-        font-weight: 600;
-        font-size: var(--h3);
     }
     .two-cards p {
         font-size: var(--text-card);

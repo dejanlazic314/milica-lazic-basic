@@ -128,9 +128,6 @@
         opacity: 0.8;
     }
     .empty h3 {
-        font-family: var(--font-heading);
-        font-weight: 600;
-        font-size: var(--h3);
     }
     .empty p {
         max-width: 420px;

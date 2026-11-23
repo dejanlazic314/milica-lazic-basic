@@ -39,8 +39,8 @@
         background: var(--apricot);
     }
     .approach__list h3 {
+        font-family: var(--font-body);
         font-size: var(--h4);
-        font-weight: 600;
     }
     .approach__list p {
         font-size: var(--text-card);

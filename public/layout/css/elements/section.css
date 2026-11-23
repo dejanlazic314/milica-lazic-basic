@@ -17,8 +17,8 @@
         border-top-color: var(--sage-700);
     }
     .after-message h3 {
+        font-family: var(--font-body);
         font-size: var(--h4);
-        font-weight: 600;
     }
     .after-message p {
         font-size: var(--text-desc);

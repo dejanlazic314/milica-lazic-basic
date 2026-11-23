@@ -99,7 +99,7 @@
         display: block;
         white-space: nowrap;
         font-size: 0.75rem;
-        letter-spacing: 0.1em;
+        letter-spacing: var(--tracking-caps);
         text-transform: uppercase;
         color: var(--label);
     }
@@ -246,7 +246,7 @@
     }
     .submenu__card .label {
         font-size: var(--text-label);
-        letter-spacing: 0.1em;
+        letter-spacing: var(--tracking-caps);
         text-transform: uppercase;
         color: var(--warm-muted);
         font-weight: 600;

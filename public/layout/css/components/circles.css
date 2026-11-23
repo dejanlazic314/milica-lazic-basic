@@ -23,7 +23,7 @@
         background: var(--sage-800);
         padding: 2px 12px;
         font-size: var(--text-label);
-        letter-spacing: 0.12em;
+        letter-spacing: var(--tracking-caps);
         text-transform: uppercase;
         color: var(--sage-300);
         font-weight: 600;

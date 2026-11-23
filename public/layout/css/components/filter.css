@@ -1,4 +1,4 @@
-/* Row of filter links: categories on the posts page, anchors on the FAQ page (an HTML element in the back end), so it is on every page. */
+/* Row of pill links: categories on the posts page, anchors on the FAQ page (an HTML element in the back end), topics on the 404 page. Global, because of the FAQ anchors. */
 
 @layer elements {
     .filter--anchors a {
@@ -9,7 +9,13 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        padding-top: 8px;
+        list-style: none;
+        margin: 0;
+        padding: 8px 0 0;
+    }
+    /* A short list (404 topics): no top padding, and it wraps on phones instead of the scrolling row below */
+    .filter--wrap {
+        padding-top: 0;
     }
     .filter a,
     .filter button {
@@ -39,15 +45,15 @@
         opacity: 0.7;
     }
     @media (width < 37.5em) {
-        .filter {
+        .filter:not(.filter--wrap) {
             flex-wrap: nowrap;
             overflow-x: auto;
             margin: 0 calc(var(--gutter) * -1);
             padding: 8px var(--gutter) 4px;
             scrollbar-width: none;
         }
-        .filter a,
-        .filter button {
+        .filter:not(.filter--wrap) a,
+        .filter:not(.filter--wrap) button {
             flex: 0 0 auto;
         }
     }

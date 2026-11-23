@@ -6,8 +6,8 @@
         gap: 12px;
     }
     .online-steps h3 {
+        font-family: var(--font-body);
         font-size: var(--h4);
-        font-weight: 600;
     }
     .online-steps p {
         font-size: var(--text-desc);

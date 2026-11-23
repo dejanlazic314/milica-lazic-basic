@@ -42,6 +42,12 @@
     h2 {
         font-size: var(--h2);
     }
+    /* The most common h3 (serif card title); elements change only what differs */
+    h3 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: var(--h3);
+    }
     h1 em,
     h2 em {
         font-style: italic;
@@ -62,17 +68,6 @@
             scroll-behavior: auto;
         }
     }
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
 }
 @layer states {
     .on-dark :focus-visible {
@@ -89,5 +84,17 @@
     }
     [hidden] {
         display: none;
+    }
+    /* Here, so no element rule (position, padding…) can make it visible again */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
     }
 }
