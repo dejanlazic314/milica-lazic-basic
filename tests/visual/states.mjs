@@ -61,7 +61,7 @@ export default [
         path: '/',
         widths: [1280],
         run: async (page) => {
-            const card = page.locator('.topic-card').first();
+            const card = page.locator('.page-card').first();
             await card.scrollIntoViewIfNeeded();
             await card.hover();
             await page.waitForTimeout(400);

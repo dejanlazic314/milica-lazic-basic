@@ -22,9 +22,9 @@ $GLOBALS['TL_LANG']['tl_content']['introSecondaryUrl'] = ['Second button link', 
 $GLOBALS['TL_LANG']['tl_content']['introSecondaryText'] = ['Second button text', ''];
 $GLOBALS['TL_LANG']['tl_content']['introImage'] = ['Image', 'Alt text comes from the file manager.'];
 $GLOBALS['TL_LANG']['tl_content']['eyebrow'] = ['Eyebrow', 'Small uppercase line above the heading, e.g. "Beograd · uživo i online".'];
-$GLOBALS['TL_LANG']['tl_content']['topicsVariant'] = ['Layout', 'Home page: heading, lead and corner ornament. Overview: note and link below the cards.'];
-$GLOBALS['TL_LANG']['tl_content']['topicsVariants'] = ['home' => 'Home page', 'overview' => 'Overview ("Oblasti rada")'];
-$GLOBALS['TL_LANG']['tl_content']['topicsParent'] = ['Topics page', 'The cards are the published subpages of this page, with their card text and illustration.'];
+$GLOBALS['TL_LANG']['tl_content']['pageCardsStyle'] = ['Style', 'Large: cards with illustration, title and text; heading, lead and corner ornament (home page). Framed: the same cards in white frames, with a note and a link below ("Oblasti rada"). Small: illustration and title, four in a row, without the current page ("Druge teme").'];
+$GLOBALS['TL_LANG']['tl_content']['pageCardsStyles'] = ['large' => 'Large', 'framed' => 'Framed', 'small' => 'Small'];
+$GLOBALS['TL_LANG']['tl_content']['topicsParent'] = ['Parent page', 'Its published subpages are shown, with the card text and illustration from their page settings.'];
 $GLOBALS['TL_LANG']['tl_content']['exerciseVariant'] = ['Variant', 'A: choose a topic, then its steps one by one with a breathing circle. B: the steps on a list. Both are on the home page while testing. The topics are the "Exercise topic" elements inside.'];
 $GLOBALS['TL_LANG']['tl_content']['exerciseVariants'] = ['a' => 'A (questions, breathing circle)', 'b' => 'B (steps)'];
 $GLOBALS['TL_LANG']['tl_content']['end_legend'] = 'End of the exercise';

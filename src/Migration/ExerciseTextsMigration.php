@@ -231,7 +231,7 @@ class ExerciseTextsMigration extends AbstractMigration
             $this->migrateExercise((int) $exercise['id'], 'b' === $exercise['exerciseVariant'] ? 'b' : 'a', $language, $folder);
         }
 
-        $grids = $this->connection->fetchAllAssociative("SELECT id FROM tl_content WHERE type = 'topic_grid' AND topicsVariant IN ('home', 'overview') AND ctaQuote = ''");
+        $grids = $this->connection->fetchAllAssociative("SELECT id FROM tl_content WHERE type IN ('topic_grid', 'page_cards') AND topicsVariant IN ('home', 'overview') AND ctaQuote = ''");
 
         foreach ($grids as $grid) {
             $this->connection->update('tl_content', self::TOPIC_CARD[$this->getLanguage((int) $grid['id'])], ['id' => $grid['id']]);

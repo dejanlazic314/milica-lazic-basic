@@ -1,0 +1,63 @@
+{#
+    Cards of the subpages of a page. Markup: html/strane/pocetna.html (#teme, style "large"),
+    html/strane/s-cim-radim.html (style "framed") and html/strane/tema-*.html (style "small").
+    Set the anchor ID "teme" in the element's CSS ID field on the home page.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% trans_default_domain 'site' %}
+{% use '@Contao/component/_picture.html.twig' %}
+
+{% set attributes = attrs(attributes|default)
+    .addClass('section')
+    .addClass(['page-cards', 'page-cards--' ~ style])
+    .addClass(style != 'framed' ? 'section--white' : [])
+%}
+
+{% block wrapper_tag %}section{% endblock %}
+
+{% block inner %}
+    {% if style == 'small' %}
+        <div class="content stack">
+            <p class="eyebrow">{{ title ?: 'topics.other'|trans }}</p>
+            <div class="grid grid--4">
+                {%- for subpage in subpages -%}
+                    <a class="card" href="{{ subpage.href }}">
+                        {%- if subpage.figure %}{% with {figure: subpage.figure, img_attributes: attrs().set('alt', '').set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+                        <span>{{ subpage.title }} →</span></a>
+                {%- endfor -%}
+            </div>
+        </div>
+    {% else %}
+    {% if style == 'large' and ornament %}
+        {% with {figure: ornament, img_attributes: attrs().addClass('page-cards__ornament').set('alt', '')} %}
+            {{ block('picture_component') }}
+        {% endwith %}
+    {% endif %}
+
+    <div class="content stack{{ style == 'large' ? ' stack--wide' }}">
+        {% if style == 'large' and title %}
+            <div class="head"><h2>{{ title }}</h2>{% if text %}<p class="section-intro">{{ text }}</p>{% endif %}</div>
+        {% endif %}
+
+        <div class="grid grid--auto">
+            {%- for subpage in subpages -%}
+                <a class="card page-card" href="{{ subpage.href }}">
+                    {%- if subpage.figure %}{% with {figure: subpage.figure, img_attributes: attrs().set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}
+                    <h3>{{ subpage.title }}</h3>{% if subpage.text %}<p>{{ subpage.text }}</p>{% endif -%}
+                </a>
+            {%- endfor -%}
+            {#- Contact card, from the fields of this element -#}
+            {%- if cta.quote and site.contact_url|default -%}
+                <a class="card page-card page-card--contact" href="{{ site.contact_url }}"><p class="page-card__quote">{{ cta.quote }}</p>{% if cta.text %}<p>{{ cta.text }}</p>{% endif %}{% if cta.link_text %}<span>{{ cta.link_text }}</span>{% endif %}</a>
+            {%- endif -%}
+        </div>
+
+        {% if style == 'framed' and (note or link.href) %}
+            <div class="page-cards__bottom">
+                {%- if note %}<p class="meta">{{ note }}</p>{% endif -%}
+                {%- if link.href and link.text %}<a class="link-arrow" href="{{ link.href|insert_tag }}">{{ link.text }}</a>{% endif -%}
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}

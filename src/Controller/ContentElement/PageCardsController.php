@@ -15,16 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Grid of topic cards from the subpages of a page ("Oblasti rada"), plus the contact
- * card ("Ne vidite svoju temu ovde?", its own fields; not shown while empty).
- * Variant "home": heading, lead and corner ornament (#teme). Variant "overview":
- * bottom row with a note and a link (page "Oblasti rada").
- * "other": "Druge teme" at the end of a topic page (without the current page).
+ * Cards of the subpages of a page, plus the contact card ("Ne vidite svoju temu ovde?",
+ * its own fields; not shown while empty). Styles:
+ * - "large": cards with illustration, title and text; heading, lead and corner ornament;
+ * - "framed": the same cards with a white frame, a note and a link below;
+ * - "small": illustration and title only, four in a row, without the current page.
  */
-#[AsContentElement('topic_grid', category: 'milica')]
-final class TopicGridController extends AbstractContentElementController
+#[AsContentElement('page_cards', category: 'milica')]
+final class PageCardsController extends AbstractContentElementController
 {
-    public const VARIANTS = ['home', 'overview', 'other'];
+    public const STYLES = ['large', 'framed', 'small'];
 
     public function __construct(
         private readonly TopicProvider $topics,
@@ -37,12 +37,12 @@ final class TopicGridController extends AbstractContentElementController
     {
         $page = $this->getPageModel();
 
-        $template->set('variant', \in_array($model->topicsVariant, self::VARIANTS, true) ? $model->topicsVariant : 'home');
+        $template->set('style', \in_array($model->pageCardsStyle, self::STYLES, true) ? $model->pageCardsStyle : 'large');
         $template->set('title', (string) $model->introTitle);
         $template->set('text', (string) $model->introText);
         $template->set('note', (string) $model->introMeta);
         $template->set('link', ['href' => (string) $model->introPrimaryUrl, 'text' => (string) $model->introPrimaryText]);
-        $template->set('topics', $this->topics->getTopics((int) $model->topicsParent, $page ? (int) $page->id : null));
+        $template->set('subpages', $this->topics->getTopics((int) $model->topicsParent, $page ? (int) $page->id : null));
         $template->set('site', $page ? $this->settings->forPage($page) : []);
         $template->set('cta', [
             'quote' => (string) $model->ctaQuote,

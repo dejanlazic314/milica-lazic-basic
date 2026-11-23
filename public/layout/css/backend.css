@@ -9,7 +9,7 @@
 /* Decorations and the diagram take a lot of space and say nothing in a list */
 .cte_preview
     :is(
-        .topics__ornament,
+        .page-cards__ornament,
         .about__ornament,
         .about__circle,
         .about__dot,
@@ -83,7 +83,7 @@
     text-decoration: none;
 }
 
-/* Cards (topics, posts, steps): small boxes next to each other */
+/* Cards (subpages, posts, steps): small boxes next to each other */
 .cte_preview :is(.grid, .questions__grid) {
     display: flex;
     flex-wrap: wrap;
