@@ -76,24 +76,45 @@
         --font-heading: "Cormorant Garamond", Georgia, serif;
         --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-        /* Headings – phone (base, mobile-first); tablet and desktop are below in @media */
-        --h1: 2.625rem; /* home hero */
-        --h1-page: 2.375rem; /* subpage intro */
-        --h2-large: 2.25rem; /* #gestalt, #o-meni, #pitanja */
-        --h2: 2rem; /* home sections (#teme, #tekstovi, #kontakt) */
-        --h2-page: 1.875rem; /* subpage sections, CTA band */
-        --h2-article: 1.625rem; /* article headings, FAQ groups, "Kako izgleda saradnja" */
-        --h3-featured: 1.75rem; /* "Kako izgleda prva seansa?", online band heading */
-        --h3: 1.5rem; /* serif card heading (About, FAQ aside, form) */
-        --h3-small: 1.375rem; /* post card heading */
-        --h4: 1.1875rem; /* Inter 600: topic card, step and "how" headings */
-        --quote-large: 2rem; /* quote over a photo */
-        --quote: 1.5rem; /* blockquote in articles */
-        --quote-intro: 1.375rem; /* italic intro (About) */
-        --card-quote: 1.5rem; /* "Niste sigurni…" in the dark card */
-        --quote-mark: 6rem;
+        /* Fluid sizes: the phone value up to 375px (the design's phone), the desktop value from
+           1024px (its desktop breakpoint), growing evenly in between, with no jump at a breakpoint.
+           --fluid is 0 at 375px and 1px at 1024px, so "30 * var(--fluid)" adds 30px over
+           that range: the number is desktop minus phone. The min and max in rem keep text growing
+           with zoom and with the visitor's font setting (max ≤ 2.5 × min, WCAG 1.4.4). */
+        --fluid: (100vw - 375px) / 649;
 
-        /* Text – the same at all widths */
+        /* Headings: phone → desktop */
+        /* home hero */
+        --h1: clamp(2.625rem, 2.625rem + 30 * var(--fluid), 4.5rem);
+        /* subpage intro */
+        --h1-page: clamp(2.375rem, 2.375rem + 26 * var(--fluid), 4rem);
+        /* #gestalt, #o-meni, #pitanja */
+        --h2-large: clamp(2.25rem, 2.25rem + 24 * var(--fluid), 3.75rem);
+        /* home sections (#teme, #tekstovi, #kontakt) */
+        --h2: clamp(2rem, 2rem + 18 * var(--fluid), 3.125rem);
+        /* subpage sections, CTA band */
+        --h2-page: clamp(1.875rem, 1.875rem + 14 * var(--fluid), 2.75rem);
+        /* article headings, FAQ groups, "Kako izgleda saradnja" */
+        --h2-article: clamp(1.625rem, 1.625rem + 10 * var(--fluid), 2.25rem);
+        /* "Kako izgleda prva seansa?", online band heading */
+        --h3-featured: clamp(1.75rem, 1.75rem + 12 * var(--fluid), 2.5rem);
+        /* serif card heading (About, FAQ aside, form) */
+        --h3: clamp(1.5rem, 1.5rem + 6 * var(--fluid), 1.875rem);
+        /* post card heading */
+        --h3-small: clamp(1.375rem, 1.375rem + 4 * var(--fluid), 1.625rem);
+        /* Inter 600: topic card, step and "how" headings */
+        --h4: clamp(1.1875rem, 1.1875rem + 1 * var(--fluid), 1.25rem);
+        /* quote over a photo */
+        --quote-large: clamp(2rem, 2rem + 22 * var(--fluid), 3.375rem);
+        /* blockquote in articles */
+        --quote: clamp(1.5rem, 1.5rem + 6 * var(--fluid), 1.875rem);
+        /* italic intro (About) */
+        --quote-intro: clamp(1.375rem, 1.375rem + 6 * var(--fluid), 1.75rem);
+        /* "Niste sigurni…" in the dark card */
+        --card-quote: clamp(1.5rem, 1.5rem + 8 * var(--fluid), 2rem);
+        --quote-mark: clamp(6rem, 6rem + 44 * var(--fluid), 8.75rem);
+
+        /* Text – the same at all widths: reading comfort does not depend on the screen */
         --text-lead: 1.1875rem; /* lead under the H1, article (lh 1.75) */
         --text-base: 1.0625rem; /* lh 1.65 */
         --text-card: 1rem; /* card description on subpages */
@@ -102,17 +123,23 @@
         --text-note: 0.8125rem; /* eyebrow (uppercase), notes, info bar */
         --text-label: 0.75rem; /* chip, small uppercase label (contact, credentials) */
 
-        /* ---------- Spacing ---------- */
+        /* ---------- Spacing (fluid like the headings, phone → desktop) ---------- */
         --width: 1200px;
         --width-text: 720px; /* article */
         --width-intro: 860px; /* page intro, FAQ list */
-        --gutter: 20px; /* side padding: phone 20, tablet 32, desktop 32 */
-        --section: 64px; /* vertical section padding: 64 / 80 / 96 */
-        --section-small: 48px; /* page intro, shorter sections: 48 / 56 / 72 */
-        --gap-block: 32px; /* heading ↔ content in a section (subpages): 32 everywhere; home .stack--wide: 32 / 40 / 48 */
-        --gap-grid: 20px; /* gap between cards in a grid: 20 / 20 / 24 */
-        --card-pad: 28px; /* inner card padding: 28 / 28 / 32 */
-        --block-pad: 28px 20px; /* large coloured block (contact, CTA band): 28/20 · 44/40 · 64 */
+        /* side padding */
+        --gutter: clamp(20px, 20px + 12 * var(--fluid), 32px);
+        /* vertical section padding */
+        --section: clamp(64px, 64px + 32 * var(--fluid), 96px);
+        /* page intro, shorter sections */
+        --section-small: clamp(48px, 48px + 24 * var(--fluid), 72px);
+        --gap-block: 32px; /* heading ↔ content in a section (subpages); home .stack--wide has its own */
+        /* gap between cards in a grid */
+        --gap-grid: clamp(20px, 20px + 4 * var(--fluid), 24px);
+        /* inner card padding */
+        --card-pad: clamp(28px, 28px + 4 * var(--fluid), 32px);
+        /* large coloured block (contact, CTA band): vertical, horizontal */
+        --block-pad: clamp(28px, 28px + 36 * var(--fluid), 64px) clamp(20px, 20px + 44 * var(--fluid), 64px);
 
         /* ---------- Shapes ---------- */
         --radius-small: 14px; /* form fields */
@@ -133,53 +160,5 @@
         /* Not in the design: softer hover (layer "states") and the scroll fade-in */
         --hover: 0.3s;
         --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-    @media (min-width: 600px) {
-        :root {
-            --h1: 3.5rem;
-            --h1-page: 3.125rem;
-            --h2-large: 2.875rem;
-            --h2: 2.5rem;
-            --h2-page: 2.25rem;
-            --h2-article: 2rem;
-            --h3-featured: 2.125rem;
-            --h3: 1.75rem;
-            --h3-small: 1.5rem;
-            --h4: 1.25rem;
-            --quote-large: 2.75rem;
-            --quote: 1.75rem;
-            --quote-intro: 1.5rem;
-            --card-quote: 1.75rem;
-            --quote-mark: 7.5rem;
-            --gutter: 32px;
-            --section: 80px;
-            --section-small: 56px;
-            --card-pad: 28px;
-            --block-pad: 44px 40px;
-        }
-    }
-    @media (min-width: 1024px) {
-        :root {
-            --h1: 4.5rem;
-            --h1-page: 4rem;
-            --h2-large: 3.75rem;
-            --h2: 3.125rem;
-            --h2-page: 2.75rem;
-            --h2-article: 2.25rem;
-            --h3-featured: 2.5rem;
-            --h3: 1.875rem;
-            --h3-small: 1.625rem;
-            --h4: 1.25rem;
-            --quote-large: 3.375rem;
-            --quote: 1.875rem;
-            --quote-intro: 1.75rem;
-            --card-quote: 2rem;
-            --quote-mark: 8.75rem;
-            --section: 96px;
-            --section-small: 72px;
-            --gap-grid: 24px;
-            --card-pad: 32px;
-            --block-pad: 64px;
-        }
     }
 }
