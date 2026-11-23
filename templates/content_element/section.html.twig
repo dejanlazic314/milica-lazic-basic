@@ -25,12 +25,7 @@
     {% set rich %}{{ text|sanitize_html('contao')|encode_email|insert_tag_raw }}{% endset %}
     <div class="content {{ content_class }}">
         {% block layout %}
-            {% if layout == 'recognition' %}
-                {{ _self.head(eyebrow, title, lead) }}
-                <div class="grid {{ grid ?: 'grid--3-tablet' }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
-                {% if end %}<p class="recognition__end">{{ end }}</p>{% endif %}
-
-            {% elseif layout == 'approach' %}
+            {% if layout == 'approach' %}
                 <div class="approach__head">{{ _self.head(eyebrow, title, lead) }}</div>
                 <ol class="approach__list">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</ol>
 
@@ -60,9 +55,6 @@
                         </div></div>
                 {% endif %}
 
-            {% elseif layout == 'two_cards' %}
-                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
-
             {% elseif layout == 'education' %}
                 <div class="head head--wide">{{ _self.head(eyebrow, title, lead) }}</div>
                 {% if rows %}
@@ -80,7 +72,7 @@
                 {% endif %}
                 {{ rich }}
                 {% if grid %}
-                    <div class="{{ grid starts with 'grid' ? 'grid ' ~ grid : grid }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
+                    <div class="{{ grid }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
                 {% else %}
                     {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
                 {% endif %}

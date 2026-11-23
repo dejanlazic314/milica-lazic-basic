@@ -63,6 +63,11 @@
         max-width: 100%;
         height: auto;
     }
+    /* A dark section: headings without a colour of their own (e.g. the heading of a card
+       grid) turn white. Set on the section, e.g. the dark #gestalt. */
+    .on-dark {
+        --text-heading: var(--white);
+    }
     @media (prefers-reduced-motion: reduce) {
         html {
             scroll-behavior: auto;

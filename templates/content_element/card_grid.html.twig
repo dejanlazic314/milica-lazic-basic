@@ -1,0 +1,15 @@
+{#
+    Card grid: optional heading, the nested cards, optional note.
+    Markup: html/strane/pocetna.html (.how), tema-*.html (.recognition), o-meni.html, online-terapija.html, kontakt.html.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default).addClass('card-grid') %}
+
+{% block inner %}
+    {%- if title %}<h3 class="card-grid__title">{{ title }}</h3>{% endif -%}
+    <div class="grid {{ grid_class }}">
+        {%- for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor -%}
+    </div>
+    {%- if note %}<p class="card-grid__note">{{ note }}</p>{% endif -%}
+{% endblock %}

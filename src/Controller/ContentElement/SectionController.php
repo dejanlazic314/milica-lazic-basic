@@ -24,14 +24,12 @@ final class SectionController extends AbstractContentElementController
     /** Layout => wrapper class of div.content */
     public const LAYOUTS = [
         'stack' => 'stack',
-        'recognition' => 'recognition',
         'approach' => 'approach',
         'my_path' => 'my-path',
         'preparation' => 'preparation',
         'diaspora' => 'diaspora',
         'education' => 'stack',
         'location' => 'location',
-        'two_cards' => 'two-cards',
     ];
 
     public const STYLES = ['white', 'warm'];
@@ -43,7 +41,7 @@ final class SectionController extends AbstractContentElementController
         'small' => [null, 'padding-top:var(--section-small);padding-bottom:var(--section-small)'],
     ];
 
-    public const GRIDS = ['grid--2', 'grid--3', 'grid--3-tablet', 'grid--4', 'after-message'];
+    public const GRIDS = ['after-message'];
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {

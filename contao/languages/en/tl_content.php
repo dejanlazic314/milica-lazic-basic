@@ -34,6 +34,12 @@ $GLOBALS['TL_LANG']['tl_content']['boxStyles'] = ['white' => 'White', 'dark' => 
 $GLOBALS['TL_LANG']['tl_content']['boxTitle'] = ['Title', 'Optional first line in bold, e.g. "Ako imate misli o samopovređivanju…".'];
 
 // Labels of shared fields for elements where they mean something else (ElementFieldsListener)
+$GLOBALS['TL_LANG']['tl_content']['gridColumns'] = ['Columns', 'Columns on a desktop. Phones show one column, tablets two (three for "3").'];
+$GLOBALS['TL_LANG']['tl_content']['gridColumnsOptions'] = ['2' => '2', '3' => '3', '4' => '4'];
+$GLOBALS['TL_LANG']['tl_content']['labels']['card_grid'] = [
+    'introTitle' => ['Heading', 'Optional heading above the cards (H3), e.g. "Kako izgleda saradnja".'],
+    'introMeta' => ['Note', 'Optional line below the cards.'],
+];
 $GLOBALS['TL_LANG']['tl_content']['labels']['card'] = [
     'introTitle' => ['Heading', 'The heading of the card (H3).'],
     'introPrimaryUrl' => ['Link', 'Optional arrow link below the text.'],
@@ -62,8 +68,6 @@ $GLOBALS['TL_LANG']['tl_content']['cta_legend'] = 'Contact card at the end';
 $GLOBALS['TL_LANG']['tl_content']['ctaQuote'] = ['Card heading', 'E.g. "Ne vidite svoju temu ovde?". Leave empty to hide the card. The card links to the contact page of the root page.'];
 $GLOBALS['TL_LANG']['tl_content']['ctaText'] = ['Card text', ''];
 $GLOBALS['TL_LANG']['tl_content']['ctaLinkText'] = ['Card link text', 'E.g. "Pišite mi →".'];
-$GLOBALS['TL_LANG']['tl_content']['cardsVariant'] = ['Layout', 'How the group and its cards look.'];
-$GLOBALS['TL_LANG']['tl_content']['cardsVariants'] = ['how' => '"Kako izgleda saradnja" (dark section)'];
 $GLOBALS['TL_LANG']['tl_content']['cardIcon'] = ['Icon', 'Symbol from the icon set of the design.'];
 $GLOBALS['TL_LANG']['tl_content']['cardIcons'] = ['i-chat' => 'Conversation', 'i-calendar' => 'Calendar', 'i-sprout' => 'Sprout', 'i-clock' => 'Clock', 'i-lock' => 'Lock', 'i-video' => 'Video', 'i-location' => 'Location', 'i-phone' => 'Phone', 'i-email' => 'E-mail', 'i-check' => 'Check'];
 $GLOBALS['TL_LANG']['tl_content']['aboutVariant'] = ['Layout', 'Home page: eyebrow, H2, credentials, ornament. Page intro: breadcrumb, H1, two buttons.'];
@@ -87,21 +91,19 @@ $GLOBALS['TL_LANG']['tl_content']['list_legend'] = 'Rows and chips';
 $GLOBALS['TL_LANG']['tl_content']['sectionLayout'] = ['Layout', 'Section layouts from the design. Cards, steps and FAQ lists go inside as nested elements.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionLayouts'] = [
     'stack' => 'Heading + content (cards in a grid)',
-    'recognition' => '"Možda prepoznajete" (cards + closing line)',
     'approach' => 'Approach (numbered steps)',
     'my_path' => 'Heading left, text right ("Moj put")',
     'preparation' => 'Text left, dark card right',
     'diaspora' => 'Text + time zones',
     'education' => 'Education (rows + chips)',
     'location' => 'Location + map',
-    'two_cards' => 'Two cards',
 ];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyle'] = ['Background', 'Default is the page background (cream).'];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyles'] = ['white' => 'White', 'warm' => 'Warm (apricot)'];
 $GLOBALS['TL_LANG']['tl_content']['sectionSpacing'] = ['Spacing', 'Default: full padding top and bottom.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionSpacings'] = ['no_top' => 'No space above', 'tight' => 'No space above, small below', 'small' => 'Small above and below'];
-$GLOBALS['TL_LANG']['tl_content']['sectionGrid'] = ['Grid', 'How the nested cards are laid out (layouts "Heading + content" and "Možda prepoznajete").'];
-$GLOBALS['TL_LANG']['tl_content']['sectionGrids'] = ['grid--2' => '2 columns', 'grid--3' => '3 columns', 'grid--3-tablet' => '3 columns (stacked on tablet)', 'grid--4' => '4 columns', 'after-message' => 'Steps "Šta se dešava kada mi pišete"'];
+$GLOBALS['TL_LANG']['tl_content']['sectionGrid'] = ['List', 'Steps "Šta se dešava kada mi pišete": the nested plain cards in a row with lines above them.'];
+$GLOBALS['TL_LANG']['tl_content']['sectionGrids'] = ['after-message' => 'Steps "Šta se dešava kada mi pišete"'];
 $GLOBALS['TL_LANG']['tl_content']['sectionRows'] = ['Rows', 'One per line, columns separated by "|". Education: "year | name | place". Time zones: "city | difference". Preparation: one checklist item per line.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionChips'] = ['Chips', 'One per line (education: memberships and languages).'];
 $GLOBALS['TL_LANG']['tl_content']['cardVariant'] = ['Look', 'Outline: a light frame for a dark section ("Kako izgleda saradnja"). Plain: no background (inside "Šta se dešava kada mi pišete").'];
