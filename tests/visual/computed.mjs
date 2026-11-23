@@ -9,7 +9,8 @@
 // that state forced (Chrome DevTools Protocol), so hover and focus are checked without a mouse.
 // Output: test-results/visual/computed/{baseline,current}.json. Exit code 1 if anything differs.
 //
-// Options (environment): BASE_URL (default https://milica-lazic.ddev.site), ONLY (path filter).
+// Options (environment): BASE_URL (default https://milica-lazic.ddev.site), ONLY (path filter),
+// PARALLEL (pages read at the same time, default 4; each one has its own browser context).
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,6 +26,7 @@ if (!['baseline', 'check'].includes(mode)) {
 
 const baseUrl = process.env.BASE_URL ?? 'https://milica-lazic.ddev.site';
 const only = process.env.ONLY ?? '';
+const parallel = Math.max(1, Number(process.env.PARALLEL ?? 4));
 const pages = JSON.parse(fs.readFileSync(new URL('./pages.json', import.meta.url), 'utf8')).filter((p) =>
     p.includes(only),
 );
@@ -91,7 +93,7 @@ const hash = (text) => crypto.createHash('sha1').update(text).digest('hex').slic
 const browser = await chromium.launch();
 const result = {};
 
-for (const width of [375, 1280]) {
+const read = async (p, width) => {
     const context = await browser.newContext({
         viewport: { width, height: 900 },
         ignoreHTTPSErrors: true,
@@ -105,83 +107,78 @@ for (const width of [375, 1280]) {
     await cdp.send('DOM.enable');
     await cdp.send('CSS.enable');
 
-    for (const p of pages) {
-        await page.goto(baseUrl + p, { waitUntil: 'networkidle' });
-        await page.evaluate(() => document.fonts.ready);
-        const key = `${p}@${width}`;
-        const entries = {};
+    await page.goto(baseUrl + p, { waitUntil: 'networkidle' });
+    await page.evaluate(() => document.fonts.ready);
+    const key = `${p}@${width}`;
+    const entries = {};
 
-        for (const [elPath, style] of await page.evaluate(collect)) entries[elPath] = hash(style);
+    for (const [elPath, style] of await page.evaluate(collect)) entries[elPath] = hash(style);
 
-        // Forced states: every element that one of the state selectors matches
-        const selectors = await page.evaluate(stateTargets);
-        const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
-        const nodeIds = new Set();
-        for (const selector of selectors) {
-            try {
-                const { nodeIds: ids } = await cdp.send('DOM.querySelectorAll', {
-                    nodeId: root.nodeId,
-                    selector,
-                });
-                ids.forEach((id) => nodeIds.add(id));
-            } catch {}
-        }
-        for (const nodeId of nodeIds) {
-            const { object } = await cdp.send('DOM.resolveNode', { nodeId });
-            for (const state of STATES) {
-                await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [state] });
-                const { result: value } = await cdp.send('Runtime.callFunctionOn', {
-                    objectId: object.objectId,
-                    returnByValue: true,
-                    // Transitions started by the forced state are finished first, so the end value is read
-                    functionDeclaration: `function () {
-                        const self = this;
-                        getComputedStyle(self).color;
-                        document.getAnimations().forEach((a) => { try { a.finish(); } catch {} });
-                        const all = [self, ...self.querySelectorAll('*')];
-                        const cs = (el, pseudo) => { const s = getComputedStyle(el, pseudo); return [...s].filter((n) => !n.startsWith('--')).sort().map((n) => n + ':' + s.getPropertyValue(n)).join(';'); };
-                        return all.map((el) => cs(el) + cs(el, '::before') + cs(el, '::after')).join('#');
-                    }`,
-                });
-                await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
-                const { node } = await cdp.send('DOM.describeNode', { nodeId });
-                entries[
-                    `state:${state}:${node.localName}#${nodeId}:${node.attributes?.join(' ').slice(0, 80)}`
-                ] = hash(value.value);
-            }
-        }
-
-        result[key] = entries;
-        process.stdout.write('.');
+    // Forced states: every element that one of the state selectors matches
+    const selectors = await page.evaluate(stateTargets);
+    const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
+    const nodeIds = new Set();
+    for (const selector of selectors) {
+        try {
+            const { nodeIds: ids } = await cdp.send('DOM.querySelectorAll', {
+                nodeId: root.nodeId,
+                selector,
+            });
+            ids.forEach((id) => nodeIds.add(id));
+        } catch {}
     }
+    for (const nodeId of nodeIds) {
+        const { object } = await cdp.send('DOM.resolveNode', { nodeId });
+        for (const state of STATES) {
+            await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [state] });
+            const { result: value } = await cdp.send('Runtime.callFunctionOn', {
+                objectId: object.objectId,
+                returnByValue: true,
+                // Transitions started by the forced state are finished first, so the end value is read
+                functionDeclaration: `function () {
+                    const self = this;
+                    getComputedStyle(self).color;
+                    document.getAnimations().forEach((a) => { try { a.finish(); } catch {} });
+                    const all = [self, ...self.querySelectorAll('*')];
+                    const cs = (el, pseudo) => { const s = getComputedStyle(el, pseudo); return [...s].filter((n) => !n.startsWith('--')).sort().map((n) => n + ':' + s.getPropertyValue(n)).join(';'); };
+                    return all.map((el) => cs(el) + cs(el, '::before') + cs(el, '::after')).join('#');
+                }`,
+            });
+            await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
+            const { node } = await cdp.send('DOM.describeNode', { nodeId });
+            entries[`state:${state}:${node.localName}#${nodeId}:${node.attributes?.join(' ').slice(0, 80)}`] =
+                hash(value.value);
+        }
+    }
+
+    result[key] = entries;
+    process.stdout.write('.');
     await context.close();
-}
+};
 
-await browser.close();
-const file = path.join(dir, mode === 'baseline' ? 'baseline.json' : 'current.json');
-fs.writeFileSync(file, JSON.stringify(result));
+// A few workers take the next page until none is left
+const jobs = [375, 1280].flatMap((width) => pages.map((p) => [p, width]));
+let next = 0;
+const worker = async () => {
+    while (next < jobs.length) {
+        await read(...jobs[next++]);
+    }
+};
+await Promise.all(Array.from({ length: Math.min(parallel, jobs.length) }, worker));
 
-if (mode === 'baseline') {
-    console.log(`\n${Object.keys(result).length} page shots saved to ${file}`);
-    process.exit(0);
-}
-
-// Compare; forced-state keys contain DevTools node ids and the attributes, so they are compared
-// as a sorted list of tag and style: a class that is only renamed is not a difference
-const before = JSON.parse(fs.readFileSync(path.join(dir, 'baseline.json'), 'utf8'));
-let differences = 0;
-for (const [key, entries] of Object.entries(result)) {
-    const old = before[key] ?? {};
-    // <script>, <link>, <style> are not rendered; which scripts a page loads may change
-    const plain = (o) =>
-        Object.entries(o).filter(
-            ([k]) => !k.startsWith('state:') && !/(^|>)(script|link|style|template)[:#]/.test(k),
-        );
-    const states = (o) =>
-        Object.entries(o)
-            .filter(([k]) => k.startsWith('state:'))
-            .map(([k, v]) => k.replace(/#\d+:.*$/, '') + '=' + v)
-            .sort();
+// <script>, <link>, <style> are not rendered; which scripts a page loads may change.
+// Forced-state keys contain DevTools node ids and the attributes, so they are compared
+// as a sorted list of tag and style: a class that is only renamed is not a difference.
+const plain = (o) =>
+    Object.entries(o).filter(
+        ([k]) => !k.startsWith('state:') && !/(^|>)(script|link|style|template)[:#]/.test(k),
+    );
+const states = (o) =>
+    Object.entries(o)
+        .filter(([k]) => k.startsWith('state:'))
+        .map(([k, v]) => k.replace(/#\d+:.*$/, '') + '=' + v)
+        .sort();
+const compare = (entries, old = {}) => {
     const changed = plain(entries)
         .filter(([k, v]) => old[k] !== v)
         .map(([k]) => k);
@@ -191,13 +188,44 @@ for (const [key, entries] of Object.entries(result)) {
     const a = states(old);
     const b = states(entries);
     const stateDiff = b.filter((x) => !a.includes(x)).length + a.filter((x) => !b.includes(x)).length;
-    if (changed.length || missing.length || stateDiff) {
-        differences++;
-        console.log(
-            `\nDIFF ${key}: ${changed.length} elements changed, ${missing.length} missing, ${stateDiff} state differences`,
-        );
-        changed.slice(0, 5).forEach((k) => console.log('  ' + k));
+    return changed.length || missing.length || stateDiff ? { changed, missing, stateDiff } : null;
+};
+
+const file = path.join(dir, mode === 'baseline' ? 'baseline.json' : 'current.json');
+
+if (mode === 'baseline') {
+    await browser.close();
+    fs.writeFileSync(file, JSON.stringify(result));
+    console.log(`
+${Object.keys(result).length} page shots saved to ${file}`);
+    process.exit(0);
+}
+
+const before = JSON.parse(fs.readFileSync(path.join(dir, 'baseline.json'), 'utf8'));
+
+// A page that differs is read once more on its own: with several pages at a time a transition
+// sometimes has not ended when a forced state is read. A real change differs both times.
+for (const [p, width] of jobs) {
+    if (compare(result[`${p}@${width}`], before[`${p}@${width}`])) {
+        await read(p, width);
     }
 }
-console.log(`\n${Object.keys(result).length} page shots, ${differences} different`);
+
+await browser.close();
+fs.writeFileSync(file, JSON.stringify(result));
+
+let differences = 0;
+for (const [key, entries] of Object.entries(result)) {
+    const diff = compare(entries, before[key]);
+    if (diff) {
+        differences++;
+        console.log(
+            `
+DIFF ${key}: ${diff.changed.length} elements changed, ${diff.missing.length} missing, ${diff.stateDiff} state differences`,
+        );
+        diff.changed.slice(0, 5).forEach((k) => console.log('  ' + k));
+    }
+}
+console.log(`
+${Object.keys(result).length} page shots, ${differences} different`);
 process.exit(differences ? 1 : 0);

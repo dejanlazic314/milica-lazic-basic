@@ -9,7 +9,8 @@
 // Output: test-results/visual/snapshots/{baseline,current,diff}/. Exit code 1 if anything differs.
 //
 // Options (environment): BASE_URL (default https://milica-lazic.ddev.site),
-// WIDTHS (default 375,768,1280), ONLY (substring filter on the shot name).
+// WIDTHS (default 375,768,1280), ONLY (substring filter on the shot name),
+// PARALLEL (shots taken at the same time, default 4; each one has its own browser context).
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,6 +29,7 @@ if (!['baseline', 'check'].includes(mode)) {
 const baseUrl = process.env.BASE_URL ?? 'https://milica-lazic.ddev.site';
 const widths = (process.env.WIDTHS ?? '375,768,1280').split(',').map(Number);
 const only = process.env.ONLY ?? '';
+const parallel = Math.max(1, Number(process.env.PARALLEL ?? 4));
 const pages = JSON.parse(fs.readFileSync(new URL('./pages.json', import.meta.url), 'utf8'));
 
 const root = path.resolve('test-results/visual/snapshots');
@@ -113,6 +115,14 @@ const shoot = async (browser, job) => {
         await waitForImages();
         image = target ? await target.screenshot({ mask }) : await page.screenshot({ mask });
     } else {
+        // Images loading late can move the scroll position, and the header shrinks when scrolled
+        await page.evaluate(
+            () =>
+                new Promise((resolve) => {
+                    window.scrollTo(0, 0);
+                    requestAnimationFrame(() => requestAnimationFrame(resolve));
+                }),
+        );
         image = await page.screenshot({ fullPage: true, mask });
     }
 
@@ -149,17 +159,19 @@ const compare = (name) => {
 };
 
 const browser = await chromium.launch();
+const messages = new Map();
 let failures = 0;
+let next = 0;
 
-for (const job of jobs) {
+const run = async (job) => {
     const name = `${job.name}.png`;
 
     try {
         fs.writeFileSync(path.join(outDir, name), await shoot(browser, job));
     } catch (error) {
         failures++;
-        console.log(`ERROR ${name}: ${error.message.split('\n')[0]}`);
-        continue;
+        messages.set(job, `ERROR ${name}: ${error.message.split('\n')[0]}`);
+        return;
     }
 
     if (mode === 'check') {
@@ -167,12 +179,25 @@ for (const job of jobs) {
 
         if (result) {
             failures++;
-            console.log(`DIFF  ${name}: ${result}`);
+            messages.set(job, `DIFF  ${name}: ${result}`);
         }
-    } else {
-        process.stdout.write('.');
     }
-}
+
+    process.stdout.write('.');
+};
+
+// A few workers take the next job until none is left
+const worker = async () => {
+    while (next < jobs.length) {
+        await run(jobs[next++]);
+    }
+};
+
+await Promise.all(Array.from({ length: Math.min(parallel, jobs.length) }, worker));
+
+// Messages in the order of the jobs, not in the order the shots finished
+console.log('');
+jobs.filter((job) => messages.has(job)).forEach((job) => console.log(messages.get(job)));
 
 await browser.close();
 
