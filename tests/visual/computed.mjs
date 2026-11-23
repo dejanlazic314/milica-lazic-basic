@@ -45,8 +45,10 @@ const collect = () => {
     };
     const styleOf = (el, pseudo) => {
         const cs = getComputedStyle(el, pseudo);
-        // Sorted: the order in which the browser lists custom properties is not stable
+        // Sorted (the order is not stable). Custom properties are left out: they are inputs, the
+        // real properties built from them are compared, so a token may change its notation (px → rem).
         return [...cs]
+            .filter((name) => !name.startsWith('--'))
             .sort()
             .map((name) => name + ':' + cs.getPropertyValue(name))
             .join(';');
@@ -137,7 +139,7 @@ for (const width of [375, 1280]) {
                         getComputedStyle(self).color;
                         document.getAnimations().forEach((a) => { try { a.finish(); } catch {} });
                         const all = [self, ...self.querySelectorAll('*')];
-                        const cs = (el, pseudo) => { const s = getComputedStyle(el, pseudo); return [...s].sort().map((n) => n + ':' + s.getPropertyValue(n)).join(';'); };
+                        const cs = (el, pseudo) => { const s = getComputedStyle(el, pseudo); return [...s].filter((n) => !n.startsWith('--')).sort().map((n) => n + ':' + s.getPropertyValue(n)).join(';'); };
                         return all.map((el) => cs(el) + cs(el, '::before') + cs(el, '::after')).join('#');
                     }`,
                 });
