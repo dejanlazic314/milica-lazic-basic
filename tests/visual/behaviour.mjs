@@ -2,7 +2,7 @@
 // no JS errors on any page, fade-in while scrolling, circles diagram, question accordion,
 // mobile menu, cookie banner and map consent.
 //
-//   node tests/visual/behaviour.mjs        (BASE_URL as in snapshot.mjs)
+//   node tests/visual/behaviour.mjs        (BASE_URL and HOST_RULES as in snapshot.mjs)
 //
 // Prints one line per check; exit code 1 if a check fails.
 
@@ -13,7 +13,8 @@ const baseUrl = process.env.BASE_URL ?? 'https://milica-lazic.ddev.site';
 const pages = JSON.parse(fs.readFileSync(new URL('./pages.json', import.meta.url), 'utf8'));
 const CHOICE = JSON.stringify({ v: 1, maps: false, statistics: false });
 
-const browser = await chromium.launch();
+const hostRules = process.env.HOST_RULES;
+const browser = await chromium.launch(hostRules ? { args: [`--host-resolver-rules=${hostRules}`] } : {});
 const results = [];
 
 const check = (name, ok, detail = '') => {

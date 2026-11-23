@@ -10,7 +10,10 @@
 //
 // Options (environment): BASE_URL (default https://milica-lazic.ddev.site),
 // WIDTHS (default 375,768,1280), ONLY (substring filter on the shot name),
-// PARALLEL (shots taken at the same time, default 4; each one has its own browser context).
+// PARALLEL (shots taken at the same time, default 4; each one has its own browser context),
+// SNAPSHOT_DIR (default test-results/visual/snapshots; another folder keeps e.g. the shots of the
+// live site apart from the local reference), HOST_RULES (Chromium --host-resolver-rules, e.g.
+// "MAP example.com 127.0.0.1:18443" to reach a site through an SSH tunnel).
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -32,7 +35,7 @@ const only = process.env.ONLY ?? '';
 const parallel = Math.max(1, Number(process.env.PARALLEL ?? 4));
 const pages = JSON.parse(fs.readFileSync(new URL('./pages.json', import.meta.url), 'utf8'));
 
-const root = path.resolve('test-results/visual/snapshots');
+const root = path.resolve(process.env.SNAPSHOT_DIR ?? 'test-results/visual/snapshots');
 const dirs = {
     baseline: path.join(root, 'baseline'),
     current: path.join(root, 'current'),
@@ -158,7 +161,8 @@ const compare = (name) => {
     return null;
 };
 
-const browser = await chromium.launch();
+const hostRules = process.env.HOST_RULES;
+const browser = await chromium.launch(hostRules ? { args: [`--host-resolver-rules=${hostRules}`] } : {});
 const messages = new Map();
 let failures = 0;
 let next = 0;
