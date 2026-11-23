@@ -127,6 +127,8 @@ export default [
             const form = page.locator('form').first();
             await form.locator('.choice').nth(1).click();
             await form.locator('.consent input').check();
+            // The checked choice changes its colours with a transition
+            await page.waitForTimeout(400);
             return form;
         },
     },
