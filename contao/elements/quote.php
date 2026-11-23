@@ -25,10 +25,11 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['quoteText'] = [
     'sql' => ['type' => 'text', 'notnull' => false],
 ];
 
+// Text like the core url field (the row of tl_content is nearly full, see contao/dca/tl_content.php)
 $GLOBALS['TL_DCA']['tl_content']['fields']['quoteLink'] = [
     'inputType' => 'text',
     'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'dcaPicker' => true, 'tl_class' => 'w50'],
-    'sql' => ['type' => 'string', 'length' => 2048, 'default' => ''],
+    'sql' => ['type' => 'text', 'notnull' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['quoteImage'] = [

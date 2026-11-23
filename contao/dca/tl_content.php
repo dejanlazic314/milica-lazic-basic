@@ -38,12 +38,13 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['introMeta'] = [
     'sql' => ['type' => 'string', 'length' => 255, 'default' => ''],
 ];
 
-// Own link fields: the core "url" field is mandatory
+// Own link fields: the core "url" field is mandatory. Stored as text like the core one: a
+// VARCHAR(2048) takes 8 KB of the 64 KB row limit of tl_content, and the row is nearly full.
 foreach (['introPrimaryUrl', 'introSecondaryUrl'] as $field) {
     $GLOBALS['TL_DCA']['tl_content']['fields'][$field] = [
         'inputType' => 'text',
         'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'dcaPicker' => true, 'tl_class' => 'w50 clr'],
-        'sql' => ['type' => 'string', 'length' => 2048, 'default' => ''],
+        'sql' => ['type' => 'text', 'notnull' => false],
     ];
 }
 
@@ -83,7 +84,7 @@ foreach (['mapEmbedUrl', 'mapLinkUrl'] as $field) {
     $GLOBALS['TL_DCA']['tl_content']['fields'][$field] = [
         'inputType' => 'text',
         'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'tl_class' => 'clr long'],
-        'sql' => ['type' => 'string', 'length' => 2048, 'default' => ''],
+        'sql' => ['type' => 'text', 'notnull' => false],
     ];
 }
 
