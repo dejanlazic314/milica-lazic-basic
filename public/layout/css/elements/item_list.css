@@ -1,0 +1,149 @@
+/* Content element "item_list" (content_element/item_list). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .item-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ---------- Steps: dot, title, text ---------- */
+    .item-list--steps li {
+        display: flex;
+        gap: 20px;
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+    }
+    .item-list__dot {
+        flex: 0 0 12px;
+        width: 12px;
+        height: 12px;
+        margin-top: 8px;
+        border-radius: 50%;
+        background: var(--apricot);
+    }
+    .item-list--steps h3 {
+        font-family: var(--font-body);
+        font-size: var(--h4);
+    }
+    .item-list--steps p {
+        font-size: var(--text-card);
+        color: var(--text-muted);
+    }
+
+    /* ---------- Checks: check mark and text ---------- */
+    .item-list--checks {
+        color: var(--text-strong);
+    }
+    .item-list--checks li {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+    }
+    .item-list--checks .icon {
+        width: 22px;
+        height: 22px;
+        color: var(--sage-700);
+    }
+
+    /* ---------- Timeline: year, title, text ---------- */
+    .item-list--timeline li {
+        display: grid;
+        gap: 4px;
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+    }
+    .item-list__label {
+        font-family: var(--font-heading);
+        font-size: 1.625rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: var(--sage-700);
+    }
+    .item-list__title {
+        font-weight: 600;
+        color: var(--text-heading);
+    }
+    .item-list__text {
+        margin-top: 2px;
+        font-size: var(--text-desc);
+        color: var(--label);
+    }
+    @media (width >= 37.5em) {
+        .item-list--timeline li {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            column-gap: 24px;
+        }
+        .item-list--timeline .item-list__label {
+            grid-column: span 2;
+        }
+        .item-list--timeline li > div {
+            grid-column: span 10;
+        }
+    }
+
+    /* ---------- Pairs: label and title in small boxes ---------- */
+    .item-list--pairs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    .item-list--pairs div {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: 18px;
+        padding: 18px 20px;
+    }
+    .item-list--pairs p:first-child {
+        font-size: var(--text-note);
+        color: var(--label);
+    }
+    .item-list--pairs p + p {
+        margin-top: 2px;
+        font-weight: 600;
+        color: var(--text-heading);
+    }
+
+    /* ---------- Tags: chips ---------- */
+    .item-list--tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* ---------- Row: title and text in columns, a line above each ---------- */
+    .item-list--row {
+        display: grid;
+        gap: 24px;
+    }
+    .item-list--row > div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-top: 2px solid var(--sage-300);
+        padding-top: 18px;
+    }
+    .item-list--row > div:first-child {
+        border-top-color: var(--sage-700);
+    }
+    .item-list--row h3 {
+        font-family: var(--font-body);
+        font-size: var(--h4);
+    }
+    .item-list--row p {
+        font-size: var(--text-desc);
+        color: var(--text-muted);
+    }
+    @media (width >= 37.5em) {
+        .item-list--row {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+    @media (width >= 64em) {
+        .item-list--row {
+            gap: 32px;
+        }
+    }
+}

@@ -4,7 +4,6 @@
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
 {% trans_default_domain 'site' %}
-{% import '@Contao/component/_icon.html.twig' as icons %}
 
 {% set attributes = attrs(attributes|default)
     .addClass('section')
@@ -27,21 +26,18 @@
         {% block layout %}
             {% if layout == 'approach' %}
                 <div class="approach__head">{{ _self.head(eyebrow, title, lead) }}</div>
-                <ol class="approach__list">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</ol>
+                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
 
             {% elseif layout == 'my_path' %}
                 <div class="my-path__head">{{ _self.head(eyebrow, title, lead) }}</div>
                 <div class="my-path__text">{{ rich }}</div>
 
-            {% elseif layout == 'preparation' %}
-                <div class="preparation__text">{{ _self.head(eyebrow, title, lead) }}
-                    {%- if rows %}<ul class="icon-list">{% for row in rows %}<li>{{ icons.icon('i-check') }}<span>{{ row[0] }}</span></li>{% endfor %}</ul>{% endif -%}
-                    {{ rich }}</div>
-                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
-
-            {% elseif layout == 'diaspora' %}
-                <div class="diaspora__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}</div>
-                <div class="time-zones">{% for row in rows %}<div><p>{{ row[0] }}</p><p>{{ row[1]|default }}</p></div>{% endfor %}</div>
+            {% elseif layout in ['preparation', 'diaspora'] %}
+                {# Two columns: the text and all nested elements but the last on the left, the last one on the right #}
+                <div class="{{ layout }}__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}
+                    {%- for fragment in nested_fragments|slice(0, -1) %}{{ content_element(fragment) }}{% endfor -%}
+                </div>
+                {% if nested_fragments %}{{ content_element(nested_fragments|last) }}{% endif %}
 
             {% elseif layout == 'location' %}
                 <div class="location__text">{{ _self.head(eyebrow, title, lead) }}{{ rich }}</div>
@@ -55,15 +51,6 @@
                         </div></div>
                 {% endif %}
 
-            {% elseif layout == 'education' %}
-                <div class="head head--wide">{{ _self.head(eyebrow, title, lead) }}</div>
-                {% if rows %}
-                    <ol class="education">
-                        {%- for row in rows %}<li><p class="education__year">{{ row[0] }}</p><div><p class="education__name">{{ row[1]|default }}</p>{% if row[2]|default %}<p class="education__place">{{ row[2]|inline_markup }}</p>{% endif %}</div></li>{% endfor -%}
-                    </ol>
-                {% endif %}
-                {% if chips %}<div class="chips">{% for chip in chips %}<span class="chip-outline">{{ chip }}</span>{% endfor %}</div>{% endif %}
-
             {% else %}
                 {% if title or lead %}
                     <div class="head head--wide">{{ _self.head(eyebrow, title, lead) }}</div>
@@ -71,11 +58,7 @@
                     <p class="eyebrow">{{ eyebrow }}</p>
                 {% endif %}
                 {{ rich }}
-                {% if grid %}
-                    <div class="{{ grid }}">{% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}</div>
-                {% else %}
-                    {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
-                {% endif %}
+                {% for fragment in nested_fragments %}{{ content_element(fragment) }}{% endfor %}
             {% endif %}
         {% endblock %}
     </div>

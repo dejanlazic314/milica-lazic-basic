@@ -28,7 +28,6 @@ final class SectionController extends AbstractContentElementController
         'my_path' => 'my-path',
         'preparation' => 'preparation',
         'diaspora' => 'diaspora',
-        'education' => 'stack',
         'location' => 'location',
     ];
 
@@ -41,8 +40,6 @@ final class SectionController extends AbstractContentElementController
         'small' => [null, 'padding-top:var(--section-small);padding-bottom:var(--section-small)'],
     ];
 
-    public const GRIDS = ['after-message'];
-
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
         $layout = isset(self::LAYOUTS[$model->sectionLayout]) ? $model->sectionLayout : 'stack';
@@ -52,14 +49,11 @@ final class SectionController extends AbstractContentElementController
         $template->set('extra_assets', $this->getExtraAssets($layout, $model));
         $template->set('style', \in_array($model->sectionStyle, self::STYLES, true) ? $model->sectionStyle : null);
         $template->set('spacing', self::SPACINGS[$model->sectionSpacing] ?? [null, null]);
-        $template->set('grid', \in_array($model->sectionGrid, self::GRIDS, true) ? $model->sectionGrid : null);
         $template->set('eyebrow', (string) $model->eyebrow);
         $template->set('title', (string) $model->introTitle);
         $template->set('lead', (string) $model->introText);
         $template->set('text', (string) $model->text);
         $template->set('end', (string) $model->introMeta);
-        $template->set('rows', $this->parseRows((string) $model->sectionRows));
-        $template->set('chips', array_values(array_filter(array_map(trim(...), explode("\n", (string) $model->sectionChips)))));
         $template->set('map', ['embed' => (string) $model->mapEmbedUrl, 'link' => (string) $model->mapLinkUrl]);
 
         return $template->getResponse();
@@ -81,24 +75,5 @@ final class SectionController extends AbstractContentElementController
             ...array_map(static fn (string $class): string => 'elements/section-'.$class, $classes),
             ...('location' === $layout ? ['components/map-consent'] : []),
         ];
-    }
-
-    /**
-     * One row per line, columns separated by "|" (education: year | name | place;
-     * time zones: city | difference).
-     *
-     * @return list<list<string>>
-     */
-    private function parseRows(string $value): array
-    {
-        $rows = [];
-
-        foreach (explode("\n", $value) as $line) {
-            if ('' !== trim($line)) {
-                $rows[] = array_map(trim(...), explode('|', $line));
-            }
-        }
-
-        return $rows;
     }
 }

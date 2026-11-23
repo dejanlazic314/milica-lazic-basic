@@ -34,6 +34,12 @@ $GLOBALS['TL_LANG']['tl_content']['boxStyles'] = ['white' => 'White', 'dark' => 
 $GLOBALS['TL_LANG']['tl_content']['boxTitle'] = ['Title', 'Optional first line in bold, e.g. "Ako imate misli o samopovređivanju…".'];
 
 // Labels of shared fields for elements where they mean something else (ElementFieldsListener)
+$GLOBALS['TL_LANG']['tl_content']['listStyle'] = ['Style', 'Which columns of the rows are shown: Steps (title, text), Check marks (text), Timeline (label, title, text), Pairs (label, title), Chips (title), Row (title, text).'];
+$GLOBALS['TL_LANG']['tl_content']['listStyles'] = ['steps' => 'Steps', 'checks' => 'Check marks', 'timeline' => 'Timeline', 'pairs' => 'Pairs', 'tags' => 'Chips', 'row' => 'Row of columns'];
+$GLOBALS['TL_LANG']['tl_content']['listRows'] = ['Items', 'One row per item. [Text](link) in the text becomes a link.'];
+$GLOBALS['TL_LANG']['tl_content']['listItemLabel'] = ['Label', 'E.g. a year or a city.'];
+$GLOBALS['TL_LANG']['tl_content']['listItemTitle'] = ['Title', ''];
+$GLOBALS['TL_LANG']['tl_content']['listItemText'] = ['Text', ''];
 $GLOBALS['TL_LANG']['tl_content']['gridColumns'] = ['Columns', 'Columns on a desktop. Phones show one column, tablets two (three for "3").'];
 $GLOBALS['TL_LANG']['tl_content']['gridColumnsOptions'] = ['2' => '2', '3' => '3', '4' => '4'];
 $GLOBALS['TL_LANG']['tl_content']['labels']['card_grid'] = [
@@ -87,25 +93,19 @@ $GLOBALS['TL_LANG']['tl_content']['mapEmbedUrl'] = ['Map embed URL', 'Google Map
 $GLOBALS['TL_LANG']['tl_content']['mapLinkUrl'] = ['Map link', 'Link "Otvori u Google mapama" (opens in a new tab, no cookies).'];
 
 $GLOBALS['TL_LANG']['tl_content']['style_legend'] = 'Background and spacing';
-$GLOBALS['TL_LANG']['tl_content']['list_legend'] = 'Rows and chips';
-$GLOBALS['TL_LANG']['tl_content']['sectionLayout'] = ['Layout', 'Section layouts from the design. Cards, steps and FAQ lists go inside as nested elements.'];
+$GLOBALS['TL_LANG']['tl_content']['sectionLayout'] = ['Layout', 'Section layouts from the design. Card grids, lists, boxes and FAQ lists go inside as nested elements.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionLayouts'] = [
     'stack' => 'Heading + content (cards in a grid)',
-    'approach' => 'Approach (numbered steps)',
+    'approach' => 'Approach (heading left, list right)',
     'my_path' => 'Heading left, text right ("Moj put")',
-    'preparation' => 'Text left, dark card right',
-    'diaspora' => 'Text + time zones',
-    'education' => 'Education (rows + chips)',
+    'preparation' => 'Text left, the last nested element right',
+    'diaspora' => 'Text left, the last nested element right (narrower)',
     'location' => 'Location + map',
 ];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyle'] = ['Background', 'Default is the page background (cream).'];
 $GLOBALS['TL_LANG']['tl_content']['sectionStyles'] = ['white' => 'White', 'warm' => 'Warm (apricot)'];
 $GLOBALS['TL_LANG']['tl_content']['sectionSpacing'] = ['Spacing', 'Default: full padding top and bottom.'];
 $GLOBALS['TL_LANG']['tl_content']['sectionSpacings'] = ['no_top' => 'No space above', 'tight' => 'No space above, small below', 'small' => 'Small above and below'];
-$GLOBALS['TL_LANG']['tl_content']['sectionGrid'] = ['List', 'Steps "Šta se dešava kada mi pišete": the nested plain cards in a row with lines above them.'];
-$GLOBALS['TL_LANG']['tl_content']['sectionGrids'] = ['after-message' => 'Steps "Šta se dešava kada mi pišete"'];
-$GLOBALS['TL_LANG']['tl_content']['sectionRows'] = ['Rows', 'One per line, columns separated by "|". Education: "year | name | place". Time zones: "city | difference". Preparation: one checklist item per line.'];
-$GLOBALS['TL_LANG']['tl_content']['sectionChips'] = ['Chips', 'One per line (education: memberships and languages).'];
 $GLOBALS['TL_LANG']['tl_content']['cardVariant'] = ['Look', 'Outline: a light frame for a dark section ("Kako izgleda saradnja"). Plain: no background (inside "Šta se dešava kada mi pišete").'];
 $GLOBALS['TL_LANG']['tl_content']['cardVariants'] = ['white' => 'White', 'dark' => 'Dark sage', 'green' => 'Light green', 'sand' => 'Sand', 'outline' => 'Outline (on dark)', 'plain' => 'Plain'];
 $GLOBALS['TL_LANG']['tl_content']['cardSize'] = ['Size', 'Small: smaller heading ("Možda prepoznajete"). Large: more room, for a single card next to a text. Compact: sans heading and smaller text, for cards with an icon.'];

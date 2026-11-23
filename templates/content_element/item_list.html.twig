@@ -1,0 +1,29 @@
+{#
+    Item list; the element itself is the list (ol, ul or div). Markup: html/strane/tema-*.html
+    (.approach__list), online-terapija.html (.icon-list, .time-zones), o-meni.html (.education,
+    .chips), kontakt.html (.after-message).
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% import '@Contao/component/_icon.html.twig' as icons %}
+
+{% set attributes = attrs(attributes|default).addClass(['item-list', 'item-list--' ~ style]) %}
+
+{% block wrapper_tag %}{{ tag }}{% endblock %}
+
+{% block inner %}
+    {%- for item in items -%}
+        {%- if style == 'steps' -%}
+            <li><span class="item-list__dot"></span><div><h3>{{ item.title }}</h3>{% if item.text %}<p>{{ item.text|inline_markup }}</p>{% endif %}</div></li>
+        {%- elseif style == 'checks' -%}
+            <li>{{ icons.icon('i-check') }}<span>{{ item.text ?: item.title }}</span></li>
+        {%- elseif style == 'timeline' -%}
+            <li><p class="item-list__label">{{ item.label }}</p><div><p class="item-list__title">{{ item.title }}</p>{% if item.text %}<p class="item-list__text">{{ item.text|inline_markup }}</p>{% endif %}</div></li>
+        {%- elseif style == 'pairs' -%}
+            <div><p>{{ item.label }}</p><p>{{ item.title }}</p></div>
+        {%- elseif style == 'tags' -%}
+            <span class="chip-outline">{{ item.title ?: item.text }}</span>
+        {%- else -%}
+            <div><h3>{{ item.title }}</h3>{% if item.text %}<p>{{ item.text|inline_markup }}</p>{% endif %}</div>
+        {%- endif -%}
+    {%- endfor -%}
+{% endblock %}

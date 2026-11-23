@@ -3,14 +3,12 @@
 declare(strict_types=1);
 
 /*
- * Generic subpage section (nested cards, steps, FAQ lists inside) and approach step.
+ * Generic subpage section (nested card grids, lists, boxes, FAQ lists inside).
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['section'] = '{type_legend},type,sectionLayout;{style_legend},sectionStyle,sectionSpacing,sectionGrid;{text_legend},eyebrow,introTitle,introText,text,introMeta;{list_legend:hide},sectionRows,sectionChips;{map_legend:hide},mapEmbedUrl,mapLinkUrl;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['section'] = '{type_legend},type,sectionLayout;{style_legend},sectionStyle,sectionSpacing;{text_legend},eyebrow,introTitle,introText,text,introMeta;{map_legend:hide},mapEmbedUrl,mapLinkUrl;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 // A section can hold only nested elements, or only a heading (ElementFieldsListener)
 $GLOBALS['TL_DCA']['tl_content']['optionalFields']['section'] = ['introTitle', 'text'];
-
-$GLOBALS['TL_DCA']['tl_content']['palettes']['step'] = '{type_legend},type;{text_legend},introTitle,introText;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['sectionLayout'] = [
     'inputType' => 'select',
@@ -27,20 +25,4 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['sectionSpacing'] = [
     'eval' => ['includeBlankOption' => true, 'tl_class' => 'w33'],
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ];
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['sectionGrid'] = [
-    'inputType' => 'select',
-    'options' => MilicaLazic\Controller\ContentElement\SectionController::GRIDS,
-    'reference' => &$GLOBALS['TL_LANG']['tl_content']['sectionGrids'],
-    'eval' => ['includeBlankOption' => true, 'tl_class' => 'w33'],
-    'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
-];
-
-foreach (['sectionRows', 'sectionChips'] as $field) {
-    $GLOBALS['TL_DCA']['tl_content']['fields'][$field] = [
-        'inputType' => 'textarea',
-        'eval' => ['rows' => 4, 'tl_class' => 'clr'],
-        'sql' => ['type' => 'text', 'notnull' => false],
-    ];
-}
 

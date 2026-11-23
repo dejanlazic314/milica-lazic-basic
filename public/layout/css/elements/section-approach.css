@@ -19,33 +19,6 @@
     .approach__head > p:last-child {
         color: var(--text-muted);
     }
-    .approach__list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .approach__list li {
-        display: flex;
-        gap: 20px;
-        padding: 24px 0;
-        border-top: 1px solid var(--line);
-    }
-    .approach__dot {
-        flex: 0 0 12px;
-        width: 12px;
-        height: 12px;
-        margin-top: 8px;
-        border-radius: 50%;
-        background: var(--apricot);
-    }
-    .approach__list h3 {
-        font-family: var(--font-body);
-        font-size: var(--h4);
-    }
-    .approach__list p {
-        font-size: var(--text-card);
-        color: var(--text-muted);
-    }
     @media (width >= 64em) {
         .approach {
             grid-template-columns: minmax(0, 360fr) minmax(0, 560fr);
