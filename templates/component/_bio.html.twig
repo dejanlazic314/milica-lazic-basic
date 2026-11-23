@@ -2,6 +2,7 @@
     Author bio box (Geštalt page and posts). Markup: html/strane/gestalt-terapija.html (aside.bio)
     bio = {text (rich text), link: {href, text}, figure}
 #}
+{% do add_assets('components/bio') %}
 {% use '@Contao/component/_picture.html.twig' %}
 <aside class="bio">
     {%- if bio.figure %}{% with {figure: bio.figure, img_attributes: attrs().set('alt', '').set('loading', 'lazy')} %}{{ block('picture_component') }}{% endwith %}{% endif -%}

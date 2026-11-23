@@ -1,0 +1,80 @@
+/* Row of filter links: categories on the posts page, anchors on the FAQ page (an HTML element in the back end), so it is on every page. */
+
+@layer elements {
+    .filter--anchors a {
+        border-color: var(--sage-300);
+    }
+    /* ---------- Posts (list): filter, featured, grid, empty state, load more ---------- */
+    .filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 8px;
+    }
+    .filter a,
+    .filter button {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--tap-min);
+        padding: 9px 18px;
+        border-radius: var(--radius-button);
+        border: 1.5px solid var(--sage-300);
+        background: transparent;
+        color: var(--text-heading);
+        font: inherit;
+        font-size: var(--text-desc);
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .filter [aria-current],
+    .filter [aria-pressed="true"] {
+        background: var(--sage-900);
+        border-color: var(--sage-900);
+        color: var(--white);
+    }
+    .filter__count {
+        margin-left: 6px;
+        font-weight: 500;
+        opacity: 0.7;
+    }
+    @media (max-width: 599px) {
+        .filter {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            margin: 0 calc(var(--gutter) * -1);
+            padding: 8px var(--gutter) 4px;
+            scrollbar-width: none;
+        }
+        .filter a,
+        .filter button {
+            flex: 0 0 auto;
+        }
+    }
+}
+@layer states {
+    /* ---- Filter, table of contents, form choice, cookies, breadcrumb, 404 ---- */
+    .filter a,
+    .filter button {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out);
+    }
+    @media (hover: hover) {
+        .filter a:not([aria-current]):hover,
+        .filter button:not([aria-pressed="true"]):hover {
+            border-color: var(--sage-700);
+            background: var(--sage-50);
+        }
+    }
+    .filter a:active {
+        background: var(--sage-100);
+    }
+    .filter a:focus-visible,
+    .filter button:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 999px;
+    }
+}

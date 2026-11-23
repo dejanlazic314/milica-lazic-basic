@@ -1,0 +1,18 @@
+/* Content element "post_teasers" (content_element/post_teasers). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    /* ---------- #tekstovi (home; content_element/post_teasers) ---------- */
+    .posts {
+        gap: 36px;
+    }
+    .posts__head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+    }
+    .posts .post-card {
+        padding: 32px;
+    }
+}

@@ -21,3 +21,8 @@
         </article>
     </div>
 {% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    {%- do add_assets('components/article') %}
+{% endblock %}

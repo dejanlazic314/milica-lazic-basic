@@ -1,0 +1,52 @@
+/* Content element "card_group" (content_element/card_group). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .how {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    .how h3 {
+        font-family: var(--font-heading);
+        font-weight: 500;
+        font-size: var(--h2-article);
+        color: var(--white);
+    }
+    .how__card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--line-on-dark);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+    }
+    .how__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: rgba(242, 180, 140, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--apricot-strong);
+    }
+    .how__icon .icon {
+        width: 28px;
+        height: 28px;
+    }
+    .how h4 {
+        font-size: var(--h4);
+        font-weight: 600;
+        color: var(--white);
+    }
+    .how p {
+        font-size: var(--text-desc);
+        color: var(--on-dark-muted);
+    }
+    @media (min-width: 1024px) {
+        .how__card {
+            padding: 30px 28px;
+        }
+    }
+}

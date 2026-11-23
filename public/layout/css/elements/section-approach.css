@@ -1,0 +1,55 @@
+/* Section layout or CSS class "approach" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer page {
+    .approach > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    /* ---------- Topic: approach (#kako; content_element/section, layout approach) ---------- */
+    .approach {
+        display: grid;
+        gap: 32px;
+    }
+    .approach__head {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .approach__head > p:last-child {
+        color: var(--text-muted);
+    }
+    .approach__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .approach__list li {
+        display: flex;
+        gap: 20px;
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+    }
+    .approach__dot {
+        flex: 0 0 12px;
+        width: 12px;
+        height: 12px;
+        margin-top: 8px;
+        border-radius: 50%;
+        background: var(--apricot);
+    }
+    .approach__list h3 {
+        font-size: var(--h4);
+        font-weight: 600;
+    }
+    .approach__list p {
+        font-size: var(--text-card);
+        color: var(--text-muted);
+    }
+    @media (min-width: 1024px) {
+        .approach {
+            grid-template-columns: minmax(0, 360fr) minmax(0, 560fr);
+            gap: 64px;
+        }
+    }
+}

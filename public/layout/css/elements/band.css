@@ -1,0 +1,95 @@
+/* Content element "band" (content_element/band). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    /* ---------- #online: white band with a branch (content_element/band) ---------- */
+    .online-band {
+        position: relative;
+        overflow: hidden;
+        background: var(--white);
+        border-radius: var(--radius-block);
+        padding: 28px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px 40px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .online-band__ornament {
+        position: absolute;
+        top: -30px;
+        right: -60px;
+        width: 220px;
+        opacity: 0.45;
+        pointer-events: none;
+    }
+    .online-band__text {
+        position: relative;
+        flex: 1 1 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .online-band h2 {
+        font-size: var(--h3-featured);
+        line-height: 1.1;
+    }
+    .online-band p {
+        color: var(--text-muted);
+    }
+    .online-band .btn {
+        position: relative;
+        font-weight: 500;
+    }
+    @media (min-width: 600px) {
+        .online-band {
+            padding: 44px 40px;
+        }
+        .online-band__ornament {
+            width: 240px;
+            right: -70px;
+            opacity: 0.3;
+        }
+    }
+    @media (min-width: 1024px) {
+        .online-band {
+            padding: 56px;
+        }
+        .online-band__ornament {
+            left: 44%;
+            right: auto;
+            width: 340px;
+            opacity: 0.6;
+        }
+        .online-band__text {
+            flex-basis: 520px;
+        }
+    }
+    /* ---------- CTA band at the end of subpages (content_element/band) ---------- */
+    .cta-band {
+        background: var(--apricot-100);
+        border-radius: var(--radius-large);
+        padding: var(--block-pad);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px 32px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .cta-band__text {
+        flex: 1 1 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .cta-band p {
+        color: var(--warm-text);
+    }
+    @media (min-width: 1024px) {
+        .cta-band {
+            padding: 56px;
+        }
+        .cta-band__text {
+            flex-basis: 520px;
+        }
+    }
+}

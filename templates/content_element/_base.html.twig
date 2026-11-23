@@ -1,0 +1,12 @@
+{#
+    Base of every content element (overrides the core one and extends it).
+    Adds the element's own CSS and JS by its type: public/layout/css/elements/<type>.css and
+    public/layout/js/elements/<type>.js, if they exist (src/Twig/AssetsExtension.php).
+    Not in the back end: there the previews use public/layout/css/backend.css only.
+#}
+{% extends '@Contao_ContaoCoreBundle/content_element/_base.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    {%- if not as_editor_view|default(false) %}{% do add_assets('elements/' ~ type) %}{% endif -%}
+{% endblock %}

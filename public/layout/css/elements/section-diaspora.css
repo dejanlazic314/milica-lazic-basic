@@ -1,0 +1,52 @@
+/* Section layout or CSS class "diaspora" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer page {
+    .diaspora > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    .diaspora {
+        display: grid;
+        gap: 32px;
+        align-items: center;
+    }
+    .diaspora__text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .diaspora__text > p:nth-of-type(2) {
+        color: var(--text-muted);
+    }
+    .diaspora__text > p:last-child {
+        font-size: var(--text-card);
+        color: var(--text-muted);
+    }
+    .time-zones {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    .time-zones div {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: 18px;
+        padding: 18px 20px;
+    }
+    .time-zones p:first-child {
+        font-size: var(--text-note);
+        color: var(--label);
+    }
+    .time-zones p + p {
+        margin-top: 2px;
+        font-weight: 600;
+        color: var(--text-heading);
+    }
+    @media (min-width: 1024px) {
+        .diaspora {
+            grid-template-columns: minmax(0, 520fr) minmax(0, 380fr);
+            gap: 48px;
+        }
+    }
+}

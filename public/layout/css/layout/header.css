@@ -1,396 +1,420 @@
 /* =========================================================
    Header: info bar + sticky main row + submenu
-   Markup: templates/frontend_module/site_header.html.twig · behaviour: js/header.js
+   Markup: templates/frontend_module/site_header.html.twig · behaviour: js/layout/header.js
    ========================================================= */
 
-/* Info bar (scrolls with the page) */
-.info-bar {
-    background: var(--sage-700);
-    color: var(--on-dark);
-    font-size: 13px;
-}
-.info-bar__inner {
-    max-width: var(--width);
-    margin: 0 auto;
-    padding: 9px var(--gutter);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-.info-bar a {
-    color: var(--on-dark);
-    text-decoration: none;
-}
-.info-bar a:hover {
-    color: var(--white);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-.info-bar__right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-.lang-switch {
-    display: inline-flex;
-    gap: 6px;
-    font-weight: 600;
-    color: var(--sage-300);
-}
-.lang-switch [aria-current] {
-    color: var(--white);
-}
-
-/* Main row – sticky */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(246, 247, 242, 0.97);
-    border-bottom: 1px solid var(--line);
-    transition: box-shadow 0.25s ease;
-}
-.header__inner {
-    max-width: var(--width);
-    margin: 0 auto;
-    padding: 20px var(--gutter);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    transition: padding 0.25s ease;
-}
-.header.is-scrolled {
-    box-shadow: 0 10px 24px -22px rgba(38, 48, 31, 0.6);
-}
-.header.is-scrolled .header__inner {
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-/* Logo */
-.logo-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-    color: var(--text);
-}
-.logo-link img {
-    display: block;
-    width: 46px;
-    height: 46px;
-    transition:
-        width 0.25s ease,
-        height 0.25s ease;
-}
-.header.is-scrolled .logo-link img {
-    width: 36px;
-    height: 36px;
-}
-.logo-link__name {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 1.1;
-}
-.logo-link__role {
-    display: block;
-    white-space: nowrap;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--label);
-}
-
-/* Menu – desktop */
-.header__right {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-}
-.header__right > .btn {
-    gap: 0;
-}
-.main-menu {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-.main-menu > li > a {
-    color: var(--text-menu);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-.main-menu > li > a[aria-current],
-.main-menu > li.trail > a {
-    color: var(--text-heading);
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--apricot);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 7px;
-}
-
-/* Submenu (level 2) */
-.nav-dd {
-    position: relative;
-}
-.nav-dd-panel {
-    position: absolute;
-    top: 100%;
-    left: -28px;
-    padding-top: 18px;
-    z-index: 20;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(6px);
-    transition:
-        opacity var(--fast) ease,
-        transform var(--fast) ease,
-        visibility 0s linear var(--fast);
-}
-.nav-dd:hover .nav-dd-panel,
-.nav-dd:focus-within .nav-dd-panel,
-.nav-dd.is-open .nav-dd-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition:
-        opacity var(--fast) ease,
-        transform var(--fast) ease;
-}
-.nav-chev {
-    transition: transform var(--fast) ease;
-}
-.nav-dd:hover .nav-chev,
-.nav-dd:focus-within .nav-chev,
-.nav-dd.is-open .nav-chev {
-    transform: rotate(180deg);
-}
-.nav-dd:hover > a,
-.nav-dd:focus-within > a {
-    color: var(--sage-700);
-    text-decoration: underline;
-    text-decoration-color: var(--apricot);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 7px;
-}
-
-.submenu {
-    background: var(--white);
-    border: 1px solid var(--line-warm);
-    border-radius: 22px;
-    box-shadow: var(--shadow-menu);
-    padding: 10px;
-    width: 600px;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 1fr 250px;
-    gap: 10px;
-}
-.submenu__list {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-.dd-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 11px 14px;
-    border-radius: 14px;
-    color: var(--text-heading);
-    text-decoration: none;
-    transition: background-color 0.15s ease;
-}
-.dd-item strong {
-    font-weight: 600;
-    font-size: 15px;
-}
-.dd-item span {
-    font-size: 13px;
-    color: var(--text-faint);
-}
-.dd-item:hover,
-.dd-item:focus-visible {
-    background: var(--sage-50);
-    outline: none;
-}
-.dd-item:active {
-    background: var(--sage-100);
-}
-.dd-item--all {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 14px;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--sage-700);
-}
-
-.submenu__card {
-    align-self: start;
-    background: var(--apricot-50);
-    border-radius: 18px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-.submenu__card .label {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--warm-muted);
-    font-weight: 600;
-}
-.submenu__card .title {
-    font-family: var(--font-heading);
-    font-size: 23px;
-    font-weight: 600;
-    line-height: 1.15;
-    color: var(--text-heading);
-}
-.submenu__card p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--text-muted);
-}
-.submenu__card .actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 1023px) {
+@layer layout {
+    /* Info bar (scrolls with the page) */
+    .info-bar {
+        background: var(--sage-700);
+        color: var(--on-dark);
+        font-size: 13px;
+    }
     .info-bar__inner {
-        justify-content: center;
-        padding: 7px var(--gutter);
-        font-size: 12px;
-    }
-    .info-bar__right {
-        display: none;
-    }
-    .header__inner {
-        padding: 14px var(--gutter);
-    }
-    .header.is-scrolled .header__inner {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .logo-link {
-        gap: 10px;
-    }
-    .logo-link img {
-        width: 38px;
-        height: 38px;
-    }
-    .header.is-scrolled .logo-link img {
-        width: 32px;
-        height: 32px;
-    }
-    .logo-link__name {
-        font-size: 22px;
-    }
-    .logo-link__role {
-        font-size: 10px;
-    }
-    .main-menu {
-        display: none;
-    }
-    .header__right {
-        gap: 8px;
-    }
-    .header__right .btn-apricot {
-        padding: 10px 16px;
-        font-size: 14px;
-    }
-    /* "Zakažite razgovor" → "Zakažite" */
-    .header__right .btn-apricot .longer {
-        display: none;
-    }
-}
-@media (prefers-reduced-motion: reduce) {
-    .nav-dd-panel {
-        transform: none !important;
-    }
-}
-
-/* "Skip to content" link – visible only on keyboard focus */
-.skip-link {
-    position: absolute;
-    left: 16px;
-    top: -60px;
-    z-index: 100;
-    background: var(--sage-900);
-    color: var(--white);
-    padding: 10px 16px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-}
-.skip-link:focus {
-    top: 12px;
-}
-.lang-switch a {
-    text-decoration: none;
-}
-/* Narrow phones (reflow 320 px) */
-@media (max-width: 399px) {
-    .logo-link__role {
-        display: none;
-    }
-    .logo-link img {
-        width: 32px;
-        height: 32px;
-    }
-    .logo-link__name {
-        font-size: 20px;
-    }
-}
-@media (max-width: 359px) {
-    .header__right > .btn-apricot {
-        display: none;
-    }
-}
-
-/* Not in the design: between 1024 and 1199 px the full menu did not fit on one line (the items
-   wrapped to two lines, the longer English labels even more). No wrapping, smaller gaps and the
-   short button text ("Zakažite" / "Book") as on tablets. */
-.main-menu > li > a {
-    white-space: nowrap;
-}
-@media (min-width: 1024px) and (max-width: 1199px) {
-    .header__inner {
+        max-width: var(--width);
+        margin: 0 auto;
+        padding: 9px var(--gutter);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         gap: 16px;
     }
+    .info-bar a {
+        color: var(--on-dark);
+        text-decoration: none;
+    }
+    .info-bar a:hover {
+        color: var(--white);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+    .info-bar__right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+    .lang-switch {
+        display: inline-flex;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--sage-300);
+    }
+    .lang-switch [aria-current] {
+        color: var(--white);
+    }
+    /* Main row – sticky */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(246, 247, 242, 0.97);
+        border-bottom: 1px solid var(--line);
+        transition: box-shadow 0.25s ease;
+    }
+    .header__inner {
+        max-width: var(--width);
+        margin: 0 auto;
+        padding: 20px var(--gutter);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        transition: padding 0.25s ease;
+    }
+    .header.is-scrolled {
+        box-shadow: 0 10px 24px -22px rgba(38, 48, 31, 0.6);
+    }
+    .header.is-scrolled .header__inner {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    /* Logo */
+    .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        color: var(--text);
+    }
+    .logo-link img {
+        display: block;
+        width: 46px;
+        height: 46px;
+        transition:
+            width 0.25s ease,
+            height 0.25s ease;
+    }
+    .header.is-scrolled .logo-link img {
+        width: 36px;
+        height: 36px;
+    }
+    .logo-link__name {
+        display: block;
+        font-family: var(--font-heading);
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.1;
+    }
+    .logo-link__role {
+        display: block;
+        white-space: nowrap;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--label);
+    }
+    /* Menu – desktop */
     .header__right {
-        gap: 20px;
+        display: flex;
+        align-items: center;
+        gap: 36px;
+    }
+    .header__right > .btn {
+        gap: 0;
     }
     .main-menu {
-        gap: 20px;
-        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
-    .header__right .btn-apricot .longer {
-        display: none;
+    .main-menu > li > a {
+        color: var(--text-menu);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
-    /* the 600 px submenu, centred under its item, stays inside the window */
+    .main-menu > li > a[aria-current],
+    .main-menu > li.trail > a {
+        color: var(--text-heading);
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: var(--apricot);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 7px;
+    }
+    /* Submenu (level 2) */
+    .nav-dd {
+        position: relative;
+    }
     .nav-dd-panel {
-        left: 50%;
-        translate: -50% 0;
+        position: absolute;
+        top: 100%;
+        left: -28px;
+        padding-top: 18px;
+        z-index: 20;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition:
+            opacity var(--fast) ease,
+            transform var(--fast) ease,
+            visibility 0s linear var(--fast);
+    }
+    .nav-dd:hover .nav-dd-panel,
+    .nav-dd:focus-within .nav-dd-panel,
+    .nav-dd.is-open .nav-dd-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition:
+            opacity var(--fast) ease,
+            transform var(--fast) ease;
+    }
+    .nav-chev {
+        transition: transform var(--fast) ease;
+    }
+    .nav-dd:hover .nav-chev,
+    .nav-dd:focus-within .nav-chev,
+    .nav-dd.is-open .nav-chev {
+        transform: rotate(180deg);
+    }
+    .nav-dd:hover > a,
+    .nav-dd:focus-within > a {
+        color: var(--sage-700);
+        text-decoration: underline;
+        text-decoration-color: var(--apricot);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 7px;
+    }
+    .submenu {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: 22px;
+        box-shadow: var(--shadow-menu);
+        padding: 10px;
+        width: 600px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 250px;
+        gap: 10px;
+    }
+    .submenu__list {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .dd-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 11px 14px;
+        border-radius: 14px;
+        color: var(--text-heading);
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+    }
+    .dd-item strong {
+        font-weight: 600;
+        font-size: 15px;
+    }
+    .dd-item span {
+        font-size: 13px;
+        color: var(--text-faint);
+    }
+    .dd-item:hover,
+    .dd-item:focus-visible {
+        background: var(--sage-50);
+        outline: none;
+    }
+    .dd-item:active {
+        background: var(--sage-100);
+    }
+    .dd-item--all {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 14px;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--sage-700);
+    }
+    .submenu__card {
+        align-self: start;
+        background: var(--apricot-50);
+        border-radius: 18px;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .submenu__card .label {
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--warm-muted);
+        font-weight: 600;
+    }
+    .submenu__card .title {
+        font-family: var(--font-heading);
+        font-size: 23px;
+        font-weight: 600;
+        line-height: 1.15;
+        color: var(--text-heading);
+    }
+    .submenu__card p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text-muted);
+    }
+    .submenu__card .actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    @media (max-width: 1023px) {
+        .info-bar__inner {
+            justify-content: center;
+            padding: 7px var(--gutter);
+            font-size: 12px;
+        }
+        .info-bar__right {
+            display: none;
+        }
+        .header__inner {
+            padding: 14px var(--gutter);
+        }
+        .header.is-scrolled .header__inner {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .logo-link {
+            gap: 10px;
+        }
+        .logo-link img {
+            width: 38px;
+            height: 38px;
+        }
+        .header.is-scrolled .logo-link img {
+            width: 32px;
+            height: 32px;
+        }
+        .logo-link__name {
+            font-size: 22px;
+        }
+        .logo-link__role {
+            font-size: 10px;
+        }
+        .main-menu {
+            display: none;
+        }
+        .header__right {
+            gap: 8px;
+        }
+        .header__right .btn-apricot {
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+        /* "Zakažite razgovor" → "Zakažite" */
+        .header__right .btn-apricot .longer {
+            display: none;
+        }
+    }
+    /* "Skip to content" link – visible only on keyboard focus */
+    .skip-link {
+        position: absolute;
+        left: 16px;
+        top: -60px;
+        z-index: 100;
+        background: var(--sage-900);
+        color: var(--white);
+        padding: 10px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .skip-link:focus {
+        top: 12px;
+    }
+    .lang-switch a {
+        text-decoration: none;
+    }
+    @media (max-width: 399px) {
+        .logo-link__role {
+            display: none;
+        }
+        .logo-link img {
+            width: 32px;
+            height: 32px;
+        }
+        .logo-link__name {
+            font-size: 20px;
+        }
+    }
+    @media (max-width: 359px) {
+        .header__right > .btn-apricot {
+            display: none;
+        }
+    }
+    /* Not in the design: between 1024 and 1199 px the full menu did not fit on one line (the items
+       wrapped to two lines, the longer English labels even more). No wrapping, smaller gaps and the
+       short button text ("Zakažite" / "Book") as on tablets. */
+    .main-menu > li > a {
+        white-space: nowrap;
+    }
+    @media (min-width: 1024px) and (max-width: 1199px) {
+        .header__inner {
+            gap: 16px;
+        }
+        .header__right {
+            gap: 20px;
+        }
+        .main-menu {
+            gap: 20px;
+            font-size: 14px;
+        }
+        .header__right .btn-apricot .longer {
+            display: none;
+        }
+        /* the 600 px submenu, centred under its item, stays inside the window */
+        .nav-dd-panel {
+            left: 50%;
+            translate: -50% 0;
+        }
+    }
+}
+@layer states {
+    .nav-link {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out),
+            box-shadow var(--hover) var(--ease-out),
+            transform var(--hover) var(--ease-out),
+            text-decoration-color var(--hover) var(--ease-out);
+    }
+    @media (hover: hover) {
+        /* Links */
+        .nav-link:hover {
+            color: var(--sage-700);
+            text-decoration: underline;
+            text-decoration-color: var(--apricot);
+            text-underline-offset: 7px;
+        }
+    }
+    .nav-link[aria-current] {
+        text-decoration: underline;
+        text-decoration-color: var(--apricot);
+        text-underline-offset: 7px;
+    }
+    .nav-link:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 12px;
+    }
+}
+@layer utilities {
+    @media (prefers-reduced-motion: reduce) {
+        .nav-dd-panel {
+            transform: none;
+        }
     }
 }

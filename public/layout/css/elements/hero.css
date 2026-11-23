@@ -1,0 +1,114 @@
+/* Content element "hero" (content_element/hero). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .hero {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        min-height: 720px;
+        background: var(--sage-900);
+        isolation: isolate;
+    }
+    .hero__photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 60% 50%;
+        z-index: -2;
+    }
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+            0deg,
+            rgba(var(--overlay-rgb), 0.92) 0%,
+            rgba(var(--overlay-rgb), 0.75) 55%,
+            rgba(var(--overlay-rgb), 0.2) 100%
+        );
+    }
+    .hero__inner {
+        width: 100%;
+        max-width: var(--width);
+        margin: 0 auto;
+        padding: 200px var(--gutter) 48px;
+    }
+    .hero__content {
+        max-width: 640px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    .hero__eyebrow {
+        font-size: var(--text-meta);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apricot);
+        font-weight: 600;
+    }
+    .hero h1 {
+        font-size: var(--h1);
+        color: var(--white);
+    }
+    .hero h1 em {
+        color: var(--apricot);
+    }
+    .hero__intro {
+        font-size: var(--text-lead);
+        max-width: 540px;
+        color: var(--on-dark);
+    }
+    .hero .actions {
+        gap: 14px;
+    }
+    .hero .btn {
+        font-size: 16px;
+    }
+    .hero__status {
+        font-size: var(--text-meta);
+        color: var(--on-dark);
+    }
+    /* without a photo: dark sage + circle */
+    .hero--no-photo {
+        background: var(--sage-800);
+    }
+    .hero--no-photo::before {
+        display: none;
+    }
+    @media (min-width: 600px) {
+        .hero {
+            min-height: 640px;
+        }
+        .hero__inner {
+            padding: 180px var(--gutter) 64px;
+        }
+    }
+    @media (min-width: 1024px) {
+        .hero {
+            align-items: center;
+            min-height: 680px;
+        }
+        .hero::before {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--overlay-rgb), 0.88) 0%,
+                rgba(var(--overlay-rgb), 0.7) 38%,
+                rgba(var(--overlay-rgb), 0.15) 70%,
+                rgba(var(--overlay-rgb), 0) 100%
+            );
+        }
+        .hero__inner {
+            padding: 112px var(--gutter) 104px;
+        }
+    }
+}
+@layer states {
+    .hero .btn:focus-visible {
+        outline: 3px solid var(--apricot);
+        outline-offset: 3px;
+    }
+}

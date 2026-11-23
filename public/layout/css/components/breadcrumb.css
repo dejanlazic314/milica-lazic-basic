@@ -1,57 +1,78 @@
 /* Breadcrumb (templates/component/_breadcrumb.html.twig). */
 
-.breadcrumb {
-    font-size: var(--text-meta);
-    color: var(--label);
-}
-.breadcrumb ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 4px 0;
-}
-.breadcrumb li {
-    display: inline-flex;
-    align-items: center;
-}
-.breadcrumb li + li::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    margin: 0 10px;
-    border-right: 1.5px solid var(--sage-300);
-    border-top: 1.5px solid var(--sage-300);
-    transform: rotate(45deg);
-}
-.breadcrumb a {
-    color: var(--label);
-    text-decoration: underline;
-    text-decoration-color: var(--sage-300);
-    text-underline-offset: 3px;
-    padding: 6px 0;
-}
-.breadcrumb [aria-current] {
-    color: var(--text-heading);
-    font-weight: 600;
-}
-/* Phone: only "← parent" (the full trail stays in the JSON-LD) */
-.breadcrumb__back {
-    display: none;
-}
-@media (max-width: 599px) {
-    .breadcrumb--short ol {
-        display: none;
+@layer components {
+    .breadcrumb {
+        font-size: var(--text-meta);
+        color: var(--label);
     }
-    .breadcrumb--short .breadcrumb__back {
+    .breadcrumb ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 0;
+    }
+    .breadcrumb li {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        min-height: var(--tap-min);
+    }
+    .breadcrumb li + li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin: 0 10px;
+        border-right: 1.5px solid var(--sage-300);
+        border-top: 1.5px solid var(--sage-300);
+        transform: rotate(45deg);
+    }
+    .breadcrumb a {
         color: var(--label);
+        text-decoration: underline;
+        text-decoration-color: var(--sage-300);
+        text-underline-offset: 3px;
+        padding: 6px 0;
+    }
+    .breadcrumb [aria-current] {
+        color: var(--text-heading);
         font-weight: 600;
-        text-decoration: none;
+    }
+    /* Phone: only "← parent" (the full trail stays in the JSON-LD) */
+    .breadcrumb__back {
+        display: none;
+    }
+    @media (max-width: 599px) {
+        .breadcrumb--short ol {
+            display: none;
+        }
+        .breadcrumb--short .breadcrumb__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: var(--tap-min);
+            color: var(--label);
+            font-weight: 600;
+            text-decoration: none;
+        }
+    }
+}
+@layer states {
+    .breadcrumb a {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out);
+    }
+    @media (hover: hover) {
+        .breadcrumb a:hover {
+            color: var(--text-heading);
+            text-decoration-color: var(--sage-700);
+        }
+    }
+    .breadcrumb a:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 999px;
     }
 }

@@ -1,278 +1,281 @@
 /* ---------- "Three circles" diagram (#gestalt and the Gestalt page; component/_circles, variant .circles--light) ---------- */
-.circles {
-    --scale: 0.66;
-    position: relative;
-    width: 520px;
-    height: 520px;
-    flex: 0 0 auto;
-    zoom: var(--scale);
-}
-.circles__box {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1.5px dashed var(--sage);
-}
-.circles__caption {
-    position: absolute;
-    left: 50%;
-    top: -12px;
-    transform: translateX(-50%);
-    background: var(--sage-800);
-    padding: 2px 12px;
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage-300);
-    font-weight: 600;
-    white-space: nowrap;
-}
-.circles__k {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    border: 1.5px solid;
-}
-.circles__k--thoughts {
-    left: 120px;
-    top: 48px;
-    border-color: var(--sage-400);
-}
-.circles__k--feelings {
-    left: 48px;
-    top: 186px;
-    border-color: var(--apricot-strong);
-}
-.circles__k--body {
-    left: 192px;
-    top: 186px;
-    border-color: var(--sage-200);
-}
-.circles__label {
-    position: absolute;
-    width: 150px;
-    transform: translateX(-50%);
-    text-align: center;
-}
-.circles__label p:first-child {
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--white);
-}
-.circles__label p + p {
-    margin-top: 2px;
-    font-size: var(--text-note);
-    line-height: 1.35;
-    color: var(--sage-300);
-}
-.circles__label--thoughts {
-    left: 260px;
-    top: 104px;
-}
-.circles__label--feelings {
-    left: 130px;
-    top: 330px;
-}
-.circles__label--body {
-    left: 390px;
-    top: 330px;
-}
-.circles__center {
-    position: absolute;
-    left: 260px;
-    top: 262px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-.circles__center span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--apricot-strong);
-}
-.circles__center p {
-    text-align: center;
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.05;
-    color: var(--white);
-}
-.circles--light .circles__box {
-    border-color: var(--sage-400);
-}
-.circles--light .circles__caption {
-    background: var(--white);
-    color: var(--label);
-}
-.circles--light .circles__k {
-    mix-blend-mode: multiply;
-}
-.circles--light .circles__k--thoughts {
-    background: var(--sage-200);
-    border-color: var(--sage-500);
-}
-.circles--light .circles__k--feelings {
-    background: var(--apricot-100);
-    border-color: var(--apricot-active);
-}
-.circles--light .circles__k--body {
-    background: var(--sage-150);
-    border-color: var(--sage);
-}
-.circles--light .circles__label p:first-child,
-.circles--light .circles__center p {
-    color: var(--text-heading);
-}
-.circles--light .circles__label p + p {
-    color: var(--text-muted);
-}
-.circles--light .circles__center span {
-    background: var(--apricot-underline);
-}
-@media (max-width: 399px) {
+
+@layer components {
     .circles {
-        --scale: 0.52;
+        --scale: 0.66;
+        position: relative;
+        width: 520px;
+        height: 520px;
+        flex: 0 0 auto;
+        zoom: var(--scale);
     }
-}
-@media (min-width: 600px) {
-    .circles {
-        --scale: 0.8;
+    .circles__box {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1.5px dashed var(--sage);
     }
-}
-@media (min-width: 1024px) {
-    .circles {
-        --scale: 1;
+    .circles__caption {
+        position: absolute;
+        left: 50%;
+        top: -12px;
+        transform: translateX(-50%);
+        background: var(--sage-800);
+        padding: 2px 12px;
+        font-size: var(--text-label);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sage-300);
+        font-weight: 600;
+        white-space: nowrap;
     }
-    .circles--inline {
-        --scale: 0.8;
+    .circles__k {
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        border: 1.5px solid;
     }
-}
-/* Not in the design: the diagram assembles once when it scrolls into view (js/circles.js adds
-   .is-waiting below the first screen, then .is-playing). No line drawing (rejected in the design).
-   "scale"/"translate" instead of "transform", which positions the caption, labels and center. */
-.circles.is-waiting > * {
-    opacity: 0;
-}
-.circles.is-playing > * {
-    animation: circles-rise 0.9s var(--ease-out) both;
-}
-.circles.is-playing .circles__box {
-    animation-name: circles-box;
-    animation-duration: 1.2s;
-}
-.circles.is-playing .circles__caption {
-    animation-delay: 0.2s;
-}
-.circles.is-playing .circles__k {
-    animation-name: circles-grow;
-    animation-duration: 1s;
-}
-.circles.is-playing .circles__label {
-    animation-name: circles-fade;
-}
-.circles.is-playing .circles__k--thoughts {
-    animation-delay: 0.3s;
-}
-.circles.is-playing .circles__label--thoughts {
-    animation-delay: 0.45s;
-}
-.circles.is-playing .circles__k--feelings {
-    animation-delay: 0.55s;
-}
-.circles.is-playing .circles__label--feelings {
-    animation-delay: 0.7s;
-}
-.circles.is-playing .circles__k--body {
-    animation-delay: 0.8s;
-}
-.circles.is-playing .circles__label--body {
-    animation-delay: 0.95s;
-}
-.circles.is-playing .circles__center {
-    animation-name: circles-fade;
-    animation-delay: 1.25s;
-}
-.circles.is-playing .circles__center span {
-    animation: circles-dot 1.4s var(--ease-out) 1.25s both;
-}
-@keyframes circles-rise {
-    from {
+    .circles__k--thoughts {
+        left: 120px;
+        top: 48px;
+        border-color: var(--sage-400);
+    }
+    .circles__k--feelings {
+        left: 48px;
+        top: 186px;
+        border-color: var(--apricot-strong);
+    }
+    .circles__k--body {
+        left: 192px;
+        top: 186px;
+        border-color: var(--sage-200);
+    }
+    .circles__label {
+        position: absolute;
+        width: 150px;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    .circles__label p:first-child {
+        font-family: var(--font-heading);
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.1;
+        color: var(--white);
+    }
+    .circles__label p + p {
+        margin-top: 2px;
+        font-size: var(--text-note);
+        line-height: 1.35;
+        color: var(--sage-300);
+    }
+    .circles__label--thoughts {
+        left: 260px;
+        top: 104px;
+    }
+    .circles__label--feelings {
+        left: 130px;
+        top: 330px;
+    }
+    .circles__label--body {
+        left: 390px;
+        top: 330px;
+    }
+    .circles__center {
+        position: absolute;
+        left: 260px;
+        top: 262px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+    .circles__center span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--apricot-strong);
+    }
+    .circles__center p {
+        text-align: center;
+        font-family: var(--font-heading);
+        font-style: italic;
+        font-size: 22px;
+        line-height: 1.05;
+        color: var(--white);
+    }
+    .circles--light .circles__box {
+        border-color: var(--sage-400);
+    }
+    .circles--light .circles__caption {
+        background: var(--white);
+        color: var(--label);
+    }
+    .circles--light .circles__k {
+        mix-blend-mode: multiply;
+    }
+    .circles--light .circles__k--thoughts {
+        background: var(--sage-200);
+        border-color: var(--sage-500);
+    }
+    .circles--light .circles__k--feelings {
+        background: var(--apricot-100);
+        border-color: var(--apricot-active);
+    }
+    .circles--light .circles__k--body {
+        background: var(--sage-150);
+        border-color: var(--sage);
+    }
+    .circles--light .circles__label p:first-child,
+    .circles--light .circles__center p {
+        color: var(--text-heading);
+    }
+    .circles--light .circles__label p + p {
+        color: var(--text-muted);
+    }
+    .circles--light .circles__center span {
+        background: var(--apricot-underline);
+    }
+    @media (max-width: 399px) {
+        .circles {
+            --scale: 0.52;
+        }
+    }
+    @media (min-width: 600px) {
+        .circles {
+            --scale: 0.8;
+        }
+    }
+    @media (min-width: 1024px) {
+        .circles {
+            --scale: 1;
+        }
+        .circles--inline {
+            --scale: 0.8;
+        }
+    }
+    /* Not in the design: the diagram assembles once when it scrolls into view (js/components/circles.js adds
+       .is-waiting below the first screen, then .is-playing). No line drawing (rejected in the design).
+       "scale"/"translate" instead of "transform", which positions the caption, labels and center. */
+    .circles.is-waiting > * {
         opacity: 0;
-        translate: 0 10px;
     }
-}
-@keyframes circles-fade {
-    from {
-        opacity: 0;
+    .circles.is-playing > * {
+        animation: circles-rise 0.9s var(--ease-out) both;
     }
-}
-@keyframes circles-box {
-    from {
-        opacity: 0;
-        scale: 0.94;
-        rotate: -10deg;
+    .circles.is-playing .circles__box {
+        animation-name: circles-box;
+        animation-duration: 1.2s;
     }
-}
-@keyframes circles-grow {
-    from {
-        opacity: 0;
-        scale: 0.82;
+    .circles.is-playing .circles__caption {
+        animation-delay: 0.2s;
     }
-}
-@keyframes circles-dot {
-    0% {
-        scale: 0;
-        box-shadow: 0 0 0 0 rgba(242, 180, 140, 0.55);
+    .circles.is-playing .circles__k {
+        animation-name: circles-grow;
+        animation-duration: 1s;
     }
-    35% {
-        scale: 1.35;
+    .circles.is-playing .circles__label {
+        animation-name: circles-fade;
     }
-    55% {
-        scale: 1;
-        box-shadow: 0 0 0 0 rgba(242, 180, 140, 0.55);
+    .circles.is-playing .circles__k--thoughts {
+        animation-delay: 0.3s;
     }
-    100% {
-        scale: 1;
-        box-shadow: 0 0 0 16px rgba(242, 180, 140, 0);
+    .circles.is-playing .circles__label--thoughts {
+        animation-delay: 0.45s;
     }
-}
-/* Not in the design: pointing at a part brings it forward and quiets the other two
-   (js/circles.js sets data-focus on .circles) */
-.circles__k,
-.circles__label {
-    transition:
-        opacity var(--hover) var(--ease-out),
-        scale var(--hover) var(--ease-out),
-        background-color var(--hover) var(--ease-out);
-}
-.circles__label,
-.circles__center {
-    z-index: 2;
-}
-.circles[data-focus] .circles__k,
-.circles[data-focus] .circles__label {
-    opacity: 0.3;
-}
-.circles[data-focus="thoughts"] [data-part="thoughts"],
-.circles[data-focus="feelings"] [data-part="feelings"],
-.circles[data-focus="body"] [data-part="body"] {
-    opacity: 1;
-}
-.circles[data-focus="thoughts"] .circles__k--thoughts,
-.circles[data-focus="feelings"] .circles__k--feelings,
-.circles[data-focus="body"] .circles__k--body {
-    z-index: 1;
-    scale: 1.04;
-}
-.circles:not(.circles--light)[data-focus="thoughts"] .circles__k--thoughts,
-.circles:not(.circles--light)[data-focus="feelings"] .circles__k--feelings,
-.circles:not(.circles--light)[data-focus="body"] .circles__k--body {
-    background-color: rgba(255, 255, 255, 0.07);
+    .circles.is-playing .circles__k--feelings {
+        animation-delay: 0.55s;
+    }
+    .circles.is-playing .circles__label--feelings {
+        animation-delay: 0.7s;
+    }
+    .circles.is-playing .circles__k--body {
+        animation-delay: 0.8s;
+    }
+    .circles.is-playing .circles__label--body {
+        animation-delay: 0.95s;
+    }
+    .circles.is-playing .circles__center {
+        animation-name: circles-fade;
+        animation-delay: 1.25s;
+    }
+    .circles.is-playing .circles__center span {
+        animation: circles-dot 1.4s var(--ease-out) 1.25s both;
+    }
+    @keyframes circles-rise {
+        from {
+            opacity: 0;
+            translate: 0 10px;
+        }
+    }
+    @keyframes circles-fade {
+        from {
+            opacity: 0;
+        }
+    }
+    @keyframes circles-box {
+        from {
+            opacity: 0;
+            scale: 0.94;
+            rotate: -10deg;
+        }
+    }
+    @keyframes circles-grow {
+        from {
+            opacity: 0;
+            scale: 0.82;
+        }
+    }
+    @keyframes circles-dot {
+        0% {
+            scale: 0;
+            box-shadow: 0 0 0 0 rgba(242, 180, 140, 0.55);
+        }
+        35% {
+            scale: 1.35;
+        }
+        55% {
+            scale: 1;
+            box-shadow: 0 0 0 0 rgba(242, 180, 140, 0.55);
+        }
+        100% {
+            scale: 1;
+            box-shadow: 0 0 0 16px rgba(242, 180, 140, 0);
+        }
+    }
+    /* Not in the design: pointing at a part brings it forward and quiets the other two
+       (js/components/circles.js sets data-focus on .circles) */
+    .circles__k,
+    .circles__label {
+        transition:
+            opacity var(--hover) var(--ease-out),
+            scale var(--hover) var(--ease-out),
+            background-color var(--hover) var(--ease-out);
+    }
+    .circles__label,
+    .circles__center {
+        z-index: 2;
+    }
+    .circles[data-focus] .circles__k,
+    .circles[data-focus] .circles__label {
+        opacity: 0.3;
+    }
+    .circles[data-focus="thoughts"] [data-part="thoughts"],
+    .circles[data-focus="feelings"] [data-part="feelings"],
+    .circles[data-focus="body"] [data-part="body"] {
+        opacity: 1;
+    }
+    .circles[data-focus="thoughts"] .circles__k--thoughts,
+    .circles[data-focus="feelings"] .circles__k--feelings,
+    .circles[data-focus="body"] .circles__k--body {
+        z-index: 1;
+        scale: 1.04;
+    }
+    .circles:not(.circles--light)[data-focus="thoughts"] .circles__k--thoughts,
+    .circles:not(.circles--light)[data-focus="feelings"] .circles__k--feelings,
+    .circles:not(.circles--light)[data-focus="body"] .circles__k--body {
+        background-color: rgba(255, 255, 255, 0.07);
+    }
 }

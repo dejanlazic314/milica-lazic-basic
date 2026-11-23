@@ -1,0 +1,27 @@
+/* Content element "summary" (content_element/summary). Loaded with the element (content_element/_base). */
+
+@layer components {
+    .summary {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: var(--radius-card);
+        padding: 24px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .summary ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--text-strong);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    @media (min-width: 1024px) {
+        .summary {
+            padding: 28px 32px;
+            gap: 10px;
+        }
+    }
+}

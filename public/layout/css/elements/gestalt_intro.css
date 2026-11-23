@@ -1,0 +1,67 @@
+/* Content element "gestalt_intro" (content_element/gestalt_intro). Loaded with the element (content_element/_base). */
+
+@layer page {
+    .gestalt__top > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    .gestalt {
+        background: var(--sage-800);
+        color: var(--bg);
+        padding-top: calc(var(--section) + 16px);
+        padding-bottom: calc(var(--section) + 16px);
+    }
+    .gestalt__stack {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+    }
+    .gestalt__top {
+        display: grid;
+        gap: 40px;
+        align-items: center;
+    }
+    .gestalt__text {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+    .gestalt h2 {
+        color: var(--white);
+        line-height: 1.02;
+    }
+    .gestalt h2 em {
+        color: var(--apricot-strong);
+    }
+    .gestalt__intro {
+        font-size: var(--text-lead);
+        line-height: 1.6;
+        color: var(--on-dark);
+    }
+    .gestalt__text > p:not([class]) {
+        color: var(--on-dark-muted);
+    }
+    .gestalt .btn-outline-apricot {
+        align-self: flex-start;
+    }
+    .gestalt__diagram {
+        display: flex;
+        justify-content: center;
+    }
+    @media (min-width: 1024px) {
+        .gestalt__stack {
+            gap: 96px;
+        }
+        .gestalt__top {
+            grid-template-columns: minmax(0, 1fr) 520px;
+            gap: 88px;
+        }
+    }
+}
+@layer states {
+    .gestalt a:focus-visible {
+        outline: 3px solid var(--apricot);
+        outline-offset: 3px;
+    }
+}

@@ -8,41 +8,23 @@
 #}
 
 {#
-    Stylesheets in public/layout/css/, loaded on every page in this order (later wins).
-    base: tokens and plain HTML · layout: page structure, header, footer ·
-    components: pieces used in many places · sections: one file per content element or page ·
-    states.css: hover, pressed and focus for all of the above.
-    sections/exercise.css is added only where the exercise is (content_element/exercise).
+    CSS and JS on every page (public/layout/css/, public/layout/js/). Everything else comes
+    with the element that needs it: a content element loads elements/<type>.css and .js
+    (content_element/_base.html.twig), included parts and modules load their own files
+    with add_assets(). The cascade order is fixed by layers (base/layers.css), not by the
+    order of the files. The cookie banner is included here, after the <head>, so its files
+    are in this list.
 #}
 {% set stylesheets = [
-    'base/fonts', 'base/tokens', 'base/base',
-    'layout/page',
+    'base/layers', 'base/fonts', 'base/tokens', 'base/base',
+    'layout/page', 'layout/header', 'layout/mobile-menu', 'layout/footer',
     'components/typography', 'components/buttons', 'components/cards', 'components/icons',
-    'components/accordion', 'components/summary', 'components/breadcrumb', 'components/bio',
-    'components/reveal', 'components/form', 'components/cookies', 'components/map-consent',
-    'components/circles', 'components/post-card',
-    'layout/header', 'layout/mobile-menu',
-    'sections/hero', 'sections/topics', 'sections/gestalt', 'sections/about', 'sections/band',
-    'sections/faq', 'sections/posts', 'sections/quote-photo', 'sections/contact',
-    'sections/page-intro', 'sections/topic-page', 'sections/about-page', 'sections/article',
-    'sections/online-page', 'sections/error-404', 'sections/legal',
-    'layout/footer',
-    'states',
+    'components/reveal', 'components/filter', 'components/cookies',
 ] %}
-{# Scripts in public/layout/js/ (ES modules, run after the page is parsed, like defer).
-   accordion.js, exercise.js and form.js are added only where they are needed. #}
-{% set scripts = ['header', 'reveal', 'circles', 'cookies'] %}
+{% set scripts = ['layout/header', 'components/reveal', 'components/cookies'] %}
 
 {% block head %}
     {{ parent() }}
-    {# Fonts used above the fold on every page. Plain URL without ?v=, it must
-       match the url() in fonts.css or the font is downloaded twice. #}
-    {% for font in ['inter', 'cormorant-garamond'] %}
-        <link rel="preload" href="/layout/fonts/{{ font }}.woff2" as="font" type="font/woff2" crossorigin>
-    {% endfor %}
-    {% for name in stylesheets %}
-        <link rel="stylesheet" href="{{ asset('layout/css/' ~ name ~ '.css') }}">
-    {% endfor %}
     {# Translations of this page (src/Language/LanguageSwitcher.php); Serbian is the default #}
     {% set translations = language_alternates()|filter(alt => alt.translated) %}
     {% if translations|length > 1 %}
@@ -51,6 +33,19 @@
         {% endfor %}
         <link rel="alternate" hreflang="x-default" href="{{ translations|first.url }}">
     {% endif %}
+{% endblock %}
+
+{# Before the CSS the elements add (parent): base/layers.css must be the first stylesheet #}
+{% block end_of_head %}
+    {# Fonts used above the fold on every page. Plain URL without ?v=, it must
+       match the url() in fonts.css or the font is downloaded twice. #}
+    {% for font in ['inter', 'cormorant-garamond'] %}
+        <link rel="preload" href="/layout/fonts/{{ font }}.woff2" as="font" type="font/woff2" crossorigin>
+    {% endfor %}
+    {% for name in stylesheets %}
+        <link rel="stylesheet" href="{{ asset('layout/css/' ~ name ~ '.css') }}">
+    {% endfor %}
+    {{ parent() }}
 {% endblock %}
 
 {% block body_content %}

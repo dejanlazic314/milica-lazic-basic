@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 /**
- * Answers forms sent by public/layout/js/form.js (fetch with "X-Requested-With").
+ * Answers forms sent by public/layout/js/elements/form.js (fetch with "X-Requested-With").
  *
  * The script checks the fields itself and only looks at the status code, so the
  * server answers with a status instead of a whole page:

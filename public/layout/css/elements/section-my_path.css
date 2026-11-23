@@ -1,0 +1,39 @@
+/* Section layout or CSS class "my_path" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer page {
+    .my-path > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    /* ---------- About: my path (12 columns) ---------- */
+    .my-path {
+        display: grid;
+        gap: 24px;
+    }
+    .my-path__head {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .my-path__text {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        color: var(--text-muted);
+    }
+    .my-path__text p:first-child {
+        font-size: var(--text-lead);
+    }
+    @media (min-width: 1024px) {
+        .my-path {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+        }
+        .my-path__head {
+            grid-column: span 4;
+        }
+        .my-path__text {
+            grid-column: 6 / span 7;
+        }
+    }
+}

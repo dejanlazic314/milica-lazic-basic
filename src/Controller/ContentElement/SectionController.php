@@ -8,6 +8,7 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Twig\FragmentTemplate;
+use Contao\StringUtil;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -51,6 +52,7 @@ final class SectionController extends AbstractContentElementController
 
         $template->set('layout', $layout);
         $template->set('content_class', self::LAYOUTS[$layout]);
+        $template->set('extra_assets', $this->getExtraAssets($layout, $model));
         $template->set('style', \in_array($model->sectionStyle, self::STYLES, true) ? $model->sectionStyle : null);
         $template->set('spacing', self::SPACINGS[$model->sectionSpacing] ?? [null, null]);
         $template->set('grid', \in_array($model->sectionGrid, self::GRIDS, true) ? $model->sectionGrid : null);
@@ -64,6 +66,24 @@ final class SectionController extends AbstractContentElementController
         $template->set('map', ['embed' => (string) $model->mapEmbedUrl, 'link' => (string) $model->mapLinkUrl]);
 
         return $template->getResponse();
+    }
+
+    /**
+     * CSS and JS besides elements/section (src/Twig/AssetsExtension.php): the file of the
+     * layout and of each class in the CSS ID field, e.g. elements/section-approach and
+     * elements/section-values. The layout "location" has a map behind consent.
+     *
+     * @return list<string>
+     */
+    private function getExtraAssets(string $layout, ContentModel $model): array
+    {
+        $classes = array_filter(explode(' ', StringUtil::deserialize($model->cssID, true)[1] ?? ''));
+
+        return [
+            'elements/section-'.$layout,
+            ...array_map(static fn (string $class): string => 'elements/section-'.$class, $classes),
+            ...('location' === $layout ? ['components/map-consent'] : []),
+        ];
     }
 
     /**

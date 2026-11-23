@@ -1,0 +1,37 @@
+/* Content element "section": options every layout shares (grid "after-message"). Each layout and each class in the CSS ID field has its own file, elements/section-<name>.css (SectionController::getExtraAssets). */
+
+@layer elements {
+    /* ---------- Contact page: after the message, location, two cards ---------- */
+    .after-message {
+        display: grid;
+        gap: 24px;
+    }
+    .after-message > div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-top: 2px solid var(--sage-300);
+        padding-top: 18px;
+    }
+    .after-message > div:first-child {
+        border-top-color: var(--sage-700);
+    }
+    .after-message h3 {
+        font-size: var(--h4);
+        font-weight: 600;
+    }
+    .after-message p {
+        font-size: var(--text-desc);
+        color: var(--text-muted);
+    }
+    @media (min-width: 600px) {
+        .after-message {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+    @media (min-width: 1024px) {
+        .after-message {
+            gap: 32px;
+        }
+    }
+}

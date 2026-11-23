@@ -1,0 +1,65 @@
+/* Content element "contact_block" (content_element/contact_block). Loaded with the element (content_element/_base). */
+
+@layer page {
+    .contact-block > * {
+        min-width: 0;
+    }
+}
+@layer elements {
+    /* ---------- #kontakt: apricot block with details and form, home and Contact page (content_element/contact_block) ---------- */
+    .contact-block {
+        background: var(--apricot-100);
+        border-radius: var(--radius-large);
+        padding: var(--block-pad);
+        display: grid;
+        gap: 32px;
+    }
+    .contact-block__left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .contact-block h2 {
+        line-height: 1.08;
+    }
+    .contact-block__left > p:not([class]) {
+        color: var(--warm-text);
+    }
+    .contact-details {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .contact-row {
+        padding: 14px 0;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-top: 1px solid var(--sand-line);
+    }
+    .contact-row__label {
+        font-size: var(--text-label);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--warm-muted);
+        font-weight: 600;
+    }
+    .contact-row__value {
+        display: block;
+        margin-top: 2px;
+        font-weight: 600;
+        color: var(--text-heading);
+        text-decoration: none;
+    }
+    a.contact-row__value {
+        text-decoration: underline;
+        text-decoration-color: var(--sand-line);
+        text-underline-offset: 4px;
+    }
+    @media (min-width: 1024px) {
+        .contact-block {
+            grid-template-columns: minmax(0, 400fr) minmax(0, 420fr);
+            gap: 56px;
+        }
+    }
+}

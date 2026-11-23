@@ -5,6 +5,7 @@
     @var list<array{title: string, href: string|null}> breadcrumb  BreadcrumbBuilder::build()
 #}
 {% trans_default_domain 'site' %}
+{% do add_assets('components/breadcrumb') %}
 {% if breadcrumb|default([])|length > 1 %}
     {% set parent = breadcrumb[breadcrumb|length - 2] %}
     <nav class="breadcrumb breadcrumb--short" aria-label="{{ 'breadcrumb.label'|trans }}">

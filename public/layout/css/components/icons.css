@@ -1,39 +1,41 @@
 /* Icons from the sprite (templates/component/_icon.html.twig). */
 
-/* <svg class="icon"><use href="/layout/icons/sprite.svg#i-phone"/></svg> */
-.icon {
-    width: 24px;
-    height: 24px;
-    flex: 0 0 auto;
-    stroke: currentColor;
-    fill: none;
-}
-.icon-circle {
-    flex: 0 0 auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--white);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--sage);
-}
-.icon-circle .icon {
-    width: 20px;
-    height: 20px;
-}
-.icon-tile {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    background: var(--sage-150);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--sage-700);
-}
-.icon-tile .icon {
-    width: 26px;
-    height: 26px;
+@layer components {
+    /* <svg class="icon"><use href="/layout/icons/sprite.svg#i-phone"/></svg> */
+    .icon {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 auto;
+        stroke: currentColor;
+        fill: none;
+    }
+    .icon-circle {
+        flex: 0 0 auto;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--white);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sage);
+    }
+    .icon-circle .icon {
+        width: 20px;
+        height: 20px;
+    }
+    .icon-tile {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: var(--sage-150);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sage-700);
+    }
+    .icon-tile .icon {
+        width: 26px;
+        height: 26px;
+    }
 }

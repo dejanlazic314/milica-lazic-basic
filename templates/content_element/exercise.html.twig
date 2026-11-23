@@ -1,5 +1,5 @@
 {#
-    Interactive exercise. The section is empty; public/layout/js/exercise.js builds it from
+    Interactive exercise. The section is empty; public/layout/js/elements/exercise.js builds it from
     three JSON attributes:
       data-content  texts of this element (heading, ending, contact button)
       data-topics   the nested "exercise_topic" elements (ExerciseController::getTopics)
@@ -54,14 +54,3 @@
     {% endif %}
 {% endblock %}
 
-{% block style %}
-    {% add 'exercise_css' to head %}
-        <link rel="stylesheet" href="{{ asset('layout/css/sections/exercise.css') }}">
-    {% endadd %}
-{% endblock %}
-
-{% block script %}
-    {% add 'exercise_js' to body %}
-        <script type="module" src="{{ asset('layout/js/exercise.js') }}"></script>
-    {% endadd %}
-{% endblock %}

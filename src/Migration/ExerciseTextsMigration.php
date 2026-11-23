@@ -13,7 +13,7 @@ use Doctrine\DBAL\Connection;
  *
  * - Exercise: the heading texts go into the element's fields, and each topic becomes a
  *   nested "exercise_topic" element (choice, illustration, steps, reflection, link).
- *   Before, all of it was in public/layout/js/exercise.js.
+ *   Before, all of it was in public/layout/js/elements/exercise.js.
  * - Topic grid: the contact card ("Ne vidite svoju temu ovde?") gets its own fields.
  *   Before, the text was in translations/site.*.yaml (topics.cta_*).
  *

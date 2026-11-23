@@ -92,3 +92,9 @@
         {% endblock %}
     </div>
 {% endblock %}
+
+{# The layout's own CSS (elements/section-<layout>.css) and that of extra classes, see SectionController #}
+{% block style %}
+    {{ parent() }}
+    {%- for name in extra_assets %}{% do add_assets(name) %}{% endfor -%}
+{% endblock %}

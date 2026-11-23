@@ -1,0 +1,16 @@
+/* Section layout or CSS class "online-steps" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer elements {
+    .online-steps .card {
+        padding: 28px;
+        gap: 12px;
+    }
+    .online-steps h3 {
+        font-size: var(--h4);
+        font-weight: 600;
+    }
+    .online-steps p {
+        font-size: var(--text-desc);
+        color: var(--text-muted);
+    }
+}

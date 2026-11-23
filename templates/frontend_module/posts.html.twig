@@ -6,6 +6,10 @@
 {% trans_default_domain 'site' %}
 {% use '@Contao/component/_picture.html.twig' %}
 {% import '@Contao/component/_text.html.twig' as txt %}
+{% do add_assets('modules/posts') %}
+{% do add_assets('components/article') %}
+{% do add_assets('elements/page_intro') %}
+{% do add_assets('elements/summary') %}
 
 {% if mode == 'list' %}
     <section class="page-intro"><div class="content page-intro__grid"><div class="page-intro__text" style="max-width:none">

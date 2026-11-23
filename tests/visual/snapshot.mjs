@@ -74,7 +74,7 @@ const shoot = async (browser, job) => {
         ignoreHTTPSErrors: true,
     });
 
-    // A stored cookie choice hides the banner (see public/layout/js/cookies.js)
+    // A stored cookie choice hides the banner (see public/layout/js/components/cookies.js)
     if (!job.banner) {
         await context.addInitScript(() => {
             localStorage.setItem('cookie-choice', JSON.stringify({ v: 1, maps: false, statistics: false }));

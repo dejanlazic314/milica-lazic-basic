@@ -1,120 +1,225 @@
-/* Buttons, links and chips. Hover, pressed and focus are in states.css. */
+/* Buttons, links and chips. Hover, pressed and focus are in the layer "states" further down. */
 
-/* ---------- Buttons ---------- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: var(--tap-min);
-    padding: 15px 28px;
-    border-radius: var(--radius-button);
-    font: inherit;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.2;
-    text-decoration: none;
-    cursor: pointer;
-    border: 1.5px solid transparent;
-    text-align: center;
-}
-.btn-apricot {
-    background: var(--apricot);
-    color: var(--text);
-}
-.btn-dark {
-    background: var(--sage-700);
-    color: var(--white);
-}
-.btn-darkest {
-    background: var(--sage-850);
-    color: var(--white);
-}
-.btn-outline {
-    background: transparent;
-    border-color: var(--sage-700);
-    color: var(--sage-800);
-}
-.btn-outline-light {
-    background: transparent;
-    border-color: var(--white);
-    color: var(--white);
-    font-weight: 500;
-}
-.btn-outline-apricot {
-    background: transparent;
-    border-color: var(--apricot-strong);
-    color: var(--apricot-strong);
-    font-size: var(--text-desc);
-    padding: 13px 24px;
-}
-.btn-large {
-    padding: 16px 30px;
-}
-.btn-small {
-    padding: 10px 18px;
-    font-size: var(--text-meta);
-}
-.btn[aria-busy="true"] {
-    cursor: progress;
-    opacity: 0.85;
-}
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-}
-@media (max-width: 599px) {
-    .actions--full .btn {
-        flex: 1 1 100%;
+@layer components {
+    /* ---------- Buttons ---------- */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: var(--tap-min);
+        padding: 15px 28px;
+        border-radius: var(--radius-button);
+        font: inherit;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.2;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        text-align: center;
+    }
+    .btn-apricot {
+        background: var(--apricot);
+        color: var(--text);
+    }
+    .btn-dark {
+        background: var(--sage-700);
+        color: var(--white);
+    }
+    .btn-darkest {
+        background: var(--sage-850);
+        color: var(--white);
+    }
+    .btn-outline {
+        background: transparent;
+        border-color: var(--sage-700);
+        color: var(--sage-800);
+    }
+    .btn-outline-light {
+        background: transparent;
+        border-color: var(--white);
+        color: var(--white);
+        font-weight: 500;
+    }
+    .btn-outline-apricot {
+        background: transparent;
+        border-color: var(--apricot-strong);
+        color: var(--apricot-strong);
+        font-size: var(--text-desc);
+        padding: 13px 24px;
+    }
+    .btn-large {
+        padding: 16px 30px;
+    }
+    .btn-small {
+        padding: 10px 18px;
+        font-size: var(--text-meta);
+    }
+    .btn[aria-busy="true"] {
+        cursor: progress;
+        opacity: 0.85;
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+    }
+    @media (max-width: 599px) {
+        .actions--full .btn {
+            flex: 1 1 100%;
+        }
+    }
+    /* ---------- Links ---------- */
+    .link-underlined {
+        color: var(--text-heading);
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: var(--apricot-underline);
+        text-underline-offset: 4px;
+    }
+    .link-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--sage-700);
+        text-decoration: none;
+    }
+    /* ---------- Chips ---------- */
+    .chip {
+        align-self: flex-start;
+        display: inline-block;
+        background: var(--sage-150);
+        color: var(--sage-800);
+        border-radius: var(--radius-button);
+        padding: 4px 12px;
+        font-size: var(--text-label);
+        font-weight: 600;
+        line-height: 1.5;
+    }
+    .chip--apricot {
+        background: var(--apricot);
+        color: var(--text);
+    }
+    .chip-outline {
+        display: inline-block;
+        border: 1px solid var(--sage-300);
+        border-radius: var(--radius-button);
+        padding: 6px 16px;
+        font-size: var(--text-meta);
+        font-weight: 600;
+        color: var(--sage-800);
+    }
+    .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 }
-
-/* ---------- Links ---------- */
-.link-underlined {
-    color: var(--text-heading);
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--apricot-underline);
-    text-underline-offset: 4px;
-}
-.link-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 600;
-    color: var(--sage-700);
-    text-decoration: none;
-}
-
-/* ---------- Chips ---------- */
-.chip {
-    align-self: flex-start;
-    display: inline-block;
-    background: var(--sage-150);
-    color: var(--sage-800);
-    border-radius: var(--radius-button);
-    padding: 4px 12px;
-    font-size: var(--text-label);
-    font-weight: 600;
-    line-height: 1.5;
-}
-.chip--apricot {
-    background: var(--apricot);
-    color: var(--text);
-}
-.chip-outline {
-    display: inline-block;
-    border: 1px solid var(--sage-300);
-    border-radius: var(--radius-button);
-    padding: 6px 16px;
-    font-size: var(--text-meta);
-    font-weight: 600;
-    color: var(--sage-800);
-}
-.chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+@layer states {
+    .btn,
+    .link,
+    .link-underlined {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out),
+            box-shadow var(--hover) var(--ease-out),
+            transform var(--hover) var(--ease-out),
+            text-decoration-color var(--hover) var(--ease-out);
+    }
+    @media (hover: hover) {
+        /* Apricot button (main CTA) */
+        .btn-apricot:hover {
+            background: var(--apricot-hover);
+            box-shadow: 0 8px 18px -10px rgba(201, 120, 63, 0.6);
+            transform: translateY(-1px);
+        }
+        /* Dark sage button */
+        .btn-dark:hover {
+            background: var(--sage-750);
+            box-shadow: 0 8px 18px -10px rgba(38, 48, 31, 0.6);
+            transform: translateY(-1px);
+        }
+        /* Outline button, light background */
+        .btn-outline:hover {
+            background: var(--sage-100);
+            border-color: var(--sage-800);
+        }
+        /* Outline button on dark / photo */
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+        .btn-outline-apricot:hover {
+            background: rgba(242, 180, 140, 0.14);
+            color: var(--apricot-strong-hover);
+        }
+        .link:hover {
+            color: var(--sage-850);
+            text-decoration-color: var(--sage);
+        }
+        .link-underlined:hover {
+            text-decoration-color: var(--sage);
+        }
+    }
+    /* Pressed (active) – also on touch */
+    .btn:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow: none;
+    }
+    .btn-apricot:active {
+        background: var(--apricot-active);
+    }
+    .btn-dark:active {
+        background: var(--sage-900);
+    }
+    .btn-outline:active {
+        background: var(--sage-200);
+    }
+    .btn-outline-light:active {
+        background: rgba(255, 255, 255, 0.24);
+    }
+    .btn-outline-apricot:active {
+        background: rgba(242, 180, 140, 0.24);
+    }
+    /* Keyboard focus */
+    .btn:focus-visible,
+    .link:focus-visible,
+    .link-underlined:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 12px;
+    }
+    .btn:focus-visible {
+        border-radius: 999px;
+    }
+    .btn-outline-light:focus-visible,
+    .btn-outline-apricot:focus-visible {
+        outline: 3px solid var(--apricot);
+        outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .btn {
+            transition:
+                background-color var(--hover) var(--ease-out),
+                color var(--hover) var(--ease-out),
+                border-color var(--hover) var(--ease-out);
+        }
+        .btn:hover,
+        .btn:active {
+            transform: none;
+        }
+    }
+    @media (hover: hover) {
+        .link-arrow:hover {
+            color: var(--sage-900);
+        }
+    }
+    .link-arrow:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 999px;
+    }
 }

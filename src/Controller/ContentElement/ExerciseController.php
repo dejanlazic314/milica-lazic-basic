@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Interactive "small experiment" (variant A or B). The texts come from this element and
  * its nested "exercise_topic" elements; the template passes them to
- * public/layout/js/exercise.js as JSON, and the script builds the steps.
- * exercise.css and exercise.js are added to the page only where this element is used.
+ * public/layout/js/elements/exercise.js as JSON, and the script builds the steps.
+ * Its CSS and JS (elements/exercise.css, elements/exercise.js) come with the element.
  * Set the anchor ID "vezba" on the element the menu links to ("/#vezba").
  */
 #[AsContentElement('exercise', category: 'milica', nestedFragments: ['allowedTypes' => ['exercise_topic']])]

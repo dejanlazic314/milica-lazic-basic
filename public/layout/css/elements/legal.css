@@ -1,0 +1,102 @@
+/* Content element "legal" (content_element/legal). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .legal {
+        max-width: var(--width-text);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        color: var(--text-strong);
+    }
+    .legal__updated {
+        display: inline-flex;
+        align-self: flex-start;
+        gap: 8px;
+        align-items: center;
+        background: var(--sage-150);
+        color: var(--sage-800);
+        border-radius: var(--radius-button);
+        padding: 6px 14px;
+        font-size: var(--text-meta);
+        font-weight: 600;
+    }
+    .legal h2 {
+        font-size: var(--h2-article);
+        line-height: 1.15;
+        margin-top: 24px;
+        scroll-margin-top: 110px;
+    }
+    .legal h3 {
+        font-size: var(--h4);
+        font-weight: 600;
+        margin-top: 8px;
+    }
+    .legal ul,
+    .legal ol {
+        margin: 0;
+        padding-left: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .legal table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-desc);
+    }
+    .legal th,
+    .legal td {
+        padding: 12px 14px;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid var(--line);
+    }
+    .legal thead th {
+        font-size: var(--text-meta);
+        color: var(--label);
+        border-bottom: 1.5px solid var(--sage-300);
+    }
+    .legal__content {
+        background: var(--white);
+        border: 1px solid var(--line-warm);
+        border-radius: var(--radius-card);
+        padding: 20px 24px;
+    }
+    .legal__content ol {
+        padding-left: 20px;
+        gap: 4px;
+        font-size: var(--text-desc);
+    }
+    .legal__contact {
+        background: var(--sand);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        color: var(--warm-text);
+    }
+    @media (max-width: 599px) {
+        .legal table thead {
+            display: none;
+        }
+        .legal table,
+        .legal tbody,
+        .legal tr,
+        .legal td {
+            display: block;
+            width: 100%;
+        }
+        .legal tr {
+            border-bottom: 1px solid var(--line);
+            padding: 8px 0;
+        }
+        .legal td {
+            border: 0;
+            padding: 4px 0;
+        }
+        .legal td::before {
+            content: attr(data-name) ": ";
+            font-weight: 600;
+            color: var(--label);
+        }
+    }
+}

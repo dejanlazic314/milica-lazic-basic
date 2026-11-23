@@ -1,50 +1,52 @@
 /* Text styles used across sections (eyebrow, intro, description, heading sizes). */
 
-.eyebrow {
-    font-size: var(--text-note);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--label);
-    font-weight: 600;
-}
-.eyebrow--warm {
-    color: var(--warm-muted);
-}
-.eyebrow--on-dark {
-    color: var(--apricot-strong);
-}
-.intro-text {
-    font-size: var(--text-lead);
-    color: var(--text-strong);
-}
-.desc {
-    font-size: var(--text-desc);
-    color: var(--text-muted);
-}
-.meta {
-    font-size: var(--text-meta);
-    color: var(--label);
-}
-.note {
-    font-size: var(--text-note);
-    color: var(--text-faint);
-}
-.h2-page {
-    font-size: var(--h2-page);
-    line-height: 1.1;
-}
-.h2-large {
-    font-size: var(--h2-large);
-}
-.h3-serif {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: var(--h3);
-    line-height: 1.15;
-}
-.h4 {
-    font-family: var(--font-body);
-    font-size: var(--h4);
-    font-weight: 600;
-    line-height: 1.35;
+@layer components {
+    .eyebrow {
+        font-size: var(--text-note);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--label);
+        font-weight: 600;
+    }
+    .eyebrow--warm {
+        color: var(--warm-muted);
+    }
+    .eyebrow--on-dark {
+        color: var(--apricot-strong);
+    }
+    .intro-text {
+        font-size: var(--text-lead);
+        color: var(--text-strong);
+    }
+    .desc {
+        font-size: var(--text-desc);
+        color: var(--text-muted);
+    }
+    .meta {
+        font-size: var(--text-meta);
+        color: var(--label);
+    }
+    .note {
+        font-size: var(--text-note);
+        color: var(--text-faint);
+    }
+    .h2-page {
+        font-size: var(--h2-page);
+        line-height: 1.1;
+    }
+    .h2-large {
+        font-size: var(--h2-large);
+    }
+    .h3-serif {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: var(--h3);
+        line-height: 1.15;
+    }
+    .h4 {
+        font-family: var(--font-body);
+        font-size: var(--h4);
+        font-weight: 600;
+        line-height: 1.35;
+    }
 }

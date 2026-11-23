@@ -1,6 +1,6 @@
 {#
     Contact block. Markup: html/strane/pocetna.html (#kontakt .contact-block)
-    The map iframe is only inserted after consent (public/layout/js/cookies.js, [data-map]).
+    The map iframe is only inserted after consent (public/layout/js/components/cookies.js, [data-map]).
 #}
 {% extends '@Contao/content_element/_base.html.twig' %}
 {% trans_default_domain 'site' %}
@@ -43,4 +43,9 @@
             {{ content_element(fragment) }}
         {% endfor %}
     </div>
+{% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    {%- do add_assets('components/map-consent') %}
 {% endblock %}

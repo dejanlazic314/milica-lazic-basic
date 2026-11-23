@@ -9,6 +9,7 @@
     @var bool read_more  "· Pročitajte →" after the reading time (home page)
 #}
 {% trans_default_domain 'site' %}
+{% do add_assets('components/post-card') %}
 {% use '@Contao/component/_picture.html.twig' %}
 
 {% set compact = compact|default(false) %}

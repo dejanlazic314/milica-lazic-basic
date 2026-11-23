@@ -1,114 +1,97 @@
 /* Page structure: content width, sections and their backgrounds, stacks, section heads, grids. */
 
-/* ---------- Layout ---------- */
-.content {
-    max-width: var(--width);
-    margin: 0 auto;
-}
-.section {
-    padding: var(--section) var(--gutter);
-}
-.section--small {
-    padding-top: var(--section-small);
-    padding-bottom: var(--section-small);
-}
-.section--no-top {
-    padding-top: 0;
-}
-.section--white {
-    background: var(--white);
-}
-.section--warm {
-    background: var(--bg-warm);
-}
-.stack {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-block);
-}
-.head {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 640px;
-}
-.head--wide {
-    max-width: none;
-}
-
-.head > p:last-child:not(.eyebrow) {
-    color: var(--text-muted);
-}
-
-/* ---------- Grids ---------- */
-.grid {
-    display: grid;
-    gap: var(--gap-grid);
-    grid-template-columns: minmax(0, 1fr);
-}
-@media (min-width: 600px) {
-    .grid--2,
-    .grid--3,
-    .grid--4,
-    .grid--auto {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+@layer page {
+    /* ---------- Layout ---------- */
+    .content {
+        max-width: var(--width);
+        margin: 0 auto;
     }
-    .grid--3-tablet {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+    .section {
+        padding: var(--section) var(--gutter);
     }
-    /* odd number of cards in 2 columns: the last one spans the full width */
-    .grid--2 > :last-child:nth-child(odd),
-    .grid--4 > :last-child:nth-child(odd),
-    .grid--auto > :last-child:nth-child(odd) {
-        grid-column: 1 / -1;
+    .section--small {
+        padding-top: var(--section-small);
+        padding-bottom: var(--section-small);
     }
-}
-@media (min-width: 1024px) {
-    .grid--3,
-    .grid--3-tablet {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .section--no-top {
+        padding-top: 0;
+    }
+    .section--white {
+        background: var(--white);
+    }
+    .section--warm {
+        background: var(--bg-warm);
+    }
+    .stack {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-block);
+    }
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 640px;
+    }
+    .head--wide {
+        max-width: none;
+    }
+    .head > p:last-child:not(.eyebrow) {
+        color: var(--text-muted);
+    }
+    /* ---------- Grids ---------- */
+    .grid {
+        display: grid;
         gap: var(--gap-grid);
+        grid-template-columns: minmax(0, 1fr);
     }
-    .grid--4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+    @media (min-width: 600px) {
+        .grid--2,
+        .grid--3,
+        .grid--4,
+        .grid--auto {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid--3-tablet {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        /* odd number of cards in 2 columns: the last one spans the full width */
+        .grid--2 > :last-child:nth-child(odd),
+        .grid--4 > :last-child:nth-child(odd),
+        .grid--auto > :last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+        }
     }
-    .grid--auto {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    @media (min-width: 1024px) {
+        .grid--3,
+        .grid--3-tablet {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--gap-grid);
+        }
+        .grid--4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .grid--auto {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        .grid--2 > :last-child:nth-child(odd),
+        .grid--4 > :last-child:nth-child(odd),
+        .grid--auto > :last-child:nth-child(odd) {
+            grid-column: auto;
+        }
     }
-    .grid--2 > :last-child:nth-child(odd),
-    .grid--4 > :last-child:nth-child(odd),
-    .grid--auto > :last-child:nth-child(odd) {
-        grid-column: auto;
-    }
-}
-
-.stack--wide {
-    gap: 32px;
-}
-@media (min-width: 600px) {
     .stack--wide {
-        gap: 40px;
+        gap: 32px;
     }
-}
-@media (min-width: 1024px) {
-    .stack--wide {
-        gap: 48px;
+    @media (min-width: 600px) {
+        .stack--wide {
+            gap: 40px;
+        }
     }
-}
-
-/* ---------- Reflow 320 px (WCAG 1.4.10): grid items may shrink ---------- */
-.page-intro__grid > *,
-.with-contents > *,
-.contact-block > *,
-.questions__grid > *,
-.gestalt__top > *,
-.about__grid > *,
-.faq-page > *,
-.approach > *,
-.location > *,
-.preparation > *,
-.diaspora > *,
-.my-path > * {
-    min-width: 0;
+    @media (min-width: 1024px) {
+        .stack--wide {
+            gap: 48px;
+        }
+    }
 }

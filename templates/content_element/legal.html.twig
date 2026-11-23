@@ -40,3 +40,9 @@
         </div>
     </section>
 {% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    {%- do add_assets('elements/page_intro') %}
+    {%- do add_assets('components/article') %}
+{% endblock %}

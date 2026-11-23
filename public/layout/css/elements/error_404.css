@@ -1,0 +1,96 @@
+/* Content element "error_404" (content_element/error_404). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .error-404 {
+        background: var(--bg-warm);
+        padding: var(--section) var(--gutter);
+    }
+    .error-404__grid {
+        display: grid;
+        gap: 40px;
+        align-items: center;
+    }
+    .error-404__text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 600px;
+    }
+    .error-404__code {
+        font-family: var(--font-heading);
+        font-style: italic;
+        font-size: var(--h2-page);
+        line-height: 1;
+        color: var(--sage);
+    }
+    .error-404 h1 {
+        font-size: var(--h1-page);
+        line-height: 1.04;
+    }
+    .error-404__image {
+        width: 100%;
+        max-width: 300px;
+        justify-self: center;
+    }
+    .error-404__topics {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 8px;
+    }
+    .error-404__topics ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .error-404__topics a {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--tap-min);
+        padding: 9px 18px;
+        border-radius: var(--radius-button);
+        border: 1.5px solid var(--sage-300);
+        background: var(--white);
+        color: var(--text-heading);
+        font-size: var(--text-desc);
+        font-weight: 600;
+        text-decoration: none;
+    }
+    @media (min-width: 1024px) {
+        .error-404 {
+            padding: 120px var(--gutter);
+        }
+        .error-404__grid {
+            grid-template-columns: minmax(0, 1fr) 380px;
+            gap: 64px;
+        }
+        .error-404__image {
+            max-width: 380px;
+        }
+    }
+}
+@layer states {
+    .error-404__topics a {
+        transition:
+            background-color var(--hover) var(--ease-out),
+            color var(--hover) var(--ease-out),
+            border-color var(--hover) var(--ease-out);
+    }
+    @media (hover: hover) {
+        .error-404__topics a:hover {
+            border-color: var(--sage-700);
+            background: var(--sage-50);
+        }
+    }
+    .error-404__topics a:active {
+        background: var(--sage-100);
+    }
+    .error-404__topics a:focus-visible {
+        outline: 3px solid var(--sage);
+        outline-offset: 3px;
+        border-radius: 999px;
+    }
+}

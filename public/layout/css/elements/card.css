@@ -1,0 +1,32 @@
+/* Content element "card" (content_element/card). Loaded with the element (content_element/_base). */
+
+@layer elements {
+    .dot-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: var(--text-strong);
+    }
+    .dot-list li {
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+        padding: 10px 0;
+        border-top: 1px solid var(--sage-300);
+    }
+    .dot-list li::before {
+        content: "";
+        flex: 0 0 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translateY(-2px);
+    }
+    .card--sand .dot-list {
+        color: var(--warm-text);
+    }
+    .card--sand .dot-list li {
+        border-top-color: var(--sand-line);
+    }
+}

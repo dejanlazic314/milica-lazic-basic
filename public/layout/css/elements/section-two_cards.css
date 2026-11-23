@@ -1,0 +1,27 @@
+/* Section layout or CSS class "two_cards" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer elements {
+    .two-cards {
+        display: grid;
+        gap: 20px;
+    }
+    .two-cards .card {
+        gap: 10px;
+    }
+    .two-cards h3 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: var(--h3);
+    }
+    .two-cards p {
+        font-size: var(--text-card);
+    }
+    .two-cards .card--white p {
+        color: var(--text-muted);
+    }
+    @media (min-width: 600px) {
+        .two-cards {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+}

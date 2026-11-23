@@ -1,0 +1,24 @@
+/* Section layout or CSS class "crisis" (content_element/section). Loaded by sections with that layout or class (SectionController::getExtraAssets). */
+
+@layer elements {
+    /* ---------- Crisis box (topic pages) ---------- */
+    .crisis-box {
+        background: var(--sage-800);
+        border-radius: var(--radius-card);
+        padding: var(--card-pad);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .crisis-box p:first-child {
+        font-weight: 600;
+        color: var(--white);
+    }
+    .crisis-box p + p {
+        font-size: var(--text-desc);
+        color: var(--on-dark-muted);
+    }
+    .crisis-box strong {
+        color: var(--white);
+    }
+}

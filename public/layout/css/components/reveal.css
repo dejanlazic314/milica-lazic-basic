@@ -1,20 +1,23 @@
-/* Fade in while scrolling: js/reveal.js adds and removes .reveal. */
+/* Fade in while scrolling: js/components/reveal.js adds and removes .reveal. */
 
-/* "main" outweighs the transition of .card and .featured in states.css */
-main .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-        opacity 0.7s var(--ease-out) var(--reveal-delay, 0s),
-        transform 0.7s var(--ease-out) var(--reveal-delay, 0s);
-}
-main .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
+/* In the layer "states", where the hover transitions of .card and .featured are: "main" makes
+   this transition win over theirs while the element fades in. */
+@layer states {
     main .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+            opacity 0.7s var(--ease-out) var(--reveal-delay, 0s),
+            transform 0.7s var(--ease-out) var(--reveal-delay, 0s);
+    }
+    main .reveal.is-visible {
         opacity: 1;
         transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        main .reveal {
+            opacity: 1;
+            transform: none;
+        }
     }
 }
